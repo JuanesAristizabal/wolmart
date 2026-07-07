@@ -1,510 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Walcart is a fictional university project landing page for affordable groceries, home essentials, transparent pricing, and fast delivery." />
-  <title>Walcart — Everyday Essentials, Honestly Priced</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Walcart — Everyday Essentials, Honestly Priced</title>
+<meta name="description" content="Walcart is a fictional online retail store for affordable groceries, home essentials, transparent prices, and fast delivery." />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
-    :root{
-      --navy:#0B2E4F;
-      --navy-deep:#071F38;
-      --blue:#145B93;
-      --gold:#F2B705;
-      --cream:#FAF7F0;
-      --coral:#E85D3D;
-      --mint:#DFF4E8;
-      --ink:#12202E;
-      --muted:#5E6B78;
-      --white:#FFFFFF;
-      --line:rgba(11,46,79,0.13);
-      --shadow:0 22px 55px rgba(7,31,56,0.13);
-      --radius:22px;
-      --max:1180px;
-    }
+:root{
+  --navy:#0B2E4F;
+  --navy2:#071F38;
+  --blue:#164B7A;
+  --gold:#F2B705;
+  --cream:#FAF7F0;
+  --cream2:#FFFDF8;
+  --coral:#E85D3D;
+  --green:#1F8A5B;
+  --ink:#12202E;
+  --muted:#5E6B77;
+  --line:rgba(11,46,79,.13);
+  --shadow:0 20px 55px rgba(7,31,56,.13);
+  --radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.08;letter-spacing:-.03em}
+.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--coral)}
+.section{padding:5.5rem 6vw}
+.section-head{max-width:740px;margin-bottom:2.6rem}.section-head h2{font-size:clamp(2rem,4vw,3.1rem);margin-top:.5rem}.section-head p{margin-top:1rem;color:var(--muted);font-size:1.05rem}
 
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{
-      font-family:'Inter',sans-serif;
-      color:var(--ink);
-      background:var(--cream);
-      line-height:1.6;
-    }
-    h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.025em;}
-    a{color:inherit;}
-    .container{width:min(var(--max),88vw);margin:0 auto;}
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:.45rem;
-      font-weight:800;
-      font-size:.76rem;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--coral);
-      margin-bottom:.75rem;
-    }
-    .eyebrow::before{content:"";width:9px;height:9px;border-radius:99px;background:currentColor;}
-    .section-pad{padding:5.6rem 0;}
-    .section-head{max-width:720px;margin-bottom:2.8rem;}
-    .section-head h2{font-size:clamp(2rem,4vw,3rem);line-height:1.08;margin-bottom:.9rem;}
-    .section-head p{color:var(--muted);font-size:1.05rem;}
+/* Topbar / Nav */
+.topbar{background:var(--navy2);color:#fff;text-align:center;padding:.65rem 1rem;font-size:.86rem;font-weight:700}.topbar span{color:var(--gold)}
+nav{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:1rem 6vw;background:rgba(250,247,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-family:'Archivo Black',sans-serif;font-size:1.45rem;color:var(--navy);letter-spacing:-.03em}.logo span{color:var(--coral)}
+.nav-links{display:flex;gap:1.6rem;font-size:.92rem;font-weight:700;color:#2D3A46}.nav-links a{opacity:.78}.nav-links a:hover{opacity:1;color:var(--coral)}
+.nav-actions{display:flex;align-items:center;gap:.8rem}.search{display:flex;align-items:center;gap:.45rem;background:#fff;border:1px solid var(--line);padding:.62rem .9rem;border-radius:999px;color:var(--muted);font-size:.88rem;min-width:210px}.nav-cta,.btn-primary{background:var(--navy);color:#fff;padding:.78rem 1.2rem;border-radius:999px;font-weight:800;box-shadow:0 10px 25px rgba(11,46,79,.18)}
+.mobile-toggle{display:none;border:none;background:var(--navy);color:#fff;border-radius:10px;font-size:1.2rem;padding:.55rem .75rem}
 
-    /* NAV */
-    .nav{
-      position:sticky;top:0;z-index:100;
-      background:rgba(250,247,240,.92);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--line);
-    }
-    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;}
-    .logo{
-      font-family:'Archivo Black',sans-serif;
-      font-size:1.6rem;
-      letter-spacing:-.04em;
-      color:var(--navy);
-      text-decoration:none;
-      white-space:nowrap;
-    }
-    .logo span{color:var(--coral);}
-    .nav-links{display:flex;align-items:center;gap:1.7rem;font-weight:700;font-size:.92rem;color:rgba(18,32,46,.76);}
-    .nav-links a{text-decoration:none;transition:.2s;}
-    .nav-links a:hover{color:var(--coral);}
-    .nav-cta{
-      display:inline-flex;align-items:center;justify-content:center;
-      background:var(--navy);color:#fff;text-decoration:none;
-      padding:.78rem 1.25rem;border-radius:999px;font-weight:800;font-size:.92rem;
-      box-shadow:0 10px 22px rgba(7,31,56,.16);
-    }
-    .menu-toggle{display:none;}
+/* Hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;padding:5.5rem 6vw 4.5rem}.hero:before{content:"";position:absolute;right:-160px;top:-220px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(242,183,5,.28),transparent 68%)}.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:3rem;align-items:center;max-width:1240px;margin:auto}.hero h1{font-size:clamp(2.8rem,6vw,5rem);margin:.8rem 0 1.1rem}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:1.15rem;color:rgba(255,255,255,.82);max-width:590px;margin-bottom:1.8rem}.btn-row{display:flex;flex-wrap:wrap;gap:.9rem}.btn-primary{background:var(--gold);color:var(--navy2);display:inline-flex}.btn-secondary{border:1px solid rgba(255,255,255,.32);padding:.78rem 1.2rem;border-radius:999px;color:#fff;font-weight:800}.trust-row{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.7rem;color:rgba(255,255,255,.74);font-weight:700;font-size:.92rem}.trust-row strong{color:#fff}.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:32px;padding:1.1rem;box-shadow:var(--shadow);backdrop-filter:blur(10px)}.mockup{background:#fff;border-radius:24px;color:var(--ink);padding:1.2rem}.mockup-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.cart-title{font-weight:900}.badge{background:rgba(31,138,91,.12);color:var(--green);padding:.35rem .6rem;border-radius:999px;font-size:.78rem;font-weight:900}.hero-products{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.hero-product{background:var(--cream2);border:1px solid var(--line);border-radius:18px;padding:1rem}.emoji{font-size:2rem}.hero-product h4{font-size:.95rem;margin:.35rem 0}.price{font-size:1.3rem;font-weight:900;color:var(--navy)}.save{font-size:.8rem;color:var(--green);font-weight:800}.checkout{margin-top:1rem;background:var(--navy);color:#fff;border-radius:18px;padding:1rem;display:flex;justify-content:space-between;align-items:center}.checkout strong{color:var(--gold)}
 
-    /* HERO */
-    .hero{
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 85% 12%, rgba(242,183,5,.24), transparent 28%),
-        radial-gradient(circle at 12% 78%, rgba(232,93,61,.16), transparent 30%),
-        linear-gradient(135deg,var(--navy-deep),var(--navy));
-      color:#fff;
-      padding:6.2rem 0 4.8rem;
-    }
-    .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:3.2rem;align-items:center;}
-    .hero h1{font-size:clamp(2.7rem,5.6vw,5.7rem);line-height:.97;margin:.3rem 0 1.35rem;}
-    .hero h1 em{font-style:normal;color:var(--gold);}
-    .hero-copy{font-size:1.14rem;color:rgba(255,255,255,.78);max-width:610px;margin-bottom:2rem;}
-    .btn-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-      padding:.95rem 1.45rem;border-radius:999px;text-decoration:none;font-weight:900;
-      transition:.2s;min-height:48px;
-    }
-    .btn-primary{background:var(--gold);color:var(--navy-deep);}
-    .btn-secondary{border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.06);}
-    .btn:hover{transform:translateY(-2px);}
-    .trust-row{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:2rem;color:rgba(255,255,255,.73);font-size:.92rem;}
-    .trust-row strong{color:#fff;}
+/* Stats / categories */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1150px;margin:-2.2rem auto 0;position:relative;z-index:3;padding:0 6vw}.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.4rem;text-align:center;box-shadow:0 10px 35px rgba(7,31,56,.08)}.stat strong{display:block;font-family:'Space Grotesk';font-size:2rem;color:var(--navy)}.stat span{color:var(--muted);font-size:.9rem;font-weight:700}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}.category{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.2rem;text-align:center;transition:.2s}.category:hover,.product:hover,.why-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(7,31,56,.1)}.category div{font-size:2rem}.category strong{display:block;margin-top:.3rem;color:var(--navy)}
 
-    .hero-card{
-      background:rgba(255,255,255,.1);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:34px;
-      padding:1.2rem;
-      box-shadow:0 35px 75px rgba(0,0,0,.28);
-      backdrop-filter:blur(14px);
-    }
-    .cart-visual{
-      min-height:500px;
-      border-radius:26px;
-      background:linear-gradient(180deg,#fff,#f7f0df);
-      color:var(--ink);
-      padding:1.4rem;
-      position:relative;
-      overflow:hidden;
-    }
-    .cart-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;}
-    .cart-title{font-family:'Space Grotesk';font-weight:800;font-size:1.15rem;color:var(--navy);}
-    .cart-pill{background:var(--mint);padding:.45rem .7rem;border-radius:999px;font-weight:800;color:#16603A;font-size:.8rem;}
-    .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-    .product-mini{
-      background:#fff;border:1px solid rgba(11,46,79,.1);border-radius:20px;
-      padding:1rem;box-shadow:0 12px 30px rgba(7,31,56,.08);
-    }
-    .icon-box{height:102px;border-radius:16px;margin-bottom:.85rem;display:grid;place-items:center;font-size:3rem;}
-    .bg-gold{background:#FFF0B9}.bg-mint{background:#DFF4E8}.bg-coral{background:#FFE0D8}.bg-blue{background:#E0F0FF}
-    .product-mini h3{font-size:1rem;margin-bottom:.1rem;}
-    .product-mini p{color:var(--muted);font-size:.82rem;}
-    .price{font-weight:900;color:var(--coral);margin-top:.5rem;}
-    .saving-box{position:absolute;left:1.4rem;right:1.4rem;bottom:1.4rem;background:var(--navy);color:#fff;border-radius:22px;padding:1.1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;}
-    .saving-box strong{display:block;color:var(--gold);font-size:1.45rem;font-family:'Space Grotesk';}
+/* Cards */
+.why-grid,.product-grid,.blog-grid,.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.why-card,.product,.blog-card,.testimonial{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;transition:.2s}.icon{width:48px;height:48px;border-radius:16px;background:rgba(242,183,5,.18);display:grid;place-items:center;font-size:1.45rem;margin-bottom:1rem}.why-card h3,.blog-card h3{font-size:1.25rem;margin-bottom:.55rem}.why-card p,.blog-card p,.testimonial p{color:var(--muted);font-size:.95rem}.product-img{height:150px;border-radius:18px;background:linear-gradient(135deg,#fff4c7,#e9f6ef);display:grid;place-items:center;font-size:4rem;margin-bottom:1rem}.product-top{display:flex;justify-content:space-between;gap:1rem;align-items:start}.product h3{font-size:1.15rem}.old{text-decoration:line-through;color:#8b98a4;font-size:.85rem;margin-right:.4rem}.product button{width:100%;margin-top:1rem;border:none;background:var(--navy);color:#fff;border-radius:999px;padding:.8rem;font-weight:900;cursor:pointer}.deals{background:#fff}.deal-banner{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;background:linear-gradient(135deg,var(--gold),#FFD766);border-radius:34px;padding:2.5rem;box-shadow:var(--shadow)}.deal-banner h2{font-size:clamp(2rem,4vw,3.4rem);color:var(--navy2)}.coupon{background:var(--navy2);color:#fff;border-radius:24px;padding:2rem}.coupon code{display:block;background:rgba(255,255,255,.1);padding:.9rem;border-radius:12px;margin:1rem 0;font-size:1.2rem;color:var(--gold);font-weight:900;text-align:center}
 
-    /* VALUE */
-    .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;}
-    .value-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:0 12px 30px rgba(7,31,56,.06);}
-    .value-card .num{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:var(--navy);color:var(--gold);font-weight:900;margin-bottom:1rem;}
-    .value-card h3{font-size:1.16rem;margin-bottom:.45rem;}
-    .value-card p{color:var(--muted);font-size:.94rem;}
+/* How / comparison */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}.num{font-family:'Space Grotesk';font-weight:900;color:var(--coral);font-size:2rem}.compare{background:var(--navy);color:#fff}.compare .section-head p{color:rgba(255,255,255,.7)}.compare .eyebrow{color:var(--gold)}.table-wrap{overflow:auto;border-radius:24px;border:1px solid rgba(255,255,255,.16)}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.04);min-width:720px}th,td{text-align:left;padding:1.05rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.1)}th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.62)}td:nth-child(2){color:var(--gold);font-weight:900}.check{color:#7BE0A4;font-weight:900}.x{color:#ff9a88;font-weight:900}
 
-    /* DEALS */
-    .deals{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-    .deals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
-    .deal-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 15px 35px rgba(7,31,56,.07);}
-    .deal-img{height:190px;display:grid;place-items:center;font-size:4.5rem;position:relative;}
-    .deal-img::after{content:"AI generated concept image";position:absolute;right:.8rem;bottom:.7rem;font-size:.65rem;font-weight:800;color:rgba(18,32,46,.55);background:rgba(255,255,255,.78);border-radius:999px;padding:.25rem .55rem;}
-    .deal-body{padding:1.25rem;}
-    .deal-body h3{font-size:1.25rem;margin-bottom:.35rem;}
-    .deal-body p{color:var(--muted);font-size:.94rem;margin-bottom:.8rem;}
-    .deal-price{display:flex;align-items:flex-end;gap:.6rem;}
-    .deal-price strong{font-size:1.7rem;color:var(--navy);font-family:'Space Grotesk';line-height:1;}
-    .deal-price span{text-decoration:line-through;color:var(--muted);font-weight:700;}
+/* Testimonials FAQ Blog Newsletter Footer */
+.stars{color:var(--gold);font-weight:900;margin-bottom:.8rem}.person{margin-top:1rem;font-weight:900;color:var(--navy)}.faq-list{max-width:900px}.faq-item{background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:.75rem;padding:1.1rem 1.2rem}.faq-item summary{font-family:'Space Grotesk';font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';color:var(--coral);font-size:1.3rem}.faq-item[open] summary:after{content:'–'}.faq-item p{margin-top:.7rem;color:var(--muted)}.newsletter{background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;border-radius:36px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}.newsletter h2{font-size:clamp(2rem,4vw,3rem)}.newsletter ul{list-style:none;margin-top:1rem;color:rgba(255,255,255,.78)}.newsletter form{background:#fff;border-radius:24px;padding:1rem;display:flex;gap:.7rem}.newsletter input{flex:1;border:1px solid var(--line);padding:.95rem 1rem;border-radius:999px;font-family:Inter}.newsletter button{border:none;background:var(--gold);color:var(--navy2);border-radius:999px;padding:.95rem 1.2rem;font-weight:900}.final-cta{text-align:center;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.final-cta h2{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:1rem}footer{background:var(--navy2);color:rgba(255,255,255,.7);padding:3.5rem 6vw}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:2rem;max-width:1200px;margin:auto}.footer-grid h4{color:#fff;margin-bottom:.8rem}.footer-grid a{display:block;margin:.4rem 0;color:rgba(255,255,255,.62);font-size:.9rem}.fineprint{max-width:1200px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem}
 
-    /* COMPARISON */
-    .compare{background:var(--navy);color:#fff;}
-    .compare .eyebrow{color:var(--gold);}
-    .compare .section-head p{color:rgba(255,255,255,.7);}
-    .table-wrap{overflow:auto;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);background:rgba(255,255,255,.05);}
-    table{width:100%;border-collapse:collapse;min-width:720px;}
-    th,td{text-align:left;padding:1.05rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.12);}
-    th{font-family:'Space Grotesk';text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;color:rgba(255,255,255,.58);}
-    th:nth-child(2),td:nth-child(2){color:var(--gold);font-weight:900;}
-    tr:last-child td{border-bottom:none;}
-
-    /* BLOG + FAQ */
-    .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.35rem;align-items:start;}
-    .blog-card,.faq-box,.newsletter-box,.ad-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.65rem;box-shadow:0 15px 35px rgba(7,31,56,.06);}
-    .blog-card h3{font-size:1.55rem;margin:.45rem 0 .75rem;}
-    .blog-card p{color:var(--muted);margin-bottom:1rem;}
-    .read-link{color:var(--coral);font-weight:900;text-decoration:none;}
-    details{border-bottom:1px solid var(--line);padding:1rem 0;}
-    details:last-child{border-bottom:none;}
-    summary{cursor:pointer;font-family:'Space Grotesk';font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:1rem;}
-    summary::-webkit-details-marker{display:none;}
-    summary::after{content:"+";color:var(--coral);font-size:1.25rem;}
-    details[open] summary::after{content:"–";}
-    details p{color:var(--muted);font-size:.94rem;margin-top:.65rem;}
-
-    /* NEWSLETTER */
-    .newsletter-section{background:linear-gradient(135deg,var(--gold),#FFD85A);}
-    .newsletter-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;align-items:center;}
-    .newsletter-section h2{font-size:clamp(2rem,4vw,3.1rem);line-height:1.05;color:var(--navy-deep);}
-    .newsletter-section p{color:rgba(7,31,56,.72);font-weight:600;margin-top:.9rem;}
-    .newsletter-box form{display:flex;gap:.7rem;margin-top:1.1rem;}
-    .newsletter-box input{flex:1;min-width:0;border:1px solid var(--line);padding:1rem;border-radius:14px;font:inherit;}
-    .newsletter-box button{border:none;background:var(--navy);color:#fff;border-radius:14px;padding:0 1.2rem;font-weight:900;cursor:pointer;}
-    .email-preview{margin-top:1rem;background:#F6F8FA;border:1px solid var(--line);border-radius:16px;padding:1rem;}
-    .email-preview h3{font-size:1.05rem;color:var(--navy);}
-    .email-preview p{font-size:.9rem;margin-top:.35rem;color:var(--muted);}
-
-    /* ADS */
-    .ads-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
-    .ad-card .ad-label{font-size:.8rem;font-weight:900;color:#1A73E8;margin-bottom:.25rem;}
-    .ad-card h3{color:#1A0DAB;font-size:1.25rem;line-height:1.25;margin-bottom:.35rem;}
-    .ad-url{color:#0B8043;font-size:.88rem;margin-bottom:.5rem;}
-    .ad-card p{color:#3C4043;font-size:.95rem;}
-
-    footer{background:var(--navy-deep);color:rgba(255,255,255,.65);padding:2.4rem 0;}
-    .footer-grid{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center;}
-    .footer-note{font-size:.86rem;}
-
-    @media (max-width:980px){
-      .hero-grid,.newsletter-grid,.split-grid{grid-template-columns:1fr;}
-      .hero{padding:4.8rem 0 3.8rem;}
-      .cart-visual{min-height:auto;}
-      .saving-box{position:static;margin-top:1rem;}
-      .value-grid{grid-template-columns:repeat(2,1fr);}
-      .deals-grid{grid-template-columns:1fr 1fr;}
-    }
-    @media (max-width:720px){
-      .nav-inner{height:auto;min-height:68px;align-items:flex-start;padding:1rem 0;}
-      .nav-links{display:none;}
-      .nav-cta{font-size:.84rem;padding:.66rem .9rem;}
-      .hero{padding:3.7rem 0 3rem;}
-      .hero-copy{font-size:1rem;}
-      .product-grid,.value-grid,.deals-grid,.ads-grid{grid-template-columns:1fr;}
-      .section-pad{padding:4rem 0;}
-      .newsletter-box form{flex-direction:column;}
-      .newsletter-box button{height:50px;}
-      .trust-row{gap:.8rem;}
-      .cart-visual{padding:1rem;}
-      .deal-img{height:155px;}
-    }
-  </style>
+@media(max-width:980px){
+  .search{display:none}
+  .mobile-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:100%;left:5vw;right:5vw;flex-direction:column;gap:.2rem;background:#fff;border:1px solid var(--line);border-radius:18px;padding:.7rem;box-shadow:0 16px 35px rgba(7,31,56,.14)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.85rem 1rem;border-radius:12px}
+  .nav-links a:hover{background:var(--cream)}
+  .hero-grid,.deal-banner,.newsletter{grid-template-columns:1fr}
+  .hero-grid{gap:2rem}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .why-grid,.product-grid,.blog-grid,.testimonial-grid,.steps{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero{padding-top:4rem}
+}
+@media(max-width:640px){
+  .topbar{font-size:.78rem;line-height:1.35}
+  .section{padding:3.5rem 5vw}
+  nav{padding:.9rem 5vw}
+  .logo{font-size:1.25rem}
+  .nav-actions .nav-cta{display:none}
+  .hero{padding:3.4rem 5vw 3.6rem}
+  .hero h1{font-size:clamp(2.35rem,12vw,2.9rem)}
+  .hero p{font-size:1rem}
+  .btn-row a{width:100%;justify-content:center;text-align:center}
+  .hero-products,.stats,.categories,.why-grid,.product-grid,.blog-grid,.testimonial-grid,.steps,.footer-grid{grid-template-columns:1fr}
+  .stats{margin:-1.3rem 5vw 0;padding:0}
+  .stat{padding:1.1rem}
+  .product-top{align-items:flex-start}
+  .deal-banner,.newsletter{padding:1.45rem;border-radius:24px}
+  .newsletter form{flex-direction:column;padding:.85rem}
+  .newsletter input,.newsletter button{width:100%}
+  .trust-row{gap:.8rem}
+  .checkout{align-items:flex-start;flex-direction:column;gap:.4rem}
+  table{min-width:620px}
+}
+@media(max-width:380px){
+  .hero-product{padding:.8rem}
+  .product-img{height:120px;font-size:3rem}
+  .section-head h2{font-size:2rem}
+}
+</style>
 </head>
 <body>
-  <nav class="nav" aria-label="Main navigation">
-    <div class="container nav-inner">
-      <a class="logo" href="#top">Wal<span>cart</span></a>
-      <div class="nav-links" aria-label="Website sections">
-        <a href="#why">Why us</a>
-        <a href="#deals">Deals</a>
-        <a href="#compare">Compare</a>
-        <a href="#faq">FAQ</a>
-        <a href="#blog">Blog</a>
-      </div>
-      <a class="nav-cta" href="#newsletter">Get weekly deals</a>
+<div class="topbar">🚚 Free delivery over <span>$35</span> · Today only: <span>15% OFF</span> local produce with code FRESH15</div>
+<nav>
+  <a class="logo" href="#">Wal<span>cart</span></a>
+  <div class="nav-links">
+    <a href="#categories">Categories</a><a href="#why">Why Us</a><a href="#deals">Deals</a><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#blog">Blog</a>
+  </div>
+  <div class="nav-actions"><div class="search">🔎 Search groceries...</div><a class="nav-cta" href="#newsletter">Get Deals</a><button class="mobile-toggle">☰</button></div>
+</nav>
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">No membership. No markup.</span>
+      <h1>Everyday groceries, <em>without everyday markups.</em></h1>
+      <p>Walcart is a fictional online retail store built for this university project. It offers affordable groceries, home essentials, transparent prices, and fast delivery.</p>
+      <div class="btn-row"><a class="btn-primary" href="#products">Start Shopping</a><a class="btn-secondary" href="#compare">Compare Prices</a></div>
+      <div class="trust-row"><span>★★★★★ <strong>4.9 rating</strong></span><span>🔒 Secure checkout</span><span>↩ 30-day returns</span></div>
     </div>
-  </nav>
-
-  <header class="hero" id="top">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Fictional university project</span>
-        <h1>Everyday essentials, <em>honestly priced.</em></h1>
-        <p class="hero-copy">Walcart is a fictional online retail store offering affordable groceries, home essentials, and fast delivery with transparent pricing and no membership fees.</p>
-        <div class="btn-row">
-          <a href="#newsletter" class="btn btn-primary">Start saving today</a>
-          <a href="#compare" class="btn btn-secondary">Compare benefits</a>
+    <div class="hero-card" aria-label="Shopping cart preview">
+      <div class="mockup">
+        <div class="mockup-head"><div class="cart-title">Your weekly cart</div><div class="badge">Saved $18.40</div></div>
+        <div class="hero-products">
+          <div class="hero-product"><div class="emoji">🥑</div><h4>Fresh Avocados</h4><div class="price">$1.49</div><div class="save">12% less than average</div></div>
+          <div class="hero-product"><div class="emoji">🥛</div><h4>Organic Milk</h4><div class="price">$2.99</div><div class="save">No membership needed</div></div>
+          <div class="hero-product"><div class="emoji">🧻</div><h4>Paper Towels</h4><div class="price">$7.99</div><div class="save">Free pickup</div></div>
+          <div class="hero-product"><div class="emoji">🍞</div><h4>Whole Grain Bread</h4><div class="price">$2.50</div><div class="save">Local bakery</div></div>
         </div>
-        <div class="trust-row">
-          <div><strong>$0</strong> membership fees</div>
-          <div><strong>$35+</strong> free shipping</div>
-          <div><strong>30 days</strong> easy returns</div>
-        </div>
-      </div>
-
-      <div class="hero-card" aria-label="Product preview">
-        <div class="cart-visual">
-          <div class="cart-top">
-            <div class="cart-title">This week's cart</div>
-            <div class="cart-pill">18% avg. savings</div>
-          </div>
-          <div class="product-grid">
-            <article class="product-mini">
-              <div class="icon-box bg-gold">🛒</div>
-              <h3>Family groceries</h3>
-              <p>Fresh basics for every week.</p>
-              <div class="price">From $24.90</div>
-            </article>
-            <article class="product-mini">
-              <div class="icon-box bg-mint">🥬</div>
-              <h3>Fresh produce</h3>
-              <p>Local-first sourcing.</p>
-              <div class="price">From $3.50</div>
-            </article>
-            <article class="product-mini">
-              <div class="icon-box bg-coral">🧼</div>
-              <h3>Home care</h3>
-              <p>Daily cleaning essentials.</p>
-              <div class="price">From $5.99</div>
-            </article>
-            <article class="product-mini">
-              <div class="icon-box bg-blue">📦</div>
-              <h3>Fast delivery</h3>
-              <p>Pickup or delivery options.</p>
-              <div class="price">Free over $35</div>
-            </article>
-          </div>
-          <div class="saving-box">
-            <div>
-              <strong>$12.40 saved</strong>
-              <span>compared with a typical weekly cart</span>
-            </div>
-            <div>→</div>
-          </div>
-        </div>
+        <div class="checkout"><div>Total today <strong>$28.97</strong></div><div>Checkout →</div></div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+<div class="stats">
+  <div class="stat"><strong>250K+</strong><span>Happy customers</span></div>
+  <div class="stat"><strong>4.9★</strong><span>Average rating</span></div>
+  <div class="stat"><strong>$0</strong><span>Membership fees</span></div>
+  <div class="stat"><strong>30</strong><span>Days for returns</span></div>
+</div>
+<section class="section" id="categories">
+  <div class="section-head"><span class="eyebrow">Featured categories</span><h2>Shop essentials by category.</h2><p>Simple product categories make the website feel real while keeping the exercise easy to present.</p></div>
+  <div class="categories">
+    <div class="category"><div>🥬</div><strong>Fresh Produce</strong></div><div class="category"><div>🥛</div><strong>Dairy</strong></div><div class="category"><div>🥩</div><strong>Meat</strong></div><div class="category"><div>🧼</div><strong>Cleaning</strong></div><div class="category"><div>🐶</div><strong>Pet Supplies</strong></div><div class="category"><div>🍫</div><strong>Snacks</strong></div>
+  </div>
+</section>
+<section class="section" id="why">
+  <div class="section-head"><span class="eyebrow">Why choose Walcart</span><h2>Retail-level prices with a simpler, more transparent experience.</h2></div>
+  <div class="why-grid">
+    <div class="why-card"><div class="icon">💸</div><h3>No membership required</h3><p>Every shopper gets the same low prices without annual subscriptions or hidden conditions.</p></div>
+    <div class="why-card"><div class="icon">🏷️</div><h3>Transparent pricing</h3><p>Clear prices, visible savings, and no confusing bundled deals that look better than they are.</p></div>
+    <div class="why-card"><div class="icon">🚚</div><h3>Fast, flexible delivery</h3><p>Free delivery over $35 and pickup options for customers who need groceries quickly.</p></div>
+  </div>
+</section>
+<section class="section" id="products">
+  <div class="section-head"><span class="eyebrow">Popular products</span><h2>Weekly essentials at honest prices.</h2></div>
+  <div class="product-grid">
+    <div class="product"><div class="product-img">🥑</div><div class="product-top"><h3>Fresh Avocados</h3><div class="price">$1.49</div></div><p><span class="old">$1.99</span> Local supplier pick</p><button>Add to cart</button></div>
+    <div class="product"><div class="product-img">🥛</div><div class="product-top"><h3>Organic Milk</h3><div class="price">$2.99</div></div><p><span class="old">$3.69</span> Family-size value</p><button>Add to cart</button></div>
+    <div class="product"><div class="product-img">🍞</div><div class="product-top"><h3>Whole Grain Bread</h3><div class="price">$2.50</div></div><p><span class="old">$3.10</span> Baked locally</p><button>Add to cart</button></div>
+  </div>
+</section>
+<section class="section deals" id="deals">
+  <div class="deal-banner"><div><span class="eyebrow">Limited offer</span><h2>Save 15% on local produce this week.</h2><p>Use this promotional section as part of the Google Ads landing page. It gives the campaign a clear offer and call to action.</p></div><div class="coupon"><h3>Weekly coupon</h3><code>FRESH15</code><p>Use at checkout for selected fruits and vegetables. Offer created for academic demonstration purposes.</p></div></div>
+</section>
+<section class="section">
+  <div class="section-head"><span class="eyebrow">How it works</span><h2>Three steps from cart to kitchen.</h2></div>
+  <div class="steps"><div class="step"><div class="num">01</div><h3>Browse products</h3><p>Search groceries, compare options, and build your weekly cart.</p></div><div class="step"><div class="num">02</div><h3>Order online</h3><p>Pay securely and choose delivery or pickup depending on your schedule.</p></div><div class="step"><div class="num">03</div><h3>Receive tomorrow</h3><p>Get essentials delivered quickly with simple returns if something is not right.</p></div></div>
+</section>
+<section class="section compare" id="compare">
+  <div class="section-head"><span class="eyebrow">Comparison table</span><h2>Walcart vs. traditional big-box retailers.</h2><p>This section directly covers the GEO/website requirement from the assignment.</p></div>
+  <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Walcart</th><th>Traditional Big-Box</th></tr></thead><tbody>
+    <tr><td>Membership fee</td><td><span class="check">✓</span> None</td><td><span class="x">✕</span> Often required for best prices</td></tr>
+    <tr><td>Shipping</td><td><span class="check">✓</span> Free over $35</td><td>Varies by retailer</td></tr>
+    <tr><td>Local sourcing</td><td><span class="check">✓</span> Prioritized</td><td>Rarely emphasized</td></tr>
+    <tr><td>Return window</td><td><span class="check">✓</span> 30 days</td><td>Often shorter or conditional</td></tr>
+    <tr><td>Price transparency</td><td><span class="check">✓</span> Upfront pricing</td><td>Promotions can be unclear</td></tr>
+    <tr><td>Same-day pickup</td><td><span class="check">✓</span> Select locations</td><td>Limited availability</td></tr>
+  </tbody></table></div>
+</section>
+<section class="section">
+  <div class="section-head"><span class="eyebrow">Customer stories</span><h2>Designed to feel trustworthy for a Google Ads visitor.</h2></div>
+  <div class="testimonial-grid"><div class="testimonial"><div class="stars">★★★★★</div><p>“I switched from traditional supermarkets and save around $40 every week.”</p><div class="person">Emily Carter</div></div><div class="testimonial"><div class="stars">★★★★★</div><p>“Delivery is fast and prices are always clear before checkout.”</p><div class="person">Michael Green</div></div><div class="testimonial"><div class="stars">★★★★★</div><p>“A simple grocery site with no confusing membership rules.”</p><div class="person">Sarah Jones</div></div></div>
+</section>
+<section class="section" id="faq">
+  <div class="section-head"><span class="eyebrow">FAQ</span><h2>Frequently asked questions.</h2></div>
+  <div class="faq-list"><details class="faq-item" open><summary>What makes Walcart different?</summary><p>Walcart focuses on transparent prices, no membership fees, and a curated selection of everyday essentials.</p></details><details class="faq-item"><summary>Does Walcart offer free shipping?</summary><p>Yes, free delivery is included on orders over $35, with pickup options available at select locations.</p></details><details class="faq-item"><summary>Is this a real company?</summary><p>No. Walcart is a fictional brand created for a university website and Google Ads exercise.</p></details><details class="faq-item"><summary>What is the return policy?</summary><p>Unopened items can be returned within 30 days for a full refund.</p></details></div>
+</section>
+<section class="section" id="blog">
+  <div class="section-head"><span class="eyebrow">Blog</span><h2>Tips for smarter everyday spending.</h2></div>
+  <div class="blog-grid"><article class="blog-card"><span class="eyebrow">Budgeting</span><h3>5 ways to stretch your grocery budget</h3><p>Small habits like comparing unit prices, shopping seasonal produce, and avoiding unnecessary fees can reduce weekly costs.</p></article><article class="blog-card"><span class="eyebrow">Local sourcing</span><h3>Why local suppliers matter</h3><p>Regional sourcing can support communities while helping customers access fresher everyday products.</p></article><article class="blog-card"><span class="eyebrow">Delivery</span><h3>How to plan a faster weekly shop</h3><p>A recurring cart and simple pickup options can make grocery shopping easier for busy households.</p></article></div>
+</section>
+<section class="section" id="newsletter">
+  <div class="newsletter"><div><span class="eyebrow">Newsletter</span><h2>Join 120,000 smart shoppers.</h2><ul><li>✓ Weekly discounts</li><li>✓ Local offers</li><li>✓ Simple recipes</li></ul></div><form onsubmit="return false;"><input type="email" placeholder="you@email.com" required><button type="submit">Subscribe</button></form></div>
+</section>
+<section class="section final-cta"><h2>Ready to save on every grocery trip?</h2><p>Start shopping today with transparent pricing and zero membership fees.</p><br><a class="nav-cta" href="#products">Shop now</a></section>
+<footer>
+  <div class="footer-grid"><div><div class="logo" style="color:#fff">Wal<span>cart</span></div><p style="margin-top:.8rem">A fictional retail brand created for a university Google Ads and website exercise.</p></div><div><h4>Company</h4><a>About</a><a>Careers</a><a>Press</a></div><div><h4>Support</h4><a>Help Center</a><a>Shipping</a><a>Returns</a></div><div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Cookies</a></div></div>
+  <div class="fineprint">© 2026 Walcart. Academic project. Not affiliated with any real retailer.</div>
+</footer>
 
-  <main>
-    <section class="section-pad" id="why">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Why choose Walcart</span>
-          <h2>A simpler way to buy the essentials you need every week.</h2>
-          <p>Walcart focuses on clear prices, reliable delivery, and a curated product selection so customers can spend less time comparing and more time saving.</p>
-        </div>
-        <div class="value-grid">
-          <article class="value-card">
-            <div class="num">01</div>
-            <h3>No membership required</h3>
-            <p>Everyone gets the same low prices without annual fees or subscriptions.</p>
-          </article>
-          <article class="value-card">
-            <div class="num">02</div>
-            <h3>Transparent pricing</h3>
-            <p>No hidden fees, confusing bundles, or surprise charges at checkout.</p>
-          </article>
-          <article class="value-card">
-            <div class="num">03</div>
-            <h3>Fast flexible delivery</h3>
-            <p>Choose home delivery or same-day pickup at select local points.</p>
-          </article>
-          <article class="value-card">
-            <div class="num">04</div>
-            <h3>Local-first sourcing</h3>
-            <p>Regional suppliers are prioritized whenever possible for fresher goods.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<script>
+  const menuButton = document.querySelector('.mobile-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
-    <section class="section-pad deals" id="deals">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">AI-style product images</span>
-          <h2>Popular weekly deals</h2>
-          <p>These simple product visuals are designed as AI-style concept images for the university exercise.</p>
-        </div>
-        <div class="deals-grid">
-          <article class="deal-card">
-            <div class="deal-img bg-mint">🥗</div>
-            <div class="deal-body">
-              <h3>Fresh Essentials Box</h3>
-              <p>Vegetables, fruit, and pantry basics for a smarter weekly shop.</p>
-              <div class="deal-price"><strong>$29.90</strong><span>$36.80</span></div>
-            </div>
-          </article>
-          <article class="deal-card">
-            <div class="deal-img bg-gold">🍝</div>
-            <div class="deal-body">
-              <h3>Pantry Starter Pack</h3>
-              <p>Pasta, rice, sauces, snacks, and breakfast basics in one bundle.</p>
-              <div class="deal-price"><strong>$19.50</strong><span>$24.00</span></div>
-            </div>
-          </article>
-          <article class="deal-card">
-            <div class="deal-img bg-coral">🧴</div>
-            <div class="deal-body">
-              <h3>Home Care Kit</h3>
-              <p>Cleaning and hygiene essentials for busy homes and students.</p>
-              <div class="deal-price"><strong>$14.99</strong><span>$18.40</span></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+  if (menuButton && navLinks) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.textContent = isOpen ? '×' : '☰';
+    });
 
-    <section class="section-pad compare" id="compare">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Comparison table</span>
-          <h2>Walcart vs. traditional big-box retailers</h2>
-          <p>A clear comparison helps customers understand why they should choose Walcart over a traditional retailer.</p>
-        </div>
-        <div class="table-wrap">
-          <table aria-label="Walcart comparison table">
-            <thead>
-              <tr><th>Feature</th><th>Walcart</th><th>Traditional big-box retailer</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Membership fee</td><td>No membership fee</td><td>Often needed for best deals</td></tr>
-              <tr><td>Pricing</td><td>Transparent everyday prices</td><td>Frequent bundles and changing promos</td></tr>
-              <tr><td>Shipping</td><td>Free over $35</td><td>Varies by order or membership</td></tr>
-              <tr><td>Local sourcing</td><td>Prioritized when available</td><td>Rarely emphasized</td></tr>
-              <tr><td>Returns</td><td>30-day easy return policy</td><td>Often conditional</td></tr>
-              <tr><td>Customer focus</td><td>Simple essential shopping</td><td>Large catalog, harder comparison</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" id="faq">
-      <div class="container split-grid">
-        <div>
-          <div class="section-head">
-            <span class="eyebrow">FAQ</span>
-            <h2>Questions, answered</h2>
-            <p>This FAQ section is included as part of the GEO/SEO website structure requested in the assignment.</p>
-          </div>
-          <div class="faq-box">
-            <details open>
-              <summary>What is Walcart?</summary>
-              <p>Walcart is a fictional online retail store created for a university Google Ads and website exercise.</p>
-            </details>
-            <details>
-              <summary>Does Walcart require a membership?</summary>
-              <p>No. The brand promise is simple: honest prices without membership fees.</p>
-            </details>
-            <details>
-              <summary>What products does Walcart sell?</summary>
-              <p>Walcart focuses on groceries, pantry products, home care items, and everyday household essentials.</p>
-            </details>
-            <details>
-              <summary>Does Walcart offer delivery?</summary>
-              <p>Yes. The website presents delivery and same-day pickup as fictional service options.</p>
-            </details>
-            <details>
-              <summary>Why should customers choose Walcart?</summary>
-              <p>Because it combines transparent pricing, curated essentials, local-first sourcing, and simple delivery options.</p>
-            </details>
-          </div>
-        </div>
-
-        <div id="blog">
-          <div class="section-head">
-            <span class="eyebrow">Blog</span>
-            <h2>Smart shopping content</h2>
-            <p>A blog section helps the website look complete and supports search-friendly informational content.</p>
-          </div>
-          <article class="blog-card">
-            <span class="eyebrow">Household budgeting</span>
-            <h3>5 ways to stretch your grocery budget without sacrificing quality</h3>
-            <p>Grocery bills can rise quickly when shoppers rely on last-minute purchases, confusing promotions, and unnecessary memberships. A smarter approach is to plan weekly meals, compare unit prices, buy seasonal products, and choose stores with clear everyday pricing.</p>
-            <p>Walcart's fictional model is built around one idea: make essential shopping easier, more transparent, and more affordable.</p>
-            <a class="read-link" href="#newsletter">Get more tips →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad newsletter-section" id="newsletter">
-      <div class="container newsletter-grid">
-        <div>
-          <span class="eyebrow" style="color:var(--navy-deep)">Newsletter</span>
-          <h2>Get weekly savings and simple shopping tips in your inbox.</h2>
-          <p>This mock newsletter form is part of the university exercise. It does not submit real data.</p>
-        </div>
-        <div class="newsletter-box">
-          <h3>Sign up for Walcart Weekly</h3>
-          <form onsubmit="alert('Thanks for signing up! This is a demo form.'); return false;">
-            <input type="email" placeholder="you@email.com" aria-label="Email address" required />
-            <button type="submit">Sign up</button>
-          </form>
-          <div class="email-preview">
-            <h3>Newsletter preview</h3>
-            <p><strong>Subject:</strong> This week's essentials: groceries, home care, and easy savings.</p>
-            <p><strong>Content:</strong> Three quick deals, one budget tip, and new local-first product picks.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" id="ads">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Google Ads variants</span>
-          <h2>Sample ad copy for the campaign</h2>
-          <p>These two ad variants can be used as examples when creating the Google Ads campaign for this published landing page.</p>
-        </div>
-        <div class="ads-grid">
-          <article class="ad-card">
-            <div class="ad-label">Sponsored</div>
-            <h3>Affordable Groceries Online | No Membership Fees</h3>
-            <div class="ad-url">juanesaristizabal.github.io/wolmart/</div>
-            <p>Shop everyday essentials with honest prices, free shipping over $35, and fast delivery options.</p>
-          </article>
-          <article class="ad-card">
-            <div class="ad-label">Sponsored</div>
-            <h3>Save More on Daily Essentials | Walcart Deals</h3>
-            <div class="ad-url">juanesaristizabal.github.io/wolmart/</div>
-            <p>Compare prices, skip hidden fees, and get groceries and home essentials delivered with ease.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <a class="logo" href="#top" style="color:#fff">Wal<span>cart</span></a>
-      <div class="footer-note">© 2026 Walcart. Fictional brand for a university Google Ads exercise.</div>
-      <div class="footer-note">Everyday essentials, honestly priced.</div>
-    </div>
-  </footer>
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = '☰';
+      });
+    });
+  }
+</script>
 </body>
 </html>
