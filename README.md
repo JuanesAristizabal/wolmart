@@ -103,6 +103,100 @@ button,input,select{font:inherit} button{cursor:pointer} b,strong{font-weight:80
   .main{padding-left:12px;padding-right:12px}.mobile-brand span{max-width:145px}.hero-main{padding:18px 14px 14px;border-radius:22px}.hero h2{font-size:25px}.hero p{font-size:13px}.hero-chip{width:100%;justify-content:center}.status-row,.kpis,.heatmap{grid-template-columns:1fr}.status{min-height:0}.dataflow{grid-template-columns:1fr}.topbar{gap:7px}.pill,.menu{width:40px;height:40px}.kpi h3{font-size:22px}.table-wrap{margin-left:-2px;margin-right:-2px}.chat{height:330px}.quick-prompts button{width:100%;text-align:center}.scenario-list{grid-template-columns:1fr}.result-cards{grid-template-columns:1fr}.modal-card{padding:18px;border-radius:18px}.toast{font-size:13px}.btn{font-size:14px}
 }
 
+
+
+/* ===== V7 FUNCTIONAL + RESPONSIVE REFINEMENT ===== */
+html,body{max-width:100%;}
+body{overflow-x:clip;}
+.app,.main,.section,.panel,.grid,.grid-3,.grid-4,.hero,.sim-grid,.result-cards,.decision-stepper,.dataflow,.heatmap,.table-wrap{min-width:0;}
+.main{width:calc(100% - var(--side));max-width:none;}
+.section{max-width:none!important;margin:0!important;width:100%;}
+.panel{min-width:0;overflow:hidden;}
+.grid>*,.grid-3>*,.grid-4>*,.hero>*,.sim-grid>*,.result-cards>*,.dataflow>*,.heatmap>*{min-width:0;}
+.section-title{max-width:100%;}
+.section-title > div{min-width:0;}
+.section-title h2{line-height:1.15;}
+.sub{max-width:100%;}
+
+/* Desktop modules use available space instead of centering narrow content */
+@media(min-width:1181px){
+  .main{padding-left:28px;padding-right:28px;}
+  #overview .grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);}
+  #executive .grid-3{grid-template-columns:minmax(0,1.35fr) minmax(260px,.72fr) minmax(280px,.78fr);}
+  #operations .grid{grid-template-columns:minmax(360px,.88fr) minmax(0,1.12fr);}
+  #ai .grid{grid-template-columns:minmax(300px,360px) minmax(0,1fr);align-items:start;}
+  #suppliers .grid{grid-template-columns:minmax(0,1.15fr) minmax(310px,.85fr);}
+  #reports .grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .sim-grid{grid-template-columns:minmax(190px,250px) minmax(0,1fr);}
+  .result-cards{grid-template-columns:repeat(3,minmax(120px,1fr));}
+  .decision-stepper{grid-template-columns:repeat(6,minmax(72px,1fr));}
+}
+
+/* Medium desktops / laptops: prevent the right panel from spilling outside the viewport */
+@media(max-width:1360px) and (min-width:1181px){
+  :root{--side:260px;}
+  .sidebar{width:var(--side);padding:18px 16px;}
+  .brand h1{font-size:16px;}
+  .nav button{padding:11px 12px;font-size:14px;}
+  #ai .grid{grid-template-columns:minmax(280px,330px) minmax(0,1fr);}
+  .sim-grid{grid-template-columns:1fr;}
+  .scenario-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .result-cards{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .decision-stepper{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+
+/* AI command center polish */
+#ai .panel h2{font-size:clamp(19px,1.6vw,24px);}
+#ai .chat{height:clamp(230px,32vh,340px);}
+.scenario{white-space:normal;line-height:1.25;min-height:58px;display:flex;align-items:center;}
+.mini{min-width:0;}
+.mini small{display:block;color:var(--muted);line-height:1.25;}
+.mini b{font-size:clamp(20px,2vw,26px);line-height:1.1;word-break:normal;}
+.step{min-width:0;white-space:normal;line-height:1.25;}
+.actions{min-width:0;}
+.actions .btn{min-width:0;}
+
+/* Tables: keep them scrollable inside the card only, never the whole page */
+.table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;}
+table{max-width:100%;}
+
+/* Mobile UX: app-like topbar, compact content, no horizontal overflow */
+@media(max-width:860px){
+  body{overflow-x:hidden;}
+  .main{width:100%;max-width:100%;}
+  .section{max-width:100%!important;}
+  .grid,.grid-3,#ai .grid,#operations .grid,#suppliers .grid{grid-template-columns:1fr!important;}
+  .panel{width:100%;}
+  .sim-grid{grid-template-columns:1fr;gap:12px;}
+  .scenario-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .scenario{min-height:54px;padding:12px;font-size:13px;}
+  .result-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .decision-stepper{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .mini{padding:11px;border-radius:13px;}
+  .mini b{font-size:18px;}
+  .section-title .btn{width:100%;}
+}
+@media(max-width:560px){
+  .topbar{position:sticky;top:0;}
+  .main{padding-top:14px;}
+  .mobile-section-label{margin-top:4px;}
+  .scenario-list,.result-cards,.decision-stepper{grid-template-columns:1fr!important;}
+  #ai .chat{height:270px;}
+  .quick-prompts{display:grid;grid-template-columns:1fr;}
+  .quick-prompts button{width:100%;}
+  .chat-input{display:grid;grid-template-columns:1fr;}
+  .chat-input .btn{width:100%;}
+  .section-title{gap:8px;}
+  .table-tools{display:grid;grid-template-columns:1fr;}
+  .table-tools input,.table-tools select{width:100%;}
+}
+
+/* Functional status feedback */
+.ai-card.executing{background:linear-gradient(0deg,rgba(0,113,206,.08),rgba(0,113,206,.08)),var(--card);}
+.ai-card.completed{background:linear-gradient(0deg,rgba(22,163,74,.08),rgba(22,163,74,.08)),var(--card);}
+.approval-state{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;background:#eef5ff;color:var(--walmart-dark);}
+.dark .approval-state{background:#183154;color:#c7dcff;}
+
 </style>
 </head>
 <body>
@@ -291,5 +385,79 @@ function globalSearch(q){q=q.toLowerCase();if(!q)return;const map={supplier:'sup
 function init(){ removeAccidentalSourceText(); $$('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.section))); $('#menuBtn').addEventListener('click',openMenu); overlay.addEventListener('click',closeMenu); $('#darkBtn').addEventListener('click',()=>{document.body.classList.toggle('dark');toast(document.body.classList.contains('dark')?'Dark mode on':'Light mode on')}); $('#notifBtn').addEventListener('click',()=>{go('operations');toast('12 alerts: 3 critical, 5 warning, 4 informational')}); $('#roleBtn').addEventListener('click',()=>{state.role=state.role==='Executive'?'Operations':'Executive';$('#roleBtn').textContent='👤 Role: '+state.role;go(state.role==='Executive'?'executive':'operations')}); $('#searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')globalSearch(e.target.value)}); $('#lossSearch').addEventListener('input',renderLoss); $('#riskFilter').addEventListener('change',renderLoss); $$('#periodTabs button').forEach(b=>b.addEventListener('click',()=>{$$('#periodTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderChart(b.dataset.period)})); $$('.scenario').forEach(b=>b.addEventListener('click',()=>scenario(b.dataset.scenario))); $$('.twin-node').forEach(n=>n.addEventListener('click',()=>renderTwin(n.dataset.node))); $('#aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')askAI()}); renderTables();renderActivity();renderActions();renderLoss();renderChart();scenario('heat');renderTwin('supplier');renderReports();animateNums();setTimeout(()=>$('#roiBar').style.width='82%',250);}
 document.addEventListener('DOMContentLoaded',init);
 </script>
+
+<script>
+/* ===== V7 BEHAVIOR PATCHES ===== */
+(function(){
+  const $v7=(s,ctx=document)=>ctx.querySelector(s);
+  const $$v7=(s,ctx=document)=>[...ctx.querySelectorAll(s)];
+
+  // Stronger cleanup for accidental pasted source text in GitHub Pages.
+  window.removeAccidentalSourceText=function(){
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()){
+      const t=(walker.currentNode.nodeValue||'').trim();
+      if(/^(<)?!doctype\s+html>?$/i.test(t) || /<!doctype html>/i.test(t) || /&lt;!doctype html&gt;/i.test(t)) nodes.push(walker.currentNode);
+    }
+    nodes.forEach(n=>n.remove());
+  };
+
+  // Override navigation so sections are addressable and stateful.
+  window.go=function(id, updateHash=true){
+    const target=$v7('#'+id);
+    if(!target) return;
+    $$v7('.section').forEach(s=>s.classList.remove('active'));
+    target.classList.add('active');
+    $$v7('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));
+    if(typeof closeMenu==='function') closeMenu();
+    if(updateHash && location.hash !== '#'+id) history.replaceState(null,'','#'+id);
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  function openSectionFromHash(){
+    const id=(location.hash||'#overview').replace('#','').trim();
+    if($v7('#'+id)) window.go(id,false);
+  }
+
+  // Make approval feel more like a workflow: approved -> executing -> completed.
+  const originalApprove=window.approve;
+  window.approve=function(id){
+    const a=(typeof actions !== 'undefined') ? actions.find(x=>x.id===id) : null;
+    if(!a || a.status==='Approved' || a.status==='Completed') return;
+    if(typeof originalApprove==='function') originalApprove(id);
+    const card=document.querySelector(`.ai-card[data-id="${id}"]`);
+    if(card){card.classList.add('executing');}
+    setTimeout(()=>{
+      a.status='Completed';
+      if(typeof renderActions==='function') renderActions();
+      if(typeof addActivity==='function') addActivity('Action completed',`${a.title} executed and logged back into the learning loop.`);
+      if(typeof toast==='function') toast('Execution completed · model learning updated');
+    },900);
+  };
+
+  // Safer modal/menu shortcuts.
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(typeof closeMenu==='function') closeMenu();
+      if(typeof closeModal==='function') closeModal();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    window.removeAccidentalSourceText();
+    openSectionFromHash();
+    window.addEventListener('hashchange',openSectionFromHash);
+    // Use resize pass to keep the current module from causing sideways scroll.
+    const fixOverflow=()=>{
+      document.documentElement.style.setProperty('--vw', window.innerWidth+'px');
+      if(document.body.scrollWidth > window.innerWidth + 2){ document.body.classList.add('has-overflow-fix'); }
+      else{ document.body.classList.remove('has-overflow-fix'); }
+    };
+    fixOverflow(); window.addEventListener('resize',fixOverflow,{passive:true});
+  });
+})();
+</script>
+
 </body>
 </html>
