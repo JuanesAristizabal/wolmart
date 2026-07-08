@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Walmart FreshFlow AI v4 | Grocery Supply Chain Intelligence</title>
+<title>Walmart FreshFlow AI v6 | Grocery Supply Chain Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -82,6 +82,27 @@ button,input,select{font:inherit} button{cursor:pointer} b,strong{font-weight:80
   .kpis{grid-template-columns:1fr;}
 }
 
+
+
+/* ===== V6 UI / UX FIXES ===== */
+.mobile-brand{display:none;align-items:center;gap:8px;font-weight:900;color:var(--walmart-dark);min-width:0}
+.mobile-brand .mini-spark{width:32px;height:32px;border-radius:10px;background:var(--spark);display:grid;place-items:center;color:var(--walmart-dark);font-size:17px;flex:0 0 auto}.mobile-brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}.dark .mobile-brand{color:#eaf3ff}
+.hero-kicker{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}.hero-chip{display:inline-flex;gap:6px;align-items:center;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:12px;font-weight:850;color:#fff}
+.mobile-section-label{display:none;color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px 2px}.section{max-width:1680px}.hero-main{min-height:unset}.topbar{box-shadow:0 2px 18px rgba(15,23,42,.04)}
+.kpi{transition:transform .18s ease,border-color .18s ease}.kpi:hover{transform:translateY(-2px);border-color:rgba(0,113,206,.35)}
+.ai-card,.status,.region,.node,.mini{transition:transform .18s ease,border-color .18s ease}.ai-card:hover,.status:hover,.region:hover,.node:hover,.mini:hover{transform:translateY(-1px);border-color:rgba(0,113,206,.32)}
+.table-wrap table{table-layout:auto}.table-wrap::-webkit-scrollbar{height:8px}.table-wrap::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}.dark .table-wrap::-webkit-scrollbar-thumb{background:#334155}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn.primary:hover{box-shadow:0 10px 22px rgba(255,194,32,.24)}.btn.blue:hover{box-shadow:0 10px 22px rgba(0,113,206,.2)}
+@media(min-width:1181px){.hero{grid-template-columns:minmax(520px,1fr) 330px}.hero h2{max-width:820px}.hero-main{padding:28px}.status-row{grid-template-columns:1fr}.main{padding-left:28px;padding-right:28px}.section{margin-left:0;margin-right:0}}
+@media(max-width:860px){
+  .topbar{height:66px;justify-content:flex-start}.mobile-brand{display:flex;flex:1}.search{display:none}.pill.hide-mobile{display:none}.pill{width:42px;height:42px;padding:0;justify-content:center;border-radius:14px}.pill#darkBtn,.pill#notifBtn{font-size:0}.pill#darkBtn::before{content:'🌙';font-size:16px}.pill#notifBtn::before{content:'🔔';font-size:16px}.menu{width:42px;height:42px;display:grid;place-items:center;padding:0;border-radius:14px;font-size:18px}
+  .main{padding:calc(var(--top) + 12px) 14px 28px}.mobile-section-label{display:block}.hero{margin-top:0;display:grid;gap:12px}.hero-main{border-radius:24px;padding:20px 16px 16px;background:linear-gradient(145deg,#0071ce 0%,#005cb5 58%,#0e6c8c 100%)}.hero h2{font-size:clamp(24px,7.6vw,31px);line-height:1.04;letter-spacing:-.04em;max-width:100%;margin:10px 0 10px}.hero p{font-size:13.5px;line-height:1.48;max-width:96%}.hero .eyebrow{font-size:10px;line-height:1.35;letter-spacing:.09em}.hero-main:after{width:150px;height:150px;right:-65px;top:-70px;opacity:.8}.hero .actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}.hero .btn{width:100%;min-height:44px;border-radius:14px}.hero .btn.ghost{border-color:rgba(255,255,255,.24)!important;background:rgba(255,255,255,.08)!important}.hero-kicker{margin-top:12px}.hero-chip{font-size:11.5px;padding:6px 9px}
+  .hero > .panel:not(.hero-main){padding:15px;border-radius:22px}.hero > .panel:not(.hero-main) h3{font-size:16px}.status-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.status{padding:12px;min-height:72px;display:flex;align-items:flex-start;justify-content:space-between;flex-direction:column}.status span:first-child{font-size:12px;color:var(--muted)}.status b{font-size:16px}.status .badge{font-size:11px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kpi{padding:13px;border-radius:16px}.kpi small{font-size:11px;line-height:1.25}.kpi h3{font-size:20px;white-space:normal}.trend{font-size:11px}.dataflow{grid-template-columns:repeat(2,minmax(0,1fr))}.node{min-height:78px}.section-title h2{font-size:20px}.sub{font-size:13px}.panel{padding:16px}.grid,.grid-3{gap:14px}.chart{height:185px}.heatmap{grid-template-columns:repeat(2,minmax(0,1fr))}.region{min-height:90px;padding:13px}.region .score{font-size:22px}.topbar + .main{border-top:0}
+}
+@media(max-width:430px){
+  .main{padding-left:12px;padding-right:12px}.mobile-brand span{max-width:145px}.hero-main{padding:18px 14px 14px;border-radius:22px}.hero h2{font-size:25px}.hero p{font-size:13px}.hero-chip{width:100%;justify-content:center}.status-row,.kpis,.heatmap{grid-template-columns:1fr}.status{min-height:0}.dataflow{grid-template-columns:1fr}.topbar{gap:7px}.pill,.menu{width:40px;height:40px}.kpi h3{font-size:22px}.table-wrap{margin-left:-2px;margin-right:-2px}.chat{height:330px}.quick-prompts button{width:100%;text-align:center}.scenario-list{grid-template-columns:1fr}.result-cards{grid-template-columns:1fr}.modal-card{padding:18px;border-radius:18px}.toast{font-size:13px}.btn{font-size:14px}
+}
+
 </style>
 </head>
 <body>
@@ -106,6 +127,7 @@ button,input,select{font:inherit} button{cursor:pointer} b,strong{font-weight:80
   <div class="overlay" id="overlay"></div>
   <header class="topbar">
     <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="mobile-brand"><div class="mini-spark">✦</div><span>FreshFlow AI</span></div>
     <div class="search"><span>🔎</span><input id="searchInput" placeholder="Search store, SKU, supplier, truck, report..." /></div>
     <button class="pill hide-mobile" id="roleBtn">👤 Role: Executive</button>
     <button class="pill" id="darkBtn">🌙</button>
@@ -113,11 +135,13 @@ button,input,select{font:inherit} button{cursor:pointer} b,strong{font-weight:80
   </header>
   <main class="main">
     <section class="section active" id="overview">
+      <div class="mobile-section-label">Overview · AI supply chain platform</div>
       <div class="hero">
         <div class="panel hero-main">
           <span class="eyebrow">Walmart Global Tech · Grocery Supply Chain</span>
           <h2>AI-powered visibility for fresher shelves, lower grocery losses and higher margins.</h2>
           <p>FreshFlow AI connects store inventory, POS data, supplier performance, truck temperature, weather and local demand signals to recommend actions before groceries become losses.</p>
+          <div class="hero-kicker"><span class="hero-chip">✓ Human-in-the-loop AI</span><span class="hero-chip">⚡ Live risk signals</span><span class="hero-chip">📈 Margin recovery</span></div>
           <div class="actions"><button class="btn primary" onclick="go('operations')">View operational actions</button><button class="btn ghost" style="color:white;border-color:rgba(255,255,255,.35)" onclick="go('ai')">Ask FreshFlow AI</button></div>
         </div>
         <div class="panel">
@@ -223,6 +247,16 @@ const cold=[['#284','7°C','42m','Critical','Reroute'],['#109','3°C','1h 20m','
 const periodData={weekly:{label:'Weekly savings generated by approved AI recommendations.',bars:[1.1,1.4,1.8,2.2,2.7,3.1],annual:'$48.6M',payback:'Payback: 5.2 months',roi:82,brief:'This week AI prevented an estimated <b>$2.8M</b> in grocery losses across <b>482 stores</b>, mainly from dynamic markdowns, product transfers and supplier risk alerts.'},monthly:{label:'Monthly trend by completed AI interventions.',bars:[7.8,8.4,9.9,10.6,12.1,14.3],annual:'$56.8M',payback:'Payback: 4.6 months',roi:88,brief:'This month FreshFlow AI reduced grocery waste across <b>1,940 stores</b>, with produce and dairy generating the strongest margin recovery.'},quarterly:{label:'Quarterly executive impact projection.',bars:[22,27,31,36,42,48.6],annual:'$64.2M',payback:'Payback: 4.1 months',roi:93,brief:'Quarterly projections show the strongest opportunity in dynamic markdown expansion, supplier risk mitigation and AI-powered inventory transfers.'}};
 const scenarioData={heat:{cards:[['Waste risk','+22%','red'],['Beverage demand','+31%','green'],['Produce shelf life','-18%','orange']],text:'AI recommends increasing beverage replenishment, reducing sensitive produce orders and applying markdowns today in 184 Texas stores. Estimated savings: $2.8M.'},supplier:{cards:[['Delay risk','+34%','red'],['Stockout risk','+17%','orange'],['Backup cost','+$420K','orange']],text:'AI recommends activating backup supplier DairyBest and reallocating inventory from Dallas DC. Expected avoided loss: $1.9M.'},holiday:{cards:[['Demand spike','+28%','green'],['Stockout risk','+21%','orange'],['Projected sales','+$8.4M','green']],text:'AI recommends increasing replenishment for beverages, snacks and grill products while reducing bakery orders after the weekend.'},fuel:{cards:[['Logistics cost','+12%','red'],['Route efficiency','-7%','orange'],['Optimized savings','$740K','green']],text:'AI recommends route consolidation across Southeast DCs and night-shift dispatch to reduce fuel exposure.'}};
 const twinData={supplier:'<b>Supplier: Fresh Farms Co.</b><p class="sub">OTIF 91% · Quality 94% · Delay risk medium. AI suggests monitoring dock arrivals and preparing backup allocation if delay exceeds 3 hours.</p>',dc:'<b>Distribution Center: Atlanta DC</b><p class="sub">Capacity 87% · 2 delayed docks · Produce throughput under pressure. AI recommends prioritizing short shelf-life SKUs.</p>',truck:'<b>Truck #284</b><p class="sub">Temperature alert: 7°C vs max 4°C · ETA 42m. AI recommends rerouting to nearest cold-chain inspection point.</p>',store:'<b>Store #1128</b><p class="sub">High produce risk · strawberries expire in 36h · expected loss $4,900. Recommended action: markdown today.</p>',demand:'<b>Demand Forecast</b><p class="sub">Beverages +18%, produce -7%, bakery -5%. Driven by local weather and weekday traffic patterns.</p>'};
+
+function removeAccidentalSourceText(){
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const nodes=[];
+  while(walker.nextNode()){
+    const t=walker.currentNode.nodeValue.trim();
+    if(t==='<!DOCTYPE html>' || t==='<!doctype html>' || t==='DOCTYPE html') nodes.push(walker.currentNode);
+  }
+  nodes.forEach(n=>n.remove());
+}
 function go(id){$$('.section').forEach(s=>s.classList.remove('active'));const target=$('#'+id);if(target)target.classList.add('active');$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));closeMenu();window.scrollTo({top:0,behavior:'smooth'});} 
 function money(n){return '$'+n.toLocaleString();}
 function riskClass(level){return level==='Critical'||level==='High'?'red':level==='Medium'||level==='Warning'?'orange':'green';}
@@ -254,7 +288,7 @@ function closeModal(){$('#modal').classList.remove('show');}
 const sidebar=$('#sidebar'),overlay=$('#overlay');function openMenu(){sidebar.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden'}function closeMenu(){sidebar.classList.remove('open');overlay.classList.remove('show');document.body.style.overflow=''}
 function animateNums(){ $$('.num').forEach(el=>{const target=parseFloat(el.dataset.value),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';let n=0;const steps=28;const timer=setInterval(()=>{n+=target/steps;if(n>=target){n=target;clearInterval(timer)}el.textContent=prefix+n.toFixed(target>=20?1:1)+suffix;},30);});}
 function globalSearch(q){q=q.toLowerCase();if(!q)return;const map={supplier:'suppliers',suppliers:'suppliers',truck:'operations',cold:'operations',sku:'loss',straw:'loss',milk:'loss',report:'reports',scenario:'ai',ai:'ai',executive:'executive',store:'operations',digital:'twin'};const found=Object.keys(map).find(k=>q.includes(k));if(found){go(map[found]);toast('Navigated to '+map[found]);}else toast('Search simulated. Try: supplier, truck, SKU, report, scenario.');}
-function init(){ $$('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.section))); $('#menuBtn').addEventListener('click',openMenu); overlay.addEventListener('click',closeMenu); $('#darkBtn').addEventListener('click',()=>{document.body.classList.toggle('dark');toast(document.body.classList.contains('dark')?'Dark mode on':'Light mode on')}); $('#notifBtn').addEventListener('click',()=>{go('operations');toast('12 alerts: 3 critical, 5 warning, 4 informational')}); $('#roleBtn').addEventListener('click',()=>{state.role=state.role==='Executive'?'Operations':'Executive';$('#roleBtn').textContent='👤 Role: '+state.role;go(state.role==='Executive'?'executive':'operations')}); $('#searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')globalSearch(e.target.value)}); $('#lossSearch').addEventListener('input',renderLoss); $('#riskFilter').addEventListener('change',renderLoss); $$('#periodTabs button').forEach(b=>b.addEventListener('click',()=>{$$('#periodTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderChart(b.dataset.period)})); $$('.scenario').forEach(b=>b.addEventListener('click',()=>scenario(b.dataset.scenario))); $$('.twin-node').forEach(n=>n.addEventListener('click',()=>renderTwin(n.dataset.node))); $('#aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')askAI()}); renderTables();renderActivity();renderActions();renderLoss();renderChart();scenario('heat');renderTwin('supplier');renderReports();animateNums();setTimeout(()=>$('#roiBar').style.width='82%',250);}
+function init(){ removeAccidentalSourceText(); $$('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.section))); $('#menuBtn').addEventListener('click',openMenu); overlay.addEventListener('click',closeMenu); $('#darkBtn').addEventListener('click',()=>{document.body.classList.toggle('dark');toast(document.body.classList.contains('dark')?'Dark mode on':'Light mode on')}); $('#notifBtn').addEventListener('click',()=>{go('operations');toast('12 alerts: 3 critical, 5 warning, 4 informational')}); $('#roleBtn').addEventListener('click',()=>{state.role=state.role==='Executive'?'Operations':'Executive';$('#roleBtn').textContent='👤 Role: '+state.role;go(state.role==='Executive'?'executive':'operations')}); $('#searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')globalSearch(e.target.value)}); $('#lossSearch').addEventListener('input',renderLoss); $('#riskFilter').addEventListener('change',renderLoss); $$('#periodTabs button').forEach(b=>b.addEventListener('click',()=>{$$('#periodTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderChart(b.dataset.period)})); $$('.scenario').forEach(b=>b.addEventListener('click',()=>scenario(b.dataset.scenario))); $$('.twin-node').forEach(n=>n.addEventListener('click',()=>renderTwin(n.dataset.node))); $('#aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')askAI()}); renderTables();renderActivity();renderActions();renderLoss();renderChart();scenario('heat');renderTwin('supplier');renderReports();animateNums();setTimeout(()=>$('#roiBar').style.width='82%',250);}
 document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
