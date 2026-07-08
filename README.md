@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Walmart FreshFlow AI v6 | Grocery Supply Chain Intelligence</title>
+<title>Walmart FreshFlow AI v8 | Grocery Supply Chain Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -197,6 +197,121 @@ table{max-width:100%;}
 .approval-state{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;background:#eef5ff;color:var(--walmart-dark);}
 .dark .approval-state{background:#183154;color:#c7dcff;}
 
+</style>
+
+
+<style id="v8-responsive-and-ui-fixes">
+/* ===== V8 RESPONSIVE + UI/UX STABILITY PATCH ===== */
+:root{--side:268px;}
+html,body{width:100%;max-width:100%;overflow-x:hidden!important;}
+body{min-height:100vh;}
+.app{width:100%;max-width:100vw;overflow-x:hidden;}
+.sidebar{width:var(--side);}
+.topbar{position:fixed!important;left:var(--side);right:0;width:auto;max-width:calc(100vw - var(--side));}
+.main{margin-left:var(--side);width:auto!important;max-width:calc(100vw - var(--side))!important;padding-left:clamp(16px,1.8vw,28px);padding-right:clamp(16px,1.8vw,28px);}
+.section{width:100%;max-width:1480px!important;margin:0 auto!important;}
+.panel{min-width:0;overflow:visible;}
+.table-wrap,.chat,.timeline{overflow:auto;}
+.grid,.grid-3,.grid-4,.hero,.sim-grid,.result-cards,.decision-stepper,.dataflow,.heatmap,.kpis{width:100%;min-width:0;}
+.grid>*,.grid-3>*,.grid-4>*,.hero>*,.sim-grid>*,.result-cards>*,.decision-stepper>*,.dataflow>*,.heatmap>*,.kpis>*{min-width:0;}
+.btn,.pill,.badge{max-width:100%;}
+.actions{display:flex;flex-wrap:wrap;align-items:center;}
+.actions .btn{white-space:normal;line-height:1.15;}
+.ai-card .top{align-items:flex-start;}
+.ai-card .top > div{min-width:0;}
+.ai-card h3{overflow-wrap:anywhere;}
+.meta{max-width:100%;}
+.table-wrap{max-width:100%;}
+table{max-width:none;}
+/* Better module layouts */
+#ai .grid{grid-template-columns:minmax(300px,380px) minmax(0,1fr);align-items:start;}
+#ai .sim-grid{grid-template-columns:minmax(190px,240px) minmax(0,1fr);align-items:start;}
+#ai .scenario-list{grid-template-columns:1fr;}
+#ai .result-cards{grid-template-columns:repeat(auto-fit,minmax(132px,1fr));}
+#ai .decision-stepper{grid-template-columns:repeat(auto-fit,minmax(90px,1fr));}
+#operations .grid{grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr);}
+#suppliers .grid{grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);}
+#reports .grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media(min-width:1680px){.section{max-width:1580px!important;}}
+/* Laptop / smaller desktop: stack heavy modules to avoid right-side clipping */
+@media(max-width:1500px) and (min-width:1101px){
+  :root{--side:250px;}
+  .sidebar{padding:18px 15px;}
+  .brand h1{font-size:16px;}
+  .spark{width:40px;height:40px;border-radius:13px;}
+  .nav button{font-size:14px;padding:11px 12px;}
+  .section{max-width:none!important;}
+  #ai .grid,#operations .grid,#suppliers .grid{grid-template-columns:1fr!important;}
+  #ai .sim-grid{grid-template-columns:minmax(190px,280px) minmax(0,1fr);}
+  #executive .grid-3{grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);}
+  #executive .grid-3 > .panel:last-child{grid-column:1 / -1;}
+}
+/* Tablet: switch to app drawer before the content gets cramped */
+@media(max-width:1100px){
+  :root{--top:66px;--side:270px;}
+  .sidebar{transform:translateX(-105%)!important;box-shadow:24px 0 70px rgba(0,0,0,.28);}
+  .sidebar.open{transform:translateX(0)!important;}
+  .topbar{left:0!important;right:0!important;width:100%!important;max-width:100vw!important;height:var(--top);padding:0 12px;}
+  .menu{display:grid!important;place-items:center;width:42px;height:42px;padding:0;border-radius:14px;font-size:18px;}
+  .mobile-brand{display:flex!important;flex:0 1 auto;}
+  .search{display:flex;flex:1;min-width:0;}
+  .search input{min-width:0;}
+  .pill.hide-mobile{display:none!important;}
+  .main{margin-left:0!important;width:100%!important;max-width:100vw!important;padding:calc(var(--top) + 14px) 14px 32px!important;}
+  .section{max-width:100%!important;margin:0!important;}
+  .grid,.grid-3,.hero,#ai .grid,#operations .grid,#suppliers .grid{grid-template-columns:1fr!important;}
+  .hero{gap:14px;}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .heatmap,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .dataflow{grid-template-columns:repeat(3,minmax(0,1fr));}
+  #ai .sim-grid{grid-template-columns:1fr;}
+  #ai .scenario-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .result-cards,.decision-stepper{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .overlay.show{display:block;}
+}
+@media(max-width:720px){
+  .search{display:none!important;}
+  .mobile-brand{flex:1;}
+  .pill{width:42px;height:42px;padding:0;justify-content:center;border-radius:14px;font-size:0;}
+  .pill#darkBtn::before{content:'🌙';font-size:16px;}
+  .pill#notifBtn::before{content:'🔔';font-size:16px;}
+  .main{padding-left:12px!important;padding-right:12px!important;}
+  .section-title{flex-direction:column;align-items:flex-start;gap:10px;margin:14px 0 10px;}
+  .section-title .btn{width:100%;}
+  .hero-main{padding:18px 14px 15px;border-radius:22px;}
+  .hero h2{font-size:clamp(24px,7.2vw,30px);line-height:1.04;letter-spacing:-.035em;}
+  .hero p{font-size:13px;line-height:1.45;max-width:100%;}
+  .hero-kicker{display:grid;grid-template-columns:1fr;gap:7px;}
+  .hero-chip{justify-content:center;}
+  .status-row,.kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .status{min-height:74px;align-items:flex-start;flex-direction:column;}
+  .kpi{padding:13px;border-radius:15px;}
+  .kpi h3{font-size:20px;white-space:normal;}
+  .panel{padding:15px;border-radius:16px;}
+  .explain,.dataflow{grid-template-columns:1fr;}
+  .chart{height:180px;}
+  .table-tools{display:grid;grid-template-columns:1fr;}
+  .table-tools input,.table-tools select{width:100%;}
+  .table-wrap{border-radius:14px;}
+  table{min-width:720px;}
+  #ai .scenario-list,.result-cards,.decision-stepper{grid-template-columns:1fr!important;}
+  .chat-input{display:grid;grid-template-columns:1fr;}
+  .chat-input .btn,.actions .btn{width:100%;}
+  .quick-prompts{display:grid;grid-template-columns:1fr;}
+  .quick-prompts button{width:100%;}
+  .modal-card{padding:18px;border-radius:18px;}
+}
+@media(max-width:430px){
+  .topbar{gap:7px;}
+  .menu,.pill{width:40px;height:40px;}
+  .mobile-brand span{max-width:142px;}
+  .hero h2{font-size:24px;}
+  .status-row,.kpis,.heatmap,.grid-4{grid-template-columns:1fr;}
+  .chart{height:165px;}
+  .event{grid-template-columns:48px 1fr;}
+  #ai .chat{height:270px;}
+  .toast{left:12px;right:12px;bottom:12px;max-width:none;font-size:13px;}
+}
 </style>
 </head>
 <body>
@@ -455,6 +570,134 @@ document.addEventListener('DOMContentLoaded',init);
       else{ document.body.classList.remove('has-overflow-fix'); }
     };
     fixOverflow(); window.addEventListener('resize',fixOverflow,{passive:true});
+  });
+})();
+</script>
+
+
+<script id="v8-functional-bugfixes">
+/* ===== V8 FUNCTIONAL BUG FIXES ===== */
+(function(){
+  const $v8=(s,ctx=document)=>ctx.querySelector(s);
+  const $$v8=(s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
+  function closedStatus(s){return s==='Executing'||s==='Completed'||s==='Approved';}
+  function statusBadge(status){
+    if(status==='Completed') return 'green';
+    if(status==='Executing') return 'blueb';
+    if(status==='Approved') return 'green';
+    return 'orange';
+  }
+  function safeMoney(n){return (typeof money==='function') ? money(n) : '$'+Number(n||0).toLocaleString();}
+
+  window.renderActions=function(){
+    if(typeof actions==='undefined') return;
+    const actionList=$v8('#actionList');
+    const execRecs=$v8('#execRecs');
+    const card=a=>{
+      const disabled=closedStatus(a.status);
+      const label=a.status==='Executing'?'Executing…':(a.status==='Completed'?'Completed':(a.status==='Approved'?'Approved':'Approve'));
+      return `<div class="ai-card ${a.status==='Completed'?'completed':a.status==='Executing'?'executing':''}" data-id="${a.id}">
+        <div class="top"><div><h3>${a.title}</h3><p class="sub">${a.store}</p></div><span class="badge ${riskClass(a.risk)}">${a.risk}</span></div>
+        <div class="meta"><span class="badge blueb">Savings ${safeMoney(a.savings)}</span><span class="badge green">Confidence ${a.conf}%</span><span class="badge purple">Human-in-the-loop</span><span class="badge ${statusBadge(a.status)}">${a.status}</span></div>
+        <div class="explain">${a.why.map(w=>`<div class="why">✓ ${w}</div>`).join('')}</div>
+        <div class="actions"><button class="btn blue" ${disabled?'disabled':''} onclick="approve(${a.id})">${label}</button><button class="btn ghost" onclick="reviewAction(${a.id})">Details</button><button class="btn ghost" onclick="go('ai')">Simulate</button></div>
+      </div>`;
+    };
+    if(actionList) actionList.innerHTML=actions.map(card).join('');
+    if(execRecs) execRecs.innerHTML=actions.slice(0,3).map(a=>{
+      const disabled=closedStatus(a.status);
+      const label=a.status==='Completed'?'Completed':a.status==='Executing'?'Executing…':a.status==='Approved'?'Approved':'Approve strategy';
+      return `<div class="ai-card ${a.status==='Completed'?'completed':a.status==='Executing'?'executing':''}">
+        <div class="top"><div><h3>${a.title}</h3><p class="sub">Strategic impact: ${a.store}</p></div><span class="badge ${riskClass(a.risk)}">${a.risk}</span></div>
+        <div class="meta"><span class="badge blueb">Projected savings ${safeMoney(a.savings)}</span><span class="badge green">Confidence ${a.conf}%</span><span class="badge ${statusBadge(a.status)}">${a.status}</span></div>
+        <div class="actions"><button class="btn blue" ${disabled?'disabled':''} onclick="approve(${a.id})">${label}</button><button class="btn ghost" onclick="reviewAction(${a.id})">Details</button></div>
+      </div>`;
+    }).join('');
+  };
+
+  window.approve=function(id){
+    if(typeof actions==='undefined') return;
+    const a=actions.find(x=>x.id===id);
+    if(!a || closedStatus(a.status)) return;
+    a.status='Executing';
+    if(typeof state!=='undefined') state.approvedSavings+=a.savings;
+    if(typeof updateKpis==='function') updateKpis();
+    if(typeof addActivity==='function') addActivity('AI action approved',`${a.title}. Expected savings: ${safeMoney(a.savings)}.`);
+    window.renderActions();
+    if(typeof toast==='function') toast(`Approved: ${a.title} · +${safeMoney(a.savings)}`);
+    setTimeout(()=>{
+      a.status='Completed';
+      window.renderActions();
+      if(typeof addActivity==='function') addActivity('Action completed',`${a.title} executed and logged back into the learning loop.`);
+      if(typeof toast==='function') toast('Execution completed · model learning updated');
+    },850);
+  };
+
+  window.approveAll=function(){
+    if(typeof actions==='undefined') return;
+    actions.filter(a=>a.conf>=93 && !closedStatus(a.status)).forEach(a=>window.approve(a.id));
+  };
+
+  window.renderLoss=function(){
+    if(typeof loss==='undefined') return;
+    if(typeof state!=='undefined') state.approvedLoss=state.approvedLoss||{};
+    const q=($v8('#lossSearch')?.value||'').toLowerCase();
+    const f=$v8('#riskFilter')?.value||'all';
+    const rows=loss.filter(r=>(f==='all'||r.level===f)&&[r.sku,r.product,r.category].join(' ').toLowerCase().includes(q));
+    const body=$v8('#lossTable');
+    if(!body) return;
+    body.innerHTML=rows.map(r=>{
+      const done=typeof state!=='undefined' && state.approvedLoss && state.approvedLoss[r.product];
+      return `<tr><td>${r.sku}</td><td><b>${r.product}</b></td><td>${r.category}</td><td>${r.life}</td><td><span class="badge ${riskClass(r.level)}">${r.risk}%</span></td><td>${safeMoney(r.loss)}</td><td>${r.rec}</td><td><button class="btn light" ${done?'disabled':''} onclick="approveLoss('${r.product.replace(/'/g,"\\'")}',${r.loss})">${done?'Approved':'Approve'}</button></td></tr>`;
+    }).join('')||`<tr><td colspan="8">No products match this filter.</td></tr>`;
+  };
+
+  window.approveLoss=function(product,savings){
+    if(typeof state==='undefined') return;
+    state.approvedLoss=state.approvedLoss||{};
+    if(state.approvedLoss[product]){ if(typeof toast==='function') toast('This grocery-loss action is already approved.'); return; }
+    state.approvedLoss[product]=true;
+    state.approvedSavings+=savings;
+    if(typeof updateKpis==='function') updateKpis();
+    if(typeof addActivity==='function') addActivity('Grocery loss action approved',`${product} recommendation approved. Expected savings: ${safeMoney(savings)}.`);
+    window.renderLoss();
+    if(typeof toast==='function') toast(`Approved ${product} action · +${safeMoney(savings)}`);
+  };
+
+  window.applyScenario=function(){
+    if(typeof state==='undefined') return;
+    state.appliedScenarios=state.appliedScenarios||{};
+    const key=state.activeScenario||'heat';
+    if(state.appliedScenarios[key]){ if(typeof toast==='function') toast('This scenario mitigation plan was already applied.'); return; }
+    const savings={heat:2800000,supplier:1900000,holiday:840000,fuel:740000}[key]||0;
+    state.appliedScenarios[key]=true;
+    state.approvedSavings+=savings;
+    if(typeof updateKpis==='function') updateKpis();
+    if(typeof addActivity==='function') addActivity('Scenario mitigation applied',`${key} plan approved. Projected avoided loss: ${safeMoney(savings)}.`);
+    if(typeof toast==='function') toast(`Mitigation applied · projected avoided loss ${safeMoney(savings)}`);
+  };
+
+  // More aggressive cleanup if GitHub got the source marker pasted into the body.
+  window.removeAccidentalSourceText=function(){
+    if(!document.body) return;
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()){
+      const t=(walker.currentNode.nodeValue||'').trim();
+      if(/doctype\s+html/i.test(t) || /&lt;!doctype html&gt;/i.test(t)) nodes.push(walker.currentNode);
+    }
+    nodes.forEach(n=>n.remove());
+  };
+
+  function closeOpenMenusOnResize(){
+    if(window.innerWidth>1100 && typeof closeMenu==='function') closeMenu();
+  }
+  document.addEventListener('DOMContentLoaded',()=>{
+    window.removeAccidentalSourceText();
+    window.renderActions();
+    window.renderLoss();
+    closeOpenMenusOnResize();
+    window.addEventListener('resize',closeOpenMenusOnResize,{passive:true});
   });
 })();
 </script>
