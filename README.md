@@ -1,223 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Walcart — Everyday Essentials, Honestly Priced</title>
-<meta name="description" content="Walcart is a fictional online retail store for affordable groceries, home essentials, transparent prices, and fast delivery." />
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walmart Supply Chain Intelligence Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root{
-  --navy:#0B2E4F;
-  --navy2:#071F38;
-  --blue:#164B7A;
-  --gold:#F2B705;
-  --cream:#FAF7F0;
-  --cream2:#FFFDF8;
-  --coral:#E85D3D;
-  --green:#1F8A5B;
-  --ink:#12202E;
-  --muted:#5E6B77;
-  --line:rgba(11,46,79,.13);
-  --shadow:0 20px 55px rgba(7,31,56,.13);
-  --radius:22px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.08;letter-spacing:-.03em}
-.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--coral)}
-.section{padding:5.5rem 6vw}
-.section-head{max-width:740px;margin-bottom:2.6rem}.section-head h2{font-size:clamp(2rem,4vw,3.1rem);margin-top:.5rem}.section-head p{margin-top:1rem;color:var(--muted);font-size:1.05rem}
+    :root{
+      --walmart-blue:#0071ce;
+      --walmart-dark:#004c91;
+      --spark:#ffc220;
+      --navy:#061a2f;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --ink:#112033;
+      --muted:#657386;
+      --line:#dbe4ef;
+      --green:#12a150;
+      --red:#d93025;
+      --orange:#f59e0b;
+      --cyan:#16a3c7;
+      --shadow:0 18px 45px rgba(6,26,47,.12);
+      --radius:22px;
+    }
 
-/* Topbar / Nav */
-.topbar{background:var(--navy2);color:#fff;text-align:center;padding:.65rem 1rem;font-size:.86rem;font-weight:700}.topbar span{color:var(--gold)}
-nav{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:1rem 6vw;background:rgba(250,247,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.logo{font-family:'Archivo Black',sans-serif;font-size:1.45rem;color:var(--navy);letter-spacing:-.03em}.logo span{color:var(--coral)}
-.nav-links{display:flex;gap:1.6rem;font-size:.92rem;font-weight:700;color:#2D3A46}.nav-links a{opacity:.78}.nav-links a:hover{opacity:1;color:var(--coral)}
-.nav-actions{display:flex;align-items:center;gap:.8rem}.search{display:flex;align-items:center;gap:.45rem;background:#fff;border:1px solid var(--line);padding:.62rem .9rem;border-radius:999px;color:var(--muted);font-size:.88rem;min-width:210px}.nav-cta,.btn-primary{background:var(--navy);color:#fff;padding:.78rem 1.2rem;border-radius:999px;font-weight:800;box-shadow:0 10px 25px rgba(11,46,79,.18)}
-.mobile-toggle{display:none;border:none;background:var(--navy);color:#fff;border-radius:10px;font-size:1.2rem;padding:.55rem .75rem}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+    a{text-decoration:none;color:inherit}
+    button,input,select{font-family:inherit}
 
-/* Hero */
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;padding:5.5rem 6vw 4.5rem}.hero:before{content:"";position:absolute;right:-160px;top:-220px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(242,183,5,.28),transparent 68%)}.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:3rem;align-items:center;max-width:1240px;margin:auto}.hero h1{font-size:clamp(2.8rem,6vw,5rem);margin:.8rem 0 1.1rem}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:1.15rem;color:rgba(255,255,255,.82);max-width:590px;margin-bottom:1.8rem}.btn-row{display:flex;flex-wrap:wrap;gap:.9rem}.btn-primary{background:var(--gold);color:var(--navy2);display:inline-flex}.btn-secondary{border:1px solid rgba(255,255,255,.32);padding:.78rem 1.2rem;border-radius:999px;color:#fff;font-weight:800}.trust-row{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.7rem;color:rgba(255,255,255,.74);font-weight:700;font-size:.92rem}.trust-row strong{color:#fff}.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:32px;padding:1.1rem;box-shadow:var(--shadow);backdrop-filter:blur(10px)}.mockup{background:#fff;border-radius:24px;color:var(--ink);padding:1.2rem}.mockup-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.cart-title{font-weight:900}.badge{background:rgba(31,138,91,.12);color:var(--green);padding:.35rem .6rem;border-radius:999px;font-size:.78rem;font-weight:900}.hero-products{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.hero-product{background:var(--cream2);border:1px solid var(--line);border-radius:18px;padding:1rem}.emoji{font-size:2rem}.hero-product h4{font-size:.95rem;margin:.35rem 0}.price{font-size:1.3rem;font-weight:900;color:var(--navy)}.save{font-size:.8rem;color:var(--green);font-weight:800}.checkout{margin-top:1rem;background:var(--navy);color:#fff;border-radius:18px;padding:1rem;display:flex;justify-content:space-between;align-items:center}.checkout strong{color:var(--gold)}
+    .app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
 
-/* Stats / categories */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1150px;margin:-2.2rem auto 0;position:relative;z-index:3;padding:0 6vw}.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.4rem;text-align:center;box-shadow:0 10px 35px rgba(7,31,56,.08)}.stat strong{display:block;font-family:'Space Grotesk';font-size:2rem;color:var(--navy)}.stat span{color:var(--muted);font-size:.9rem;font-weight:700}
-.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}.category{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.2rem;text-align:center;transition:.2s}.category:hover,.product:hover,.why-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(7,31,56,.1)}.category div{font-size:2rem}.category strong{display:block;margin-top:.3rem;color:var(--navy)}
+    aside{position:sticky;top:0;height:100vh;background:var(--navy);color:#fff;padding:24px 20px;overflow:auto}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .spark{width:38px;height:38px;background:var(--spark);border-radius:50%;display:grid;place-items:center;color:var(--navy);font-weight:900;font-size:22px;box-shadow:0 0 0 7px rgba(255,194,32,.12)}
+    .brand h1{font-size:20px;line-height:1.05;font-weight:800;letter-spacing:-.03em}
+    .brand span{display:block;font-size:11px;color:#b8c9dd;font-weight:600;margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
+    .nav-label{font-size:11px;color:#7f98b6;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin:24px 12px 10px}
+    .side-link{display:flex;align-items:center;gap:12px;color:#d6e4f4;padding:12px 14px;border-radius:14px;margin:3px 0;font-size:14px;font-weight:650;transition:.2s}
+    .side-link:hover,.side-link.active{background:rgba(0,113,206,.23);color:#fff}
+    .side-link b{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:13px}
+    .side-card{margin-top:24px;background:linear-gradient(145deg,rgba(0,113,206,.38),rgba(255,194,32,.18));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px}
+    .side-card p{font-size:13px;color:#d6e4f4;margin:8px 0 14px}
+    .side-card .pill{display:inline-block;background:var(--spark);color:var(--navy);font-weight:800;border-radius:999px;padding:7px 10px;font-size:12px}
 
-/* Cards */
-.why-grid,.product-grid,.blog-grid,.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.why-card,.product,.blog-card,.testimonial{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;transition:.2s}.icon{width:48px;height:48px;border-radius:16px;background:rgba(242,183,5,.18);display:grid;place-items:center;font-size:1.45rem;margin-bottom:1rem}.why-card h3,.blog-card h3{font-size:1.25rem;margin-bottom:.55rem}.why-card p,.blog-card p,.testimonial p{color:var(--muted);font-size:.95rem}.product-img{height:150px;border-radius:18px;background:linear-gradient(135deg,#fff4c7,#e9f6ef);display:grid;place-items:center;font-size:4rem;margin-bottom:1rem}.product-top{display:flex;justify-content:space-between;gap:1rem;align-items:start}.product h3{font-size:1.15rem}.old{text-decoration:line-through;color:#8b98a4;font-size:.85rem;margin-right:.4rem}.product button{width:100%;margin-top:1rem;border:none;background:var(--navy);color:#fff;border-radius:999px;padding:.8rem;font-weight:900;cursor:pointer}.deals{background:#fff}.deal-banner{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;background:linear-gradient(135deg,var(--gold),#FFD766);border-radius:34px;padding:2.5rem;box-shadow:var(--shadow)}.deal-banner h2{font-size:clamp(2rem,4vw,3.4rem);color:var(--navy2)}.coupon{background:var(--navy2);color:#fff;border-radius:24px;padding:2rem}.coupon code{display:block;background:rgba(255,255,255,.1);padding:.9rem;border-radius:12px;margin:1rem 0;font-size:1.2rem;color:var(--gold);font-weight:900;text-align:center}
+    main{min-width:0}
+    header.topbar{position:sticky;top:0;z-index:10;background:rgba(244,247,251,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:16px 28px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .mobile-btn{display:none;border:none;background:var(--navy);color:#fff;width:42px;height:42px;border-radius:12px;font-size:20px}
+    .search{flex:1;max-width:560px;position:relative}
+    .search input{width:100%;border:1px solid var(--line);border-radius:999px;padding:13px 18px 13px 44px;background:#fff;outline:none;font-size:14px}
+    .search span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+    .top-actions{display:flex;align-items:center;gap:12px}
+    .badge{background:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 14px;font-size:13px;font-weight:750;display:flex;align-items:center;gap:8px}
+    .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+    .avatar{width:42px;height:42px;border-radius:50%;background:var(--walmart-blue);color:#fff;display:grid;place-items:center;font-weight:800}
 
-/* How / comparison */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}.num{font-family:'Space Grotesk';font-weight:900;color:var(--coral);font-size:2rem}.compare{background:var(--navy);color:#fff}.compare .section-head p{color:rgba(255,255,255,.7)}.compare .eyebrow{color:var(--gold)}.table-wrap{overflow:auto;border-radius:24px;border:1px solid rgba(255,255,255,.16)}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.04);min-width:720px}th,td{text-align:left;padding:1.05rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.1)}th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.62)}td:nth-child(2){color:var(--gold);font-weight:900}.check{color:#7BE0A4;font-weight:900}.x{color:#ff9a88;font-weight:900}
+    .content{padding:28px;max-width:1500px;margin:auto}
+    .hero{background:radial-gradient(circle at 75% 20%, rgba(255,194,32,.36), transparent 31%),linear-gradient(135deg,var(--walmart-blue),var(--walmart-dark) 62%,#052d58);color:#fff;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.08fr .92fr;gap:26px;overflow:hidden;position:relative}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-120px;bottom:-120px;background:rgba(255,255,255,.09)}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .hero h2{font-size:clamp(32px,4.4vw,58px);line-height:.98;letter-spacing:-.05em;margin:18px 0 16px;max-width:780px}
+    .hero p{font-size:17px;color:#dbeaff;max-width:720px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .btn{border:none;border-radius:14px;padding:13px 18px;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:9px}
+    .btn.primary{background:var(--spark);color:var(--navy)}
+    .btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+    .btn:hover{transform:translateY(-2px)}
+    .command-card{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:20px;position:relative;z-index:1}
+    .command-card h3{font-size:16px;margin-bottom:12px}
+    .ask-box{background:#fff;color:var(--ink);border-radius:16px;padding:15px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .ask-box input{border:none;outline:none;flex:1;color:var(--ink);font-weight:600;min-width:0}
+    .ai-answer{background:rgba(6,26,47,.55);border-radius:16px;padding:15px;color:#e8f2ff;font-size:14px}
+    .ai-answer strong{color:var(--spark)}
 
-/* Testimonials FAQ Blog Newsletter Footer */
-.stars{color:var(--gold);font-weight:900;margin-bottom:.8rem}.person{margin-top:1rem;font-weight:900;color:var(--navy)}.faq-list{max-width:900px}.faq-item{background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:.75rem;padding:1.1rem 1.2rem}.faq-item summary{font-family:'Space Grotesk';font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';color:var(--coral);font-size:1.3rem}.faq-item[open] summary:after{content:'–'}.faq-item p{margin-top:.7rem;color:var(--muted)}.newsletter{background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;border-radius:36px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}.newsletter h2{font-size:clamp(2rem,4vw,3rem)}.newsletter ul{list-style:none;margin-top:1rem;color:rgba(255,255,255,.78)}.newsletter form{background:#fff;border-radius:24px;padding:1rem;display:flex;gap:.7rem}.newsletter input{flex:1;border:1px solid var(--line);padding:.95rem 1rem;border-radius:999px;font-family:Inter}.newsletter button{border:none;background:var(--gold);color:var(--navy2);border-radius:999px;padding:.95rem 1.2rem;font-weight:900}.final-cta{text-align:center;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.final-cta h2{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:1rem}footer{background:var(--navy2);color:rgba(255,255,255,.7);padding:3.5rem 6vw}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:2rem;max-width:1200px;margin:auto}.footer-grid h4{color:#fff;margin-bottom:.8rem}.footer-grid a{display:block;margin:.4rem 0;color:rgba(255,255,255,.62);font-size:.9rem}.fineprint{max-width:1200px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem}
+    .kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin:22px 0}
+    .kpi{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 25px rgba(6,26,47,.06)}
+    .kpi small{color:var(--muted);font-weight:750;font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+    .kpi h3{font-size:28px;letter-spacing:-.04em;margin:6px 0 2px}
+    .trend{font-size:12px;font-weight:800}.up{color:var(--green)}.down{color:var(--red)}.warn{color:var(--orange)}
 
-@media(max-width:980px){
-  .search{display:none}
-  .mobile-toggle{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:5vw;right:5vw;flex-direction:column;gap:.2rem;background:#fff;border:1px solid var(--line);border-radius:18px;padding:.7rem;box-shadow:0 16px 35px rgba(7,31,56,.14)}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:.85rem 1rem;border-radius:12px}
-  .nav-links a:hover{background:var(--cream)}
-  .hero-grid,.deal-banner,.newsletter{grid-template-columns:1fr}
-  .hero-grid{gap:2rem}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .categories{grid-template-columns:repeat(3,1fr)}
-  .why-grid,.product-grid,.blog-grid,.testimonial-grid,.steps{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .hero{padding-top:4rem}
-}
-@media(max-width:640px){
-  .topbar{font-size:.78rem;line-height:1.35}
-  .section{padding:3.5rem 5vw}
-  nav{padding:.9rem 5vw}
-  .logo{font-size:1.25rem}
-  .nav-actions .nav-cta{display:none}
-  .hero{padding:3.4rem 5vw 3.6rem}
-  .hero h1{font-size:clamp(2.35rem,12vw,2.9rem)}
-  .hero p{font-size:1rem}
-  .btn-row a{width:100%;justify-content:center;text-align:center}
-  .hero-products,.stats,.categories,.why-grid,.product-grid,.blog-grid,.testimonial-grid,.steps,.footer-grid{grid-template-columns:1fr}
-  .stats{margin:-1.3rem 5vw 0;padding:0}
-  .stat{padding:1.1rem}
-  .product-top{align-items:flex-start}
-  .deal-banner,.newsletter{padding:1.45rem;border-radius:24px}
-  .newsletter form{flex-direction:column;padding:.85rem}
-  .newsletter input,.newsletter button{width:100%}
-  .trust-row{gap:.8rem}
-  .checkout{align-items:flex-start;flex-direction:column;gap:.4rem}
-  table{min-width:620px}
-}
-@media(max-width:380px){
-  .hero-product{padding:.8rem}
-  .product-img{height:120px;font-size:3rem}
-  .section-head h2{font-size:2rem}
-}
-</style>
+    .section{margin-top:26px}.section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px}.section-title h2{font-size:23px;letter-spacing:-.03em}.section-title p{color:var(--muted);font-size:14px;max-width:620px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid-2{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 10px 25px rgba(6,26,47,.05)}
+    .module-icon{width:46px;height:46px;border-radius:16px;background:#eaf4ff;color:var(--walmart-blue);display:grid;place-items:center;font-size:21px;margin-bottom:14px;font-weight:900}
+    .card h3{font-size:18px;margin-bottom:8px}.card p{color:var(--muted);font-size:14px}.confidence{margin-top:15px;background:#edf3fa;border-radius:999px;height:9px;overflow:hidden}.bar{height:100%;background:var(--walmart-blue);border-radius:inherit}
+
+    .dashboard{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}.chart{height:220px;display:flex;align-items:end;gap:10px;padding-top:20px}.chart div{flex:1;background:linear-gradient(180deg,var(--walmart-blue),#7bb7ec);border-radius:12px 12px 4px 4px;min-height:40px;position:relative}.chart div:nth-child(2n){background:linear-gradient(180deg,var(--spark),#ffe69a)}
+    .alert{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:16px;margin-top:10px;background:#fff}.alert .level{width:10px;height:10px;border-radius:50%;margin-top:7px;flex:0 0 auto}.critical{background:var(--red)}.medium{background:var(--orange)}.low{background:var(--green)}.alert b{display:block;font-size:14px}.alert span{font-size:13px;color:var(--muted)}
+
+    .map{height:360px;background:linear-gradient(145deg,#eaf4ff,#fff);border-radius:22px;position:relative;overflow:hidden;border:1px solid var(--line)}
+    .map:before{content:"";position:absolute;inset:20px;background:radial-gradient(circle at 20% 35%,rgba(0,113,206,.22),transparent 10%),radial-gradient(circle at 70% 28%,rgba(255,194,32,.5),transparent 8%),radial-gradient(circle at 52% 70%,rgba(18,161,80,.22),transparent 10%),radial-gradient(circle at 82% 70%,rgba(217,48,37,.2),transparent 8%);filter:blur(1px)}
+    .node{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--green);box-shadow:0 0 0 8px rgba(18,161,80,.12);z-index:2}.node.yellow{background:var(--spark);box-shadow:0 0 0 8px rgba(255,194,32,.18)}.node.red{background:var(--red);box-shadow:0 0 0 8px rgba(217,48,37,.15)}
+    .line{position:absolute;height:2px;background:rgba(0,113,206,.25);transform-origin:left;z-index:1}.map-label{position:absolute;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:12px;font-weight:800;box-shadow:0 10px 20px rgba(6,26,47,.08);z-index:3}
+
+    table{width:100%;border-collapse:collapse;overflow:hidden}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);font-size:14px}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}.risk{font-weight:900;border-radius:999px;padding:6px 10px;font-size:12px;display:inline-block}.risk.high{background:#fde8e6;color:var(--red)}.risk.med{background:#fff3d6;color:#a76500}.risk.low{background:#e6f6ed;color:var(--green)}
+
+    .simulator{display:grid;grid-template-columns:1fr 1fr;gap:16px}.scenario{background:#f7fafd;border:1px solid var(--line);border-radius:18px;padding:16px}.scenario select,.scenario input{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.result{background:var(--navy);color:#fff;border-radius:18px;padding:18px}.result-row{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.12);padding:10px 0;font-size:14px}.result-row:last-child{border-bottom:none}.result-row strong{color:var(--spark)}
+
+    .timeline{position:relative;padding-left:26px}.timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}.time-item{position:relative;margin:0 0 16px}.time-item:before{content:"";position:absolute;left:-23px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--walmart-blue);box-shadow:0 0 0 5px #eaf4ff}.time-item b{font-size:14px}.time-item p{font-size:13px;color:var(--muted)}
+
+    .footer-cta{background:var(--navy);color:#fff;border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:26px}.footer-cta h2{letter-spacing:-.03em}.footer-cta p{color:#bed1e8;margin-top:5px}.email-row{display:flex;gap:10px}.email-row input{border:none;border-radius:14px;padding:14px;min-width:250px}.email-row button{border:none;border-radius:14px;padding:14px 18px;background:var(--spark);color:var(--navy);font-weight:900}
+
+    @media(max-width:1180px){.app{grid-template-columns:1fr}aside{position:fixed;left:-310px;transition:.25s;z-index:30;width:280px}.app.menu-open aside{left:0}.mobile-btn{display:block}.hero,.grid-2,.dashboard{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){header.topbar{padding:12px;gap:10px}.search{display:none}.badge{display:none}.content{padding:14px}.hero{padding:24px}.hero h2{font-size:34px}.grid-3,.grid-4,.simulator{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr);gap:12px}.kpi h3{font-size:23px}.section-title{align-items:flex-start;flex-direction:column}.card{padding:18px}.map{height:300px}table{display:block;overflow-x:auto;white-space:nowrap}.footer-cta{flex-direction:column;align-items:flex-start}.email-row{width:100%;flex-direction:column}.email-row input{min-width:0;width:100%}}
+    @media(max-width:460px){.kpi-grid{grid-template-columns:1fr}.hero-actions .btn{width:100%;justify-content:center}.top-actions .avatar{display:none}.brand h1{font-size:18px}}
+  </style>
 </head>
 <body>
-<div class="topbar">🚚 Free delivery over <span>$35</span> · Today only: <span>15% OFF</span> local produce with code FRESH15</div>
-<nav>
-  <a class="logo" href="#">Wal<span>cart</span></a>
-  <div class="nav-links">
-    <a href="#categories">Categories</a><a href="#why">Why Us</a><a href="#deals">Deals</a><a href="#compare">Compare</a><a href="#faq">FAQ</a><a href="#blog">Blog</a>
-  </div>
-  <div class="nav-actions"><div class="search">🔎 Search groceries...</div><a class="nav-cta" href="#newsletter">Get Deals</a><button class="mobile-toggle">☰</button></div>
-</nav>
-<header class="hero">
-  <div class="hero-grid">
-    <div>
-      <span class="eyebrow">No membership. No markup.</span>
-      <h1>Everyday groceries, <em>without everyday markups.</em></h1>
-      <p>Walcart is a fictional online retail store built for this university project. It offers affordable groceries, home essentials, transparent prices, and fast delivery.</p>
-      <div class="btn-row"><a class="btn-primary" href="#products">Start Shopping</a><a class="btn-secondary" href="#compare">Compare Prices</a></div>
-      <div class="trust-row"><span>★★★★★ <strong>4.9 rating</strong></span><span>🔒 Secure checkout</span><span>↩ 30-day returns</span></div>
-    </div>
-    <div class="hero-card" aria-label="Shopping cart preview">
-      <div class="mockup">
-        <div class="mockup-head"><div class="cart-title">Your weekly cart</div><div class="badge">Saved $18.40</div></div>
-        <div class="hero-products">
-          <div class="hero-product"><div class="emoji">🥑</div><h4>Fresh Avocados</h4><div class="price">$1.49</div><div class="save">12% less than average</div></div>
-          <div class="hero-product"><div class="emoji">🥛</div><h4>Organic Milk</h4><div class="price">$2.99</div><div class="save">No membership needed</div></div>
-          <div class="hero-product"><div class="emoji">🧻</div><h4>Paper Towels</h4><div class="price">$7.99</div><div class="save">Free pickup</div></div>
-          <div class="hero-product"><div class="emoji">🍞</div><h4>Whole Grain Bread</h4><div class="price">$2.50</div><div class="save">Local bakery</div></div>
-        </div>
-        <div class="checkout"><div>Total today <strong>$28.97</strong></div><div>Checkout →</div></div>
+  <div class="app" id="app">
+    <aside>
+      <div class="brand">
+        <div class="spark">✱</div>
+        <h1>Walmart<span>Supply Chain AI Hub</span></h1>
       </div>
-    </div>
-  </div>
-</header>
-<div class="stats">
-  <div class="stat"><strong>250K+</strong><span>Happy customers</span></div>
-  <div class="stat"><strong>4.9★</strong><span>Average rating</span></div>
-  <div class="stat"><strong>$0</strong><span>Membership fees</span></div>
-  <div class="stat"><strong>30</strong><span>Days for returns</span></div>
-</div>
-<section class="section" id="categories">
-  <div class="section-head"><span class="eyebrow">Featured categories</span><h2>Shop essentials by category.</h2><p>Simple product categories make the website feel real while keeping the exercise easy to present.</p></div>
-  <div class="categories">
-    <div class="category"><div>🥬</div><strong>Fresh Produce</strong></div><div class="category"><div>🥛</div><strong>Dairy</strong></div><div class="category"><div>🥩</div><strong>Meat</strong></div><div class="category"><div>🧼</div><strong>Cleaning</strong></div><div class="category"><div>🐶</div><strong>Pet Supplies</strong></div><div class="category"><div>🍫</div><strong>Snacks</strong></div>
-  </div>
-</section>
-<section class="section" id="why">
-  <div class="section-head"><span class="eyebrow">Why choose Walcart</span><h2>Retail-level prices with a simpler, more transparent experience.</h2></div>
-  <div class="why-grid">
-    <div class="why-card"><div class="icon">💸</div><h3>No membership required</h3><p>Every shopper gets the same low prices without annual subscriptions or hidden conditions.</p></div>
-    <div class="why-card"><div class="icon">🏷️</div><h3>Transparent pricing</h3><p>Clear prices, visible savings, and no confusing bundled deals that look better than they are.</p></div>
-    <div class="why-card"><div class="icon">🚚</div><h3>Fast, flexible delivery</h3><p>Free delivery over $35 and pickup options for customers who need groceries quickly.</p></div>
-  </div>
-</section>
-<section class="section" id="products">
-  <div class="section-head"><span class="eyebrow">Popular products</span><h2>Weekly essentials at honest prices.</h2></div>
-  <div class="product-grid">
-    <div class="product"><div class="product-img">🥑</div><div class="product-top"><h3>Fresh Avocados</h3><div class="price">$1.49</div></div><p><span class="old">$1.99</span> Local supplier pick</p><button>Add to cart</button></div>
-    <div class="product"><div class="product-img">🥛</div><div class="product-top"><h3>Organic Milk</h3><div class="price">$2.99</div></div><p><span class="old">$3.69</span> Family-size value</p><button>Add to cart</button></div>
-    <div class="product"><div class="product-img">🍞</div><div class="product-top"><h3>Whole Grain Bread</h3><div class="price">$2.50</div></div><p><span class="old">$3.10</span> Baked locally</p><button>Add to cart</button></div>
-  </div>
-</section>
-<section class="section deals" id="deals">
-  <div class="deal-banner"><div><span class="eyebrow">Limited offer</span><h2>Save 15% on local produce this week.</h2><p>Use this promotional section as part of the Google Ads landing page. It gives the campaign a clear offer and call to action.</p></div><div class="coupon"><h3>Weekly coupon</h3><code>FRESH15</code><p>Use at checkout for selected fruits and vegetables. Offer created for academic demonstration purposes.</p></div></div>
-</section>
-<section class="section">
-  <div class="section-head"><span class="eyebrow">How it works</span><h2>Three steps from cart to kitchen.</h2></div>
-  <div class="steps"><div class="step"><div class="num">01</div><h3>Browse products</h3><p>Search groceries, compare options, and build your weekly cart.</p></div><div class="step"><div class="num">02</div><h3>Order online</h3><p>Pay securely and choose delivery or pickup depending on your schedule.</p></div><div class="step"><div class="num">03</div><h3>Receive tomorrow</h3><p>Get essentials delivered quickly with simple returns if something is not right.</p></div></div>
-</section>
-<section class="section compare" id="compare">
-  <div class="section-head"><span class="eyebrow">Comparison table</span><h2>Walcart vs. traditional big-box retailers.</h2><p>This section directly covers the GEO/website requirement from the assignment.</p></div>
-  <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Walcart</th><th>Traditional Big-Box</th></tr></thead><tbody>
-    <tr><td>Membership fee</td><td><span class="check">✓</span> None</td><td><span class="x">✕</span> Often required for best prices</td></tr>
-    <tr><td>Shipping</td><td><span class="check">✓</span> Free over $35</td><td>Varies by retailer</td></tr>
-    <tr><td>Local sourcing</td><td><span class="check">✓</span> Prioritized</td><td>Rarely emphasized</td></tr>
-    <tr><td>Return window</td><td><span class="check">✓</span> 30 days</td><td>Often shorter or conditional</td></tr>
-    <tr><td>Price transparency</td><td><span class="check">✓</span> Upfront pricing</td><td>Promotions can be unclear</td></tr>
-    <tr><td>Same-day pickup</td><td><span class="check">✓</span> Select locations</td><td>Limited availability</td></tr>
-  </tbody></table></div>
-</section>
-<section class="section">
-  <div class="section-head"><span class="eyebrow">Customer stories</span><h2>Designed to feel trustworthy for a Google Ads visitor.</h2></div>
-  <div class="testimonial-grid"><div class="testimonial"><div class="stars">★★★★★</div><p>“I switched from traditional supermarkets and save around $40 every week.”</p><div class="person">Emily Carter</div></div><div class="testimonial"><div class="stars">★★★★★</div><p>“Delivery is fast and prices are always clear before checkout.”</p><div class="person">Michael Green</div></div><div class="testimonial"><div class="stars">★★★★★</div><p>“A simple grocery site with no confusing membership rules.”</p><div class="person">Sarah Jones</div></div></div>
-</section>
-<section class="section" id="faq">
-  <div class="section-head"><span class="eyebrow">FAQ</span><h2>Frequently asked questions.</h2></div>
-  <div class="faq-list"><details class="faq-item" open><summary>What makes Walcart different?</summary><p>Walcart focuses on transparent prices, no membership fees, and a curated selection of everyday essentials.</p></details><details class="faq-item"><summary>Does Walcart offer free shipping?</summary><p>Yes, free delivery is included on orders over $35, with pickup options available at select locations.</p></details><details class="faq-item"><summary>Is this a real company?</summary><p>No. Walcart is a fictional brand created for a university website and Google Ads exercise.</p></details><details class="faq-item"><summary>What is the return policy?</summary><p>Unopened items can be returned within 30 days for a full refund.</p></details></div>
-</section>
-<section class="section" id="blog">
-  <div class="section-head"><span class="eyebrow">Blog</span><h2>Tips for smarter everyday spending.</h2></div>
-  <div class="blog-grid"><article class="blog-card"><span class="eyebrow">Budgeting</span><h3>5 ways to stretch your grocery budget</h3><p>Small habits like comparing unit prices, shopping seasonal produce, and avoiding unnecessary fees can reduce weekly costs.</p></article><article class="blog-card"><span class="eyebrow">Local sourcing</span><h3>Why local suppliers matter</h3><p>Regional sourcing can support communities while helping customers access fresher everyday products.</p></article><article class="blog-card"><span class="eyebrow">Delivery</span><h3>How to plan a faster weekly shop</h3><p>A recurring cart and simple pickup options can make grocery shopping easier for busy households.</p></article></div>
-</section>
-<section class="section" id="newsletter">
-  <div class="newsletter"><div><span class="eyebrow">Newsletter</span><h2>Join 120,000 smart shoppers.</h2><ul><li>✓ Weekly discounts</li><li>✓ Local offers</li><li>✓ Simple recipes</li></ul></div><form onsubmit="return false;"><input type="email" placeholder="you@email.com" required><button type="submit">Subscribe</button></form></div>
-</section>
-<section class="section final-cta"><h2>Ready to save on every grocery trip?</h2><p>Start shopping today with transparent pricing and zero membership fees.</p><br><a class="nav-cta" href="#products">Shop now</a></section>
-<footer>
-  <div class="footer-grid"><div><div class="logo" style="color:#fff">Wal<span>cart</span></div><p style="margin-top:.8rem">A fictional retail brand created for a university Google Ads and website exercise.</p></div><div><h4>Company</h4><a>About</a><a>Careers</a><a>Press</a></div><div><h4>Support</h4><a>Help Center</a><a>Shipping</a><a>Returns</a></div><div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Cookies</a></div></div>
-  <div class="fineprint">© 2026 Walcart. Academic project. Not affiliated with any real retailer.</div>
-</footer>
+      <div class="nav-label">Command Center</div>
+      <a class="side-link active" href="#overview"><b>📊</b>Overview</a>
+      <a class="side-link" href="#modules"><b>🤖</b>AI Modules</a>
+      <a class="side-link" href="#operations"><b>🛰️</b>Operations Map</a>
+      <a class="side-link" href="#alerts"><b>⚠️</b>Live Alerts</a>
+      <a class="side-link" href="#simulator"><b>🔮</b>Scenario Simulator</a>
+      <a class="side-link" href="#reports"><b>📄</b>Reports</a>
+      <div class="nav-label">Internal Tools</div>
+      <a class="side-link" href="#suppliers"><b>🚚</b>Supplier Scorecards</a>
+      <a class="side-link" href="#sustainability"><b>🌱</b>Sustainability</a>
+      <a class="side-link" href="#newsletter"><b>✉️</b>Weekly Updates</a>
+      <div class="side-card">
+        <span class="pill">Pilot Mode</span>
+        <p>Prototype for Walmart internal teams: groceries, operations, logistics, stores and supply chain leadership.</p>
+      </div>
+    </aside>
 
-<script>
-  const menuButton = document.querySelector('.mobile-toggle');
-  const navLinks = document.querySelector('.nav-links');
+    <main>
+      <header class="topbar">
+        <button class="mobile-btn" onclick="document.getElementById('app').classList.toggle('menu-open')">☰</button>
+        <div class="search"><span>🔎</span><input placeholder="Search store, supplier, product, incident or route..." /></div>
+        <div class="top-actions">
+          <div class="badge"><span class="dot"></span>Systems Online</div>
+          <div class="badge">🔔 8 Alerts</div>
+          <div class="avatar">WM</div>
+        </div>
+      </header>
 
-  if (menuButton && navLinks) {
-    menuButton.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-      menuButton.textContent = isOpen ? '×' : '☰';
+      <div class="content">
+        <section class="hero" id="overview">
+          <div>
+            <span class="eyebrow">Walmart Internal AI Platform</span>
+            <h2>Smarter supply chain decisions for fresher shelves and lower grocery losses.</h2>
+            <p>AI-powered visibility across stores, suppliers, distribution centers and transportation — designed to prevent waste, improve availability and protect margins.</p>
+            <div class="hero-actions">
+              <a href="#operations" class="btn primary">View Live Operations →</a>
+              <a href="#modules" class="btn secondary">Explore AI Modules</a>
+            </div>
+          </div>
+          <div class="command-card">
+            <h3>Ask Walmart AI</h3>
+            <div class="ask-box">🤖 <input value="Why is produce waste increasing in Florida?" /></div>
+            <div class="ai-answer"><strong>AI Insight:</strong> Demand dropped 14% after a local weather shift while two suppliers delivered 18 hours early. Recommended action: transfer 2,300 units to nearby high-demand stores and apply a 15% markdown today.</div>
+          </div>
+        </section>
+
+        <div class="kpi-grid">
+          <div class="kpi"><small>Food Waste</small><h3>-18.4%</h3><span class="trend up">▲ improved vs last month</span></div>
+          <div class="kpi"><small>Inventory Accuracy</small><h3>96.2%</h3><span class="trend up">▲ +2.1 pts</span></div>
+          <div class="kpi"><small>Forecast Confidence</small><h3>93%</h3><span class="trend up">▲ high confidence</span></div>
+          <div class="kpi"><small>Supplier Risk</small><h3>7</h3><span class="trend warn">● active alerts</span></div>
+          <div class="kpi"><small>Annualized Savings</small><h3>$12.4M</h3><span class="trend up">▲ projected</span></div>
+          <div class="kpi"><small>CO₂ Avoided</small><h3>42t</h3><span class="trend up">▲ sustainability impact</span></div>
+        </div>
+
+        <section class="section" id="modules">
+          <div class="section-title"><div><h2>AI Modules</h2><p>Each module supports a specific operational decision: forecasting, replenishment, supplier risk, routing and grocery loss prevention.</p></div></div>
+          <div class="grid-3">
+            <div class="card"><div class="module-icon">📈</div><h3>Demand Forecasting</h3><p>Predicts demand by store, SKU, season, weather, local events and price changes.</p><div class="confidence"><div class="bar" style="width:93%"></div></div></div>
+            <div class="card"><div class="module-icon">🥬</div><h3>Freshness & Waste Control</h3><p>Detects products at risk of expiration and recommends markdowns, donations or transfers.</p><div class="confidence"><div class="bar" style="width:89%"></div></div></div>
+            <div class="card"><div class="module-icon">🚚</div><h3>Supplier Risk Monitoring</h3><p>Tracks late deliveries, quality issues, shortage risk and supplier reliability.</p><div class="confidence"><div class="bar" style="width:86%"></div></div></div>
+            <div class="card"><div class="module-icon">📦</div><h3>Smart Replenishment</h3><p>Recommends store-level reorder quantities based on live demand and shelf capacity.</p><div class="confidence"><div class="bar" style="width:91%"></div></div></div>
+            <div class="card"><div class="module-icon">🛣️</div><h3>Route Optimization</h3><p>Improves truck routing, fuel usage, delivery timing and cold-chain reliability.</p><div class="confidence"><div class="bar" style="width:84%"></div></div></div>
+            <div class="card"><div class="module-icon">🔔</div><h3>Store-Level Alerts</h3><p>Sends prioritized recommendations to store managers before losses happen.</p><div class="confidence"><div class="bar" style="width:95%"></div></div></div>
+          </div>
+        </section>
+
+        <section class="section grid-2" id="operations">
+          <div class="card">
+            <div class="section-title"><div><h2>Interactive Supply Chain Map</h2><p>Simulated network view of suppliers, distribution centers, stores and transportation risk.</p></div></div>
+            <div class="map">
+              <div class="line" style="left:18%;top:38%;width:42%;transform:rotate(-8deg)"></div>
+              <div class="line" style="left:41%;top:47%;width:31%;transform:rotate(20deg)"></div>
+              <span class="node" style="left:17%;top:35%"></span><span class="map-label" style="left:12%;top:22%">Supplier: Produce</span>
+              <span class="node yellow" style="left:53%;top:42%"></span><span class="map-label" style="left:47%;top:28%">DC: Atlanta</span>
+              <span class="node red" style="left:76%;top:62%"></span><span class="map-label" style="left:63%;top:70%">Florida Stores: High Risk</span>
+              <span class="node" style="left:38%;top:70%"></span><span class="map-label" style="left:30%;top:78%">Texas Region: Stable</span>
+            </div>
+          </div>
+          <div class="card" id="alerts">
+            <h2>Live Alerts</h2>
+            <div class="alert"><span class="level critical"></span><div><b>Cold-chain interruption</b><span>Route 18B temperature above threshold for 22 minutes.</span></div></div>
+            <div class="alert"><span class="level medium"></span><div><b>Produce overstock risk</b><span>Florida avocado inventory 21% above projected demand.</span></div></div>
+            <div class="alert"><span class="level medium"></span><div><b>Supplier delay</b><span>Dairy supplier ETA delayed 4.5 hours in Midwest region.</span></div></div>
+            <div class="alert"><span class="level low"></span><div><b>Markdown opportunity</b><span>Bakery items can recover margin with 10% evening discount.</span></div></div>
+          </div>
+        </section>
+
+        <section class="section grid-2">
+          <div class="card">
+            <h2>Grocery Loss Predictor</h2>
+            <table>
+              <thead><tr><th>Store</th><th>Category</th><th>Risk</th><th>AI Recommendation</th></tr></thead>
+              <tbody>
+                <tr><td>Miami #124</td><td>Produce</td><td><span class="risk high">High</span></td><td>Transfer 2,300 units + 15% markdown</td></tr>
+                <tr><td>Dallas #302</td><td>Dairy</td><td><span class="risk med">Medium</span></td><td>Reduce next order by 7%</td></tr>
+                <tr><td>Phoenix #088</td><td>Bakery</td><td><span class="risk high">High</span></td><td>Evening discount + donation route</td></tr>
+                <tr><td>Denver #451</td><td>Frozen</td><td><span class="risk low">Low</span></td><td>Maintain current replenishment</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h2>AI Timeline</h2>
+            <div class="timeline">
+              <div class="time-item"><b>08:30 — Demand spike detected</b><p>Breakfast items rising above forecast in Texas.</p></div>
+              <div class="time-item"><b>09:00 — Supplier notified</b><p>System requests early confirmation from regional supplier.</p></div>
+              <div class="time-item"><b>09:15 — Transfer suggested</b><p>Excess dairy moved from Dallas to Austin stores.</p></div>
+              <div class="time-item"><b>09:40 — Truck rerouted</b><p>Route adjusted to prevent cold-chain failure.</p></div>
+              <div class="time-item"><b>10:00 — Waste avoided</b><p>Projected $18,400 loss prevented.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section dashboard" id="reports">
+          <div class="card">
+            <h2>Waste Forecast Trend</h2>
+            <div class="chart"><div style="height:78%"></div><div style="height:64%"></div><div style="height:70%"></div><div style="height:53%"></div><div style="height:48%"></div><div style="height:39%"></div><div style="height:34%"></div></div>
+          </div>
+          <div class="card" id="simulator">
+            <h2>Scenario Simulator</h2>
+            <div class="simulator">
+              <div class="scenario">
+                <label><b>What happens if...</b></label>
+                <select><option>Heat wave increases produce spoilage</option><option>Supplier closes for 48 hours</option><option>Fuel price increases 12%</option><option>Demand jumps 30%</option></select>
+                <input type="range" min="0" max="100" value="64" />
+              </div>
+              <div class="result">
+                <div class="result-row"><span>Waste Risk</span><strong>+11%</strong></div>
+                <div class="result-row"><span>Recommended Action</span><strong>Reroute + markdown</strong></div>
+                <div class="result-row"><span>Potential Savings</span><strong>$420K</strong></div>
+                <div class="result-row"><span>AI Confidence</span><strong>91%</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section grid-4" id="suppliers">
+          <div class="card"><h3>Supplier A</h3><p>On-time: 97%<br>Quality: 94%<br>Risk: Low</p></div>
+          <div class="card"><h3>Supplier B</h3><p>On-time: 83%<br>Quality: 88%<br>Risk: Medium</p></div>
+          <div class="card"><h3>Supplier C</h3><p>On-time: 91%<br>Quality: 92%<br>Risk: Low</p></div>
+          <div class="card"><h3>Supplier D</h3><p>On-time: 72%<br>Quality: 81%<br>Risk: High</p></div>
+        </section>
+
+        <section class="section grid-4" id="sustainability">
+          <div class="kpi"><small>Food Rescued</small><h3>120t</h3><span class="trend up">▲ donated / redirected</span></div>
+          <div class="kpi"><small>Water Saved</small><h3>2.4M L</h3><span class="trend up">▲ impact estimate</span></div>
+          <div class="kpi"><small>Packaging Optimized</small><h3>18%</h3><span class="trend up">▲ less excess</span></div>
+          <div class="kpi"><small>Fuel Efficiency</small><h3>+9%</h3><span class="trend up">▲ route optimization</span></div>
+        </section>
+
+        <section class="footer-cta" id="newsletter">
+          <div><h2>Get Weekly Supply Chain Intelligence Updates</h2><p>Internal briefing for operations, grocery, logistics and sustainability teams.</p></div>
+          <form class="email-row" onsubmit="return false;"><input type="email" placeholder="associate@walmart.com" /><button>Subscribe</button></form>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.querySelectorAll('.side-link').forEach(link=>{
+      link.addEventListener('click',()=>document.getElementById('app').classList.remove('menu-open'));
     });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.textContent = '☰';
-      });
-    });
-  }
-</script>
+  </script>
 </body>
 </html>
