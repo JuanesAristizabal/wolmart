@@ -7,11 +7,14 @@ const state = {
   appliedScenario: false
 };
 
-const pages = document.querySelectorAll(".page");
-const navButtons = document.querySelectorAll(".nav-btn");
-const sidebar = document.getElementById("sidebar");
-const backdrop = document.getElementById("backdrop");
-const toast = document.getElementById("toast");
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
+
+const pages = $$(".page");
+const navButtons = $$(".nav-btn");
+const sidebar = $("#sidebar");
+const backdrop = $("#backdrop");
+const toast = $("#toast");
 
 const overviewKpis = [
   ["Revenue Protected", "$42.8M", "+14% vs last month"],
@@ -19,13 +22,6 @@ const overviewKpis = [
   ["Forecast Accuracy", "96.2%", "+7.1 points"],
   ["Inventory Accuracy", "94.8%", "store-level visibility"],
   ["CO₂ Avoided", "18.2K tons", "sustainability impact"]
-];
-
-const executiveKpisBase = [
-  ["Margin Impact", "$18.7M", "Protected this quarter"],
-  ["AI ROI", "4.8x", "Projected annualized"],
-  ["Accepted Recommendations", "324", "Human-approved"],
-  ["Supplier Risk Index", "Low", "7 alerts monitored"]
 ];
 
 const opsKpis = [
@@ -37,32 +33,40 @@ const opsKpis = [
 
 const actions = [
   {
-    action: "Apply 15% markdown",
+    title: "Apply 15% markdown",
     area: "Strawberries · Texas",
+    priority: "High Priority",
     savings: 4.9,
     confidence: "96%",
-    status: "Pending"
+    status: "Pending",
+    why: [["Shelf life", 92], ["Demand gap", 76], ["Weather", 88], ["Inventory excess", 71]]
   },
   {
-    action: "Transfer dairy inventory",
+    title: "Transfer dairy inventory",
     area: "Store #118 → #210",
+    priority: "High Priority",
     savings: 7.2,
     confidence: "93%",
-    status: "Pending"
+    status: "Pending",
+    why: [["Shelf life", 83], ["Nearby demand", 81], ["Route availability", 72], ["Inventory excess", 90]]
   },
   {
-    action: "Activate backup supplier",
+    title: "Activate backup supplier",
     area: "Green Valley Produce",
+    priority: "Medium Priority",
     savings: 12.7,
     confidence: "91%",
-    status: "Pending"
+    status: "Pending",
+    why: [["Delay risk", 88], ["OTIF drop", 74], ["Waste impact", 86], ["DC capacity", 62]]
   },
   {
-    action: "Reduce bakery order",
+    title: "Reduce bakery order",
     area: "Phoenix region",
+    priority: "Medium Priority",
     savings: 2.1,
     confidence: "88%",
-    status: "Pending"
+    status: "Pending",
+    why: [["Demand forecast", 69], ["Shelf life", 78], ["Sales velocity", 64], ["Local traffic", 52]]
   }
 ];
 
@@ -84,7 +88,7 @@ const suppliers = [
 ];
 
 const reports = [
-  ["Weekly Grocery Loss Report", "Store-level grocery loss summary by category, region and AI action.", "Download PDF"],
+  ["Weekly Grocery Loss Report", "Generated for COO and regional operators. Includes loss trend, AI actions, savings and risk regions.", "Preview report"],
   ["AI Savings Report", "Tracks accepted recommendations, realized savings and ROI contribution.", "Export CSV"],
   ["Supplier Risk Report", "Ranks suppliers by OTIF, delay risk, quality and margin impact.", "Open dashboard"],
   ["Sustainability Report", "Food rescued, CO₂ avoided, water saved and ESG contribution.", "Generate report"],
@@ -99,6 +103,7 @@ const nodeData = {
     text: "FreshFlow AI tracks supplier delivery reliability, quality score, lead time and waste contribution.",
     risk: "Medium",
     confidence: "91%",
+    impact: "$1.2M",
     action: "Monitor shipment"
   },
   dc: {
@@ -107,6 +112,7 @@ const nodeData = {
     text: "The DC view shows inbound inventory, outbound capacity, replenishment constraints and temperature-controlled zones.",
     risk: "Low",
     confidence: "94%",
+    impact: "$680K",
     action: "Prioritize produce dispatch"
   },
   truck: {
@@ -115,6 +121,7 @@ const nodeData = {
     text: "IoT sensors track GPS, ETA, temperature and cold-chain anomalies across grocery routes.",
     risk: "High",
     confidence: "96%",
+    impact: "$2.3M",
     action: "Reroute Truck #284"
   },
   store: {
@@ -123,6 +130,7 @@ const nodeData = {
     text: "Store-level data includes POS demand, on-hand stock, shelf life, markdown execution and local events.",
     risk: "Medium",
     confidence: "93%",
+    impact: "$4.9M",
     action: "Approve markdowns"
   },
   customer: {
@@ -131,6 +139,7 @@ const nodeData = {
     text: "The demand model uses POS trends, local events, weather, seasonality and pricing signals.",
     risk: "Low",
     confidence: "97%",
+    impact: "$3.1M",
     action: "Increase beverage replenishment"
   }
 };
@@ -173,10 +182,10 @@ function showToast(message) {
 }
 
 function renderKpis(target, data) {
-  const element = document.getElementById(target);
-  if (!element) return;
+  const el = document.getElementById(target);
+  if (!el) return;
 
-  element.innerHTML = data.map(item => `
+  el.innerHTML = data.map(item => `
     <div class="metric-card">
       <span>${item[0]}</span>
       <b>${item[1]}</b>
@@ -186,18 +195,16 @@ function renderKpis(target, data) {
 }
 
 function renderExecutiveKpis() {
-  const data = [
+  renderKpis("executiveKpis", [
     ["Margin Impact", "$18.7M", "Protected this quarter"],
     ["AI ROI", "4.8x", "Projected annualized"],
     ["Accepted Recommendations", state.accepted.toString(), "Human-approved"],
     ["AI Savings Generated", formatMoney(state.savings), "Approved actions"]
-  ];
-
-  renderKpis("executiveKpis", data);
+  ]);
 }
 
 function renderBarChart(period = "week") {
-  const chart = document.getElementById("barChart");
+  const chart = $("#barChart");
   if (!chart) return;
 
   const values = {
@@ -207,35 +214,64 @@ function renderBarChart(period = "week") {
   };
 
   const labels = ["M", "T", "W", "T", "F", "S", "S", "N"];
+
   chart.innerHTML = values[period].map((value, index) => `
     <div style="height:${value}%"><span>${labels[index]}</span></div>
   `).join("");
 
-  document.getElementById("periodBadge").textContent =
-    period.charAt(0).toUpperCase() + period.slice(1) + " view";
+  $("#periodBadge").textContent = period.charAt(0).toUpperCase() + period.slice(1) + " view";
 }
 
-function renderActions() {
-  const table = document.getElementById("actionTable");
-  if (!table) return;
+function renderDecisionCards() {
+  const container = $("#decisionCards");
+  if (!container) return;
 
-  table.innerHTML = actions.map((item, index) => `
-    <tr>
-      <td><b>${item.action}</b></td>
-      <td>${item.area}</td>
-      <td>$${item.savings.toFixed(1)}M</td>
-      <td>${item.confidence}</td>
-      <td><span class="badge ${item.status === "Completed" ? "green" : item.status === "Executing" ? "orange" : "blue"}">${item.status}</span></td>
-      <td>
+  container.innerHTML = actions.map((item, index) => `
+    <article class="decision-card">
+      <header>
+        <div>
+          <span class="badge ${item.priority.includes("High") ? "red" : "orange"}">${item.priority}</span>
+          <h4>${item.title}</h4>
+          <p>${item.area}</p>
+        </div>
+        <span class="badge blue">${item.confidence}</span>
+      </header>
+
+      <div class="decision-meta">
+        <span>Savings: $${item.savings.toFixed(1)}M</span>
+        <span>Status: ${item.status}</span>
+      </div>
+
+      <div class="explain-grid">
+        ${item.why.map(row => `
+          <div class="explain-row">
+            <span>${row[0]}</span>
+            <i style="--level:${row[1]}%"></i>
+            <b>${row[1]}%</b>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="decision-actions">
         <button class="btn primary action-approve" data-index="${index}" ${item.status !== "Pending" ? "disabled" : ""}>
           ${item.status === "Pending" ? "Approve" : "Approved"}
         </button>
-      </td>
-    </tr>
+        <button class="btn simulate-action" data-title="${item.title}">Simulate</button>
+        <button class="btn explain-action" data-title="${item.title}">View details</button>
+      </div>
+    </article>
   `).join("");
 
-  document.querySelectorAll(".action-approve").forEach(button => {
+  $$(".action-approve").forEach(button => {
     button.addEventListener("click", () => approveAction(Number(button.dataset.index)));
+  });
+
+  $$(".simulate-action").forEach(button => {
+    button.addEventListener("click", () => showToast(`Simulation ready for ${button.dataset.title}`));
+  });
+
+  $$(".explain-action").forEach(button => {
+    button.addEventListener("click", () => showToast(`${button.dataset.title}: AI explanation expanded`));
   });
 }
 
@@ -244,7 +280,7 @@ function approveAction(index) {
   if (!item || item.status !== "Pending") return;
 
   item.status = "Executing";
-  renderActions();
+  renderDecisionCards();
   showToast("AI action approved. Executing...");
 
   setTimeout(() => {
@@ -255,15 +291,14 @@ function approveAction(index) {
 
     updateAdoption();
     renderExecutiveKpis();
-    renderActions();
-
-    addActivity(`Action completed`, `${item.action} · ${item.area}`);
+    renderDecisionCards();
+    addActivity("Action completed", `${item.title} · ${item.area}`);
     showToast(`Completed. ${formatMoney(item.savings)} protected.`);
   }, 900);
 }
 
 function addActivity(title, text) {
-  const feed = document.getElementById("activityFeed");
+  const feed = $("#activityFeed");
   if (!feed) return;
 
   const now = new Date();
@@ -279,25 +314,49 @@ function addActivity(title, text) {
 }
 
 function renderLossTable(filter = "all") {
-  const table = document.getElementById("lossTable");
-  if (!table) return;
+  const table = $("#lossTable");
+  const cards = $("#lossCards");
 
   const filtered = filter === "all" ? lossItems : lossItems.filter(item => item[2] === filter);
 
-  table.innerHTML = filtered.map((item, index) => `
-    <tr>
-      <td>${item[0]}</td>
-      <td><b>${item[1]}</b></td>
-      <td>${item[2]}</td>
-      <td>${item[3]}</td>
-      <td><span class="badge ${parseInt(item[4]) > 85 ? "red" : "orange"}">${item[4]}</span></td>
-      <td>${item[5]}</td>
-      <td>${item[6]}</td>
-      <td><button class="btn primary small-loss-approve" data-name="${item[1]}" data-savings="${item[6]}">Approve</button></td>
-    </tr>
-  `).join("");
+  if (table) {
+    table.innerHTML = filtered.map(item => `
+      <tr>
+        <td>${item[0]}</td>
+        <td><b>${item[1]}</b></td>
+        <td>${item[2]}</td>
+        <td>${item[3]}</td>
+        <td><span class="badge ${parseInt(item[4]) > 85 ? "red" : "orange"}">${item[4]}</span></td>
+        <td>${item[5]}</td>
+        <td>${item[6]}</td>
+        <td><button class="btn primary loss-approve" data-name="${item[1]}">Approve</button></td>
+      </tr>
+    `).join("");
+  }
 
-  document.querySelectorAll(".small-loss-approve").forEach(button => {
+  if (cards) {
+    cards.innerHTML = filtered.map(item => `
+      <article class="loss-card">
+        <header>
+          <div>
+            <h4>${item[1]}</h4>
+            <span class="muted">SKU ${item[0]} · ${item[2]}</span>
+          </div>
+          <span class="badge ${parseInt(item[4]) > 85 ? "red" : "orange"}">${item[4]}</span>
+        </header>
+
+        <dl>
+          <div><dt>Shelf life</dt><dd>${item[3]}</dd></div>
+          <div><dt>Savings</dt><dd>${item[6]}</dd></div>
+        </dl>
+
+        <p class="muted">AI recommendation: <b>${item[5]}</b></p>
+        <button class="btn primary loss-approve" data-name="${item[1]}">Approve</button>
+      </article>
+    `).join("");
+  }
+
+  $$(".loss-approve").forEach(button => {
     button.addEventListener("click", () => {
       button.disabled = true;
       button.textContent = "Approved";
@@ -309,7 +368,7 @@ function renderLossTable(filter = "all") {
 }
 
 function renderSuppliers() {
-  const table = document.getElementById("supplierTable");
+  const table = $("#supplierTable");
   if (!table) return;
 
   table.innerHTML = suppliers.map(item => `
@@ -326,36 +385,39 @@ function renderSuppliers() {
 }
 
 function renderReports() {
-  const grid = document.getElementById("reportsGrid");
+  const grid = $("#reportsGrid");
   if (!grid) return;
 
   grid.innerHTML = reports.map(item => `
     <div class="card">
-      <div class="section-title">
+      <div class="section-title compact">
         <h3>${item[0]}</h3>
         <span class="badge blue">ready</span>
       </div>
+
       <p class="muted">${item[1]}</p>
-      <button class="btn primary report-btn">${item[2]}</button>
+
+      <div class="decision-actions">
+        <button class="btn primary report-btn">${item[2]}</button>
+        <button class="btn preview-btn">Send to leadership</button>
+      </div>
     </div>
   `).join("");
 
-  document.querySelectorAll(".report-btn").forEach(button => {
+  $$(".report-btn, .preview-btn").forEach(button => {
     button.addEventListener("click", () => showToast("Report generated for review"));
   });
 }
 
 function updateAdoption() {
-  const score = document.getElementById("adoptionScore");
-  const bar = document.getElementById("adoptionBar");
-  if (score) score.textContent = `${state.adoption}%`;
-  if (bar) bar.style.width = `${state.adoption}%`;
+  if ($("#adoptionScore")) $("#adoptionScore").textContent = `${state.adoption}%`;
+  if ($("#adoptionBar")) $("#adoptionBar").style.width = `${state.adoption}%`;
 }
 
 function changePage(page) {
   pages.forEach(section => section.classList.remove("active"));
 
-  const target = document.getElementById(`page-${page}`);
+  const target = $(`#page-${page}`);
   if (target) target.classList.add("active");
 
   navButtons.forEach(button => {
@@ -373,7 +435,7 @@ function changePage(page) {
 }
 
 function askAI(question) {
-  const chatBox = document.getElementById("chatBox");
+  const chatBox = $("#chatBox");
   if (!chatBox) return;
 
   const q = question.trim();
@@ -381,34 +443,20 @@ function askAI(question) {
 
   chatBox.insertAdjacentHTML("beforeend", `<div class="message user">${q}</div>`);
 
-  let answer = `
-    FreshFlow AI detected a high grocery loss risk caused by demand variance, shelf-life pressure and regional supply imbalance.
-    Recommendation: apply targeted markdowns, transfer inventory to nearby high-demand stores and reduce tomorrow's replenishment order.
-    Expected savings: $2.8M. Confidence: 96%.
-  `;
+  let answer = `FreshFlow AI detected a high grocery loss risk caused by demand variance, shelf-life pressure and regional supply imbalance. Recommendation: apply targeted markdowns, transfer inventory to nearby high-demand stores and reduce tomorrow's replenishment order. Expected savings: $2.8M. Confidence: 96%.`;
 
   const lower = q.toLowerCase();
 
   if (lower.includes("supplier")) {
-    answer = `
-      Supplier risk is concentrated in Green Valley Produce due to an 18-hour delay, lower OTIF performance and high waste impact.
-      Recommendation: activate backup supplier for the next shipment cycle. Estimated savings: $1.4M. Confidence: 91%.
-    `;
+    answer = `Supplier risk is concentrated in Green Valley Produce due to an 18-hour delay, lower OTIF performance and high waste impact. Recommendation: activate backup supplier for the next shipment cycle. Estimated savings: $1.4M. Confidence: 91%.`;
   }
 
   if (lower.includes("strawberr")) {
-    answer = `
-      Strawberries have a 92% waste risk because shelf life is under 36 hours and demand is below forecast in Texas stores.
-      Recommendation: apply a 15% markdown today and transfer excess inventory to 22 high-demand stores. Estimated savings: $4.9M. Confidence: 96%.
-    `;
+    answer = `Strawberries have a 92% waste risk because shelf life is under 36 hours and demand is below forecast in Texas stores. Recommendation: apply a 15% markdown today and transfer excess inventory to 22 high-demand stores. Estimated savings: $4.9M. Confidence: 96%.`;
   }
 
   if (lower.includes("texas") || lower.includes("produce")) {
-    answer = `
-      Produce waste in Texas increased because of a heat wave, lower weekday demand and earlier-than-expected deliveries.
-      Recommendation: reduce sensitive produce orders, increase beverage replenishment and apply markdowns today in 184 stores.
-      Estimated savings: $2.8M. Confidence: 96%.
-    `;
+    answer = `Produce waste in Texas increased because of a heat wave, lower weekday demand and earlier-than-expected deliveries. Recommendation: reduce sensitive produce orders, increase beverage replenishment and apply markdowns today in 184 stores. Estimated savings: $2.8M. Confidence: 96%.`;
   }
 
   setTimeout(() => {
@@ -420,28 +468,28 @@ function askAI(question) {
 }
 
 function setupScenario() {
-  document.querySelectorAll(".scenario").forEach(button => {
+  $$(".scenario").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".scenario").forEach(b => b.classList.remove("active"));
+      $$(".scenario").forEach(b => b.classList.remove("active"));
       button.classList.add("active");
 
       const data = scenarios[button.dataset.scenario];
 
-      document.getElementById("simMetric1").textContent = data.one[0];
-      document.getElementById("simValue1").textContent = data.one[1];
-      document.getElementById("simMetric2").textContent = data.two[0];
-      document.getElementById("simValue2").textContent = data.two[1];
-      document.getElementById("simMetric3").textContent = data.three[0];
-      document.getElementById("simValue3").textContent = data.three[1];
-      document.getElementById("simText").textContent = data.text;
+      $("#simMetric1").textContent = data.one[0];
+      $("#simValue1").textContent = data.one[1];
+      $("#simMetric2").textContent = data.two[0];
+      $("#simValue2").textContent = data.two[1];
+      $("#simMetric3").textContent = data.three[0];
+      $("#simValue3").textContent = data.three[1];
+      $("#simText").textContent = data.text;
 
       state.appliedScenario = false;
-      document.getElementById("applyScenario").disabled = false;
-      document.getElementById("applyScenario").textContent = "Apply AI mitigation plan";
+      $("#applyScenario").disabled = false;
+      $("#applyScenario").textContent = "Apply AI mitigation plan";
     });
   });
 
-  const apply = document.getElementById("applyScenario");
+  const apply = $("#applyScenario");
   if (apply) {
     apply.addEventListener("click", () => {
       if (state.appliedScenario) return;
@@ -459,19 +507,20 @@ function setupScenario() {
 }
 
 function setupTwin() {
-  document.querySelectorAll(".node").forEach(button => {
+  $$(".twin-step").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".node").forEach(b => b.classList.remove("active"));
+      $$(".twin-step").forEach(b => b.classList.remove("active"));
       button.classList.add("active");
 
       const data = nodeData[button.dataset.node];
 
-      document.getElementById("nodeTitle").textContent = data.title;
-      document.getElementById("nodeStatus").textContent = data.status;
-      document.getElementById("nodeText").textContent = data.text;
-      document.getElementById("nodeRisk").textContent = data.risk;
-      document.getElementById("nodeConfidence").textContent = data.confidence;
-      document.getElementById("nodeAction").textContent = data.action;
+      $("#nodeTitle").textContent = data.title;
+      $("#nodeStatus").textContent = data.status;
+      $("#nodeText").textContent = data.text;
+      $("#nodeRisk").textContent = data.risk;
+      $("#nodeConfidence").textContent = data.confidence;
+      $("#nodeImpact").textContent = data.impact;
+      $("#nodeAction").textContent = data.action;
     });
   });
 }
@@ -481,16 +530,15 @@ function setupNavigation() {
     button.addEventListener("click", () => changePage(button.dataset.page));
   });
 
-  document.querySelectorAll("[data-go]").forEach(button => {
+  $$("[data-go]").forEach(button => {
     button.addEventListener("click", () => changePage(button.dataset.go));
   });
 
-  const initialPage = location.hash.replace("#", "") || "overview";
-  changePage(initialPage);
+  changePage(location.hash.replace("#", "") || "overview");
 }
 
 function setupUI() {
-  document.getElementById("menuBtn").addEventListener("click", () => {
+  $("#menuBtn").addEventListener("click", () => {
     sidebar.classList.add("open");
     backdrop.classList.add("open");
   });
@@ -500,70 +548,71 @@ function setupUI() {
     backdrop.classList.remove("open");
   });
 
-  document.getElementById("themeToggle").addEventListener("click", () => {
+  $("#themeToggle").addEventListener("click", () => {
     document.body.classList.toggle("dark");
   });
 
-  document.getElementById("roleToggle").addEventListener("click", () => {
+  $("#roleToggle").addEventListener("click", () => {
     state.role = state.role === "Executive" ? "Operations" : "Executive";
-    document.getElementById("roleName").textContent = state.role;
-
-    if (state.role === "Executive") changePage("executive");
-    else changePage("operations");
+    $("#roleName").textContent = state.role;
+    changePage(state.role === "Executive" ? "executive" : "operations");
   });
 
-  document.getElementById("notificationToggle").addEventListener("click", () => {
-    document.getElementById("notifications").classList.toggle("open");
+  $("#notificationToggle").addEventListener("click", () => {
+    $("#notifications").classList.toggle("open");
   });
 
-  document.querySelectorAll(".tab").forEach(button => {
+  $("#presentationToggle").addEventListener("click", () => {
+    $("#presentationPanel").classList.add("open");
+  });
+
+  $("#presentationClose").addEventListener("click", () => {
+    $("#presentationPanel").classList.remove("open");
+  });
+
+  $$(".tab").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+      $$(".tab").forEach(b => b.classList.remove("active"));
       button.classList.add("active");
       renderBarChart(button.dataset.period);
     });
   });
 
-  document.querySelectorAll(".filter").forEach(button => {
+  $$(".filter").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+      $$(".filter").forEach(b => b.classList.remove("active"));
       button.classList.add("active");
       state.currentFilter = button.dataset.filter;
       renderLossTable(state.currentFilter);
     });
   });
 
-  document.querySelectorAll(".quick-prompts button").forEach(button => {
+  $$(".quick-prompts button").forEach(button => {
     button.addEventListener("click", () => askAI(button.dataset.prompt));
   });
 
-  document.getElementById("askBtn").addEventListener("click", () => {
-    const input = document.getElementById("aiInput");
+  $("#askBtn").addEventListener("click", () => {
+    const input = $("#aiInput");
     askAI(input.value);
     input.value = "";
   });
 
-  document.getElementById("aiInput").addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      document.getElementById("askBtn").click();
-    }
+  $("#aiInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") $("#askBtn").click();
   });
 
-  document.querySelectorAll(".approve-btn").forEach(button => {
-    button.addEventListener("click", () => {
-      const value = Number(button.dataset.savings || 1);
-      state.savings += value;
-      state.accepted += 1;
-      button.disabled = true;
-      button.textContent = "Approved";
-      renderExecutiveKpis();
-      showToast(`Strategic recommendation approved. ${formatMoney(value)} projected impact.`);
-    });
-  });
-
-  document.getElementById("refreshOps").addEventListener("click", () => {
+  $("#refreshOps").addEventListener("click", () => {
     showToast("Live operational data refreshed");
   });
+
+  const slider = $("#impactSlider");
+  if (slider) {
+    slider.addEventListener("input", () => {
+      const value = Number(slider.value);
+      $("#adoptionSliderValue").textContent = `${value}%`;
+      $("#impactSavings").textContent = `$${(value * 0.623).toFixed(1)}M`;
+    });
+  }
 }
 
 function init() {
@@ -571,7 +620,7 @@ function init() {
   renderExecutiveKpis();
   renderKpis("opsKpis", opsKpis);
   renderBarChart("week");
-  renderActions();
+  renderDecisionCards();
   renderLossTable();
   renderSuppliers();
   renderReports();
