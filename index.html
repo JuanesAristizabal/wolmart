@@ -12,21 +12,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 
 <body>
   <div class="app" id="app">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <div class="brand-mark">✦</div>
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+
         <div>
           <strong>Walmart<br>FreshFlow AI</strong>
           <span>Internal supply chain platform</span>
         </div>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary navigation">
         <button class="nav-btn active" data-page="overview">🏠 Overview</button>
         <button class="nav-btn" data-page="executive">📊 Executive Intelligence</button>
         <button class="nav-btn" data-page="operations">⚡ Operations Center</button>
@@ -49,7 +52,7 @@
 
     <main class="main">
       <header class="topbar">
-        <button class="menu-btn" id="menuBtn">☰</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 
         <div class="mobile-title">
           <strong>FreshFlow AI</strong>
@@ -61,24 +64,28 @@
           <input id="globalSearch" type="search" placeholder="Search store, SKU, supplier, truck, report..." />
         </div>
 
+        <button class="pill" id="presentationToggle">▶ Presentation Mode</button>
         <button class="pill" id="roleToggle">👤 Role: <span id="roleName">Executive</span></button>
-        <button class="icon-btn" id="themeToggle">🌙</button>
-        <button class="icon-btn" id="notificationToggle">🔔<i></i></button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="icon-btn" id="notificationToggle" aria-label="Notifications">🔔<i></i></button>
       </header>
 
-      <section class="notifications" id="notifications">
-        <div class="section-title">
+      <section class="notifications" id="notifications" aria-label="Notifications panel">
+        <div class="section-title compact">
           <h3>Notifications</h3>
           <span class="badge red">3 critical</span>
         </div>
+
         <div class="mini-alert">
           <b>Cold chain risk</b>
           <p>Truck #284 temperature exceeded threshold for 18 minutes.</p>
         </div>
+
         <div class="mini-alert">
           <b>Supplier delay</b>
           <p>Green Valley Produce delayed shipment to DC Atlanta.</p>
         </div>
+
         <div class="mini-alert">
           <b>Markdown action ready</b>
           <p>184 Texas stores can reduce produce losses today.</p>
@@ -86,29 +93,67 @@
       </section>
 
       <div class="content">
-
-        <!-- OVERVIEW -->
         <section class="page active" id="page-overview">
+          <div class="breadcrumb">Overview / Platform snapshot</div>
+
+          <div class="executive-snapshot">
+            <div>
+              <span class="kicker">Today’s AI impact</span>
+              <h2>FreshFlow AI turns grocery supply chain data into approved operational actions before food becomes waste.</h2>
+            </div>
+
+            <div class="snapshot-metrics">
+              <article>
+                <b>$12.4M</b>
+                <span>AI savings generated</span>
+              </article>
+
+              <article>
+                <b>-18.4%</b>
+                <span>Grocery waste reduced</span>
+              </article>
+
+              <article>
+                <b>184</b>
+                <span>Stores need action</span>
+              </article>
+
+              <article>
+                <b>96.2%</b>
+                <span>Forecast accuracy</span>
+              </article>
+            </div>
+          </div>
+
           <div class="hero-layout">
             <div class="hero-card">
-              <span class="kicker">Walmart Global Tech · Grocery Supply Chain</span>
-              <h1>AI-powered visibility for fresher shelves, lower grocery losses and higher margins.</h1>
-              <p>
-                FreshFlow AI connects store inventory, POS data, supplier performance, truck temperature,
-                weather and local demand signals to recommend actions before groceries become losses.
-              </p>
+              <div class="hero-copy">
+                <span class="kicker">Walmart Global Tech · Grocery Supply Chain</span>
+                <h1>AI-powered visibility for fresher shelves, lower grocery losses and higher margins.</h1>
+                <p>FreshFlow AI connects store inventory, POS data, supplier performance, truck temperature, weather and local demand signals to recommend actions before groceries become losses.</p>
 
-              <div class="hero-actions">
-                <button class="btn yellow" data-go="operations">View operational actions</button>
-                <button class="btn ghost" data-go="ai">Ask FreshFlow AI</button>
+                <div class="hero-actions">
+                  <button class="btn yellow" data-go="operations">View operational actions</button>
+                  <button class="btn ghost" data-go="ai">Ask FreshFlow AI</button>
+                </div>
+              </div>
+
+              <div class="hero-visual" aria-label="Supply chain visual">
+                <div class="visual-orbit"></div>
+                <div class="visual-node n1">Supplier</div>
+                <div class="visual-node n2">DC</div>
+                <div class="visual-node n3">Truck</div>
+                <div class="visual-node n4">Store</div>
+                <div class="visual-node n5">AI</div>
               </div>
             </div>
 
-            <div class="card">
-              <div class="section-title">
+            <div class="card live-card">
+              <div class="section-title compact">
                 <h3>Live network status</h3>
                 <span class="badge green">online</span>
               </div>
+
               <div class="status-row"><span>Connected stores</span><b>4,756</b></div>
               <div class="status-row"><span>Trucks monitored</span><b>8,921</b></div>
               <div class="status-row"><span>Suppliers online</span><b>312</b></div>
@@ -118,52 +163,53 @@
 
           <div class="kpi-grid" id="overviewKpis"></div>
 
-          <div class="card">
-            <div class="section-title">
-              <div>
-                <h3>How FreshFlow AI works</h3>
-                <p class="muted">From raw operational data to measurable business impact.</p>
+          <div class="dashboard-grid two-one">
+            <div class="card">
+              <div class="section-title">
+                <div>
+                  <h3>From detection to margin protection</h3>
+                  <p class="muted">The complete operating workflow behind the platform.</p>
+                </div>
+                <span class="badge blue">Human-in-the-loop</span>
               </div>
-              <span class="badge blue">Human-in-the-loop AI</span>
+
+              <div class="story-flow">
+                <article><span>01</span><b>Risk detected</b><p>Inventory, temperature or demand anomaly appears.</p></article>
+                <article><span>02</span><b>AI predicts loss</b><p>Model estimates probability, cause and margin exposure.</p></article>
+                <article><span>03</span><b>Action recommended</b><p>Markdown, transfer, order change or supplier switch.</p></article>
+                <article><span>04</span><b>Manager approves</b><p>Human reviews confidence, impact and explanation.</p></article>
+                <article><span>05</span><b>Execution pushed</b><p>Action flows to store, DC, pricing or logistics team.</p></article>
+                <article><span>06</span><b>AI learns</b><p>Result improves the next prediction cycle.</p></article>
+              </div>
             </div>
 
-            <div class="flow-grid">
-              <article>
-                <span>01</span>
-                <b>Data ingestion</b>
-                <p>POS, inventory, shelf life, suppliers, GPS, IoT temperature, weather and events.</p>
-              </article>
-              <article>
-                <span>02</span>
-                <b>AI prediction</b>
-                <p>Forecasts demand, spoilage risk, stockouts, supplier delay and cold chain risk.</p>
-              </article>
-              <article>
-                <span>03</span>
-                <b>Recommendation</b>
-                <p>Suggests markdowns, transfers, order changes, backup suppliers and route optimization.</p>
-              </article>
-              <article>
-                <span>04</span>
-                <b>Human approval</b>
-                <p>Managers approve actions with explainability, confidence and expected savings.</p>
-              </article>
-              <article>
-                <span>05</span>
-                <b>Execution</b>
-                <p>Actions are pushed to stores, DCs, pricing, procurement or logistics teams.</p>
-              </article>
-              <article>
-                <span>06</span>
-                <b>Learning loop</b>
-                <p>Results feed the model to improve future predictions and margins.</p>
-              </article>
+            <div class="card">
+              <div class="section-title">
+                <h3>Data connected to AI</h3>
+                <span class="badge purple">multi-source</span>
+              </div>
+
+              <div class="data-chip-grid">
+                <span>POS sales</span>
+                <span>Store inventory</span>
+                <span>Expiration dates</span>
+                <span>Supplier OTIF</span>
+                <span>Truck GPS</span>
+                <span>Cold chain temperature</span>
+                <span>Weather</span>
+                <span>Local events</span>
+                <span>Traffic</span>
+                <span>Commodity prices</span>
+              </div>
+
+              <p class="muted data-note">FreshFlow AI uses these signals to predict demand, detect waste risk and recommend operational actions.</p>
             </div>
           </div>
         </section>
 
-        <!-- EXECUTIVE -->
         <section class="page" id="page-executive">
+          <div class="breadcrumb">Executive Intelligence / Strategic decision view</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">C-Level View</span>
@@ -176,6 +222,11 @@
               <button class="tab" data-period="month">Month</button>
               <button class="tab" data-period="quarter">Quarter</button>
             </div>
+          </div>
+
+          <div class="insight-banner purple">
+            <b>Executive insight:</b> The largest margin opportunity this week is dynamic markdown expansion across Texas and Florida fresh categories.
+            <button class="btn light" data-go="loss">View loss drivers</button>
           </div>
 
           <div class="kpi-grid executive" id="executiveKpis"></div>
@@ -208,44 +259,68 @@
 
           <div class="dashboard-grid three">
             <div class="card">
-              <div class="section-title"><h3>AI ROI</h3><span class="badge blue">4.8x</span></div>
+              <div class="section-title compact">
+                <h3>AI ROI</h3>
+                <span class="badge blue">4.8x</span>
+              </div>
+
               <p class="muted">Payback period: 5.2 months. Projected annualized savings increase as more stores adopt dynamic markdowns and transfers.</p>
               <div class="progress wide"><i style="width:82%"></i></div>
               <p><b>82%</b> toward annual ROI target</p>
             </div>
 
             <div class="card">
-              <div class="section-title"><h3>Executive summary</h3><span class="badge green">updated</span></div>
-              <p class="muted">
-                FreshFlow AI prevented an estimated <b>$2.8M</b> in grocery losses this week across 482 stores,
-                mainly through produce markdowns, dairy transfers and supplier rerouting.
-              </p>
+              <div class="section-title compact">
+                <h3>Executive summary</h3>
+                <span class="badge green">updated</span>
+              </div>
+
+              <p class="muted">FreshFlow AI prevented an estimated <b>$2.8M</b> in grocery losses this week across 482 stores, mainly through produce markdowns, dairy transfers and supplier rerouting.</p>
             </div>
 
             <div class="card">
-              <div class="section-title"><h3>Strategic recommendation</h3><span class="badge purple">AI confidence 94%</span></div>
-              <p class="muted">Expand dynamic markdown system to 320 additional high-risk stores in Texas, Florida and Georgia.</p>
-              <button class="btn primary approve-btn" data-savings="18.6">Approve expansion</button>
+              <div class="section-title compact">
+                <h3>Business impact calculator</h3>
+                <span class="badge purple">simulated</span>
+              </div>
+
+              <label class="slider-label">AI adoption level <b id="adoptionSliderValue">78%</b></label>
+              <input id="impactSlider" class="impact-slider" type="range" min="40" max="98" value="78">
+
+              <div class="impact-result">
+                <span>Projected annual savings</span>
+                <b id="impactSavings">$48.6M</b>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- OPERATIONS -->
         <section class="page" id="page-operations">
+          <div class="breadcrumb">Operations Center / Action queue</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">Operations View</span>
               <h2>Operational Command Center</h2>
               <p>Daily action layer for store managers, DC teams, category managers, procurement and logistics.</p>
             </div>
+
             <button class="btn primary" id="refreshOps">Refresh live actions</button>
+          </div>
+
+          <div class="insight-banner red">
+            <b>3 critical actions need attention today.</b> Cold chain, supplier delay and produce overstock are the highest operational risks.
           </div>
 
           <div class="kpi-grid" id="opsKpis"></div>
 
           <div class="dashboard-grid one-two">
             <div class="card">
-              <div class="section-title"><h3>Critical alerts</h3><span class="badge red">action needed</span></div>
+              <div class="section-title">
+                <h3>Critical alerts</h3>
+                <span class="badge red">action needed</span>
+              </div>
+
               <div class="alert-list">
                 <div class="alert-item"><i class="red-dot"></i><div><b>Cold chain interruption</b><p>Truck #284 · Dairy · 7.8°C for 18 minutes</p></div><span class="badge red">High</span></div>
                 <div class="alert-item"><i class="orange-dot"></i><div><b>Supplier delay</b><p>Green Valley Produce · DC Atlanta · +18h ETA</p></div><span class="badge orange">Medium</span></div>
@@ -254,28 +329,25 @@
             </div>
 
             <div class="card">
-              <div class="section-title"><h3>AI action center</h3><span class="badge blue">human approval required</span></div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Action</th>
-                      <th>Area</th>
-                      <th>Savings</th>
-                      <th>Confidence</th>
-                      <th>Status</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody id="actionTable"></tbody>
-                </table>
+              <div class="section-title">
+                <div>
+                  <h3>AI Action Center</h3>
+                  <p class="muted">Decision cards explain why the AI recommends each action.</p>
+                </div>
+                <span class="badge blue">human approval</span>
               </div>
+
+              <div class="decision-card-grid" id="decisionCards"></div>
             </div>
           </div>
 
           <div class="dashboard-grid three">
             <div class="card">
-              <div class="section-title"><h3>Cold chain monitor</h3><span class="badge orange">3 warnings</span></div>
+              <div class="section-title compact">
+                <h3>Cold chain monitor</h3>
+                <span class="badge orange">3 warnings</span>
+              </div>
+
               <div class="temp-list">
                 <div><b>Truck #284</b><span class="risk high">7.8°C</span><span>ETA 32m</span></div>
                 <div><b>Truck #411</b><span class="risk low">3.1°C</span><span>ETA 1h</span></div>
@@ -285,7 +357,11 @@
             </div>
 
             <div class="card">
-              <div class="section-title"><h3>Recent activity</h3><span class="badge green">live</span></div>
+              <div class="section-title compact">
+                <h3>Recent activity</h3>
+                <span class="badge green">live</span>
+              </div>
+
               <div class="timeline" id="activityFeed">
                 <div><span>08:12</span><article><b>Markdown approved</b><p>Strawberries · 184 stores</p></article></div>
                 <div><span>08:31</span><article><b>Route changed</b><p>Truck #411 avoids traffic delay</p></article></div>
@@ -294,17 +370,29 @@
             </div>
 
             <div class="card">
-              <div class="section-title"><h3>Inventory health</h3><span class="badge blue">by category</span></div>
-              <p>Produce <b class="risk medium">82%</b></p><div class="progress wide orange"><i style="width:82%"></i></div>
-              <p>Dairy <b class="risk high">76%</b></p><div class="progress wide red"><i style="width:76%"></i></div>
-              <p>Frozen <b class="risk low">96%</b></p><div class="progress wide green"><i style="width:96%"></i></div>
-              <p>Bakery <b class="risk medium">79%</b></p><div class="progress wide orange"><i style="width:79%"></i></div>
+              <div class="section-title compact">
+                <h3>Inventory health</h3>
+                <span class="badge blue">by category</span>
+              </div>
+
+              <p>Produce <b class="risk medium">82%</b></p>
+              <div class="progress wide orange"><i style="width:82%"></i></div>
+
+              <p>Dairy <b class="risk high">76%</b></p>
+              <div class="progress wide red"><i style="width:76%"></i></div>
+
+              <p>Frozen <b class="risk low">96%</b></p>
+              <div class="progress wide green"><i style="width:96%"></i></div>
+
+              <p>Bakery <b class="risk medium">79%</b></p>
+              <div class="progress wide orange"><i style="width:79%"></i></div>
             </div>
           </div>
         </section>
 
-        <!-- AI -->
         <section class="page" id="page-ai">
+          <div class="breadcrumb">AI Command Center / Decision engine</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">AI Decision Engine</span>
@@ -315,7 +403,9 @@
 
           <div class="dashboard-grid ai-layout">
             <div class="card ai-chat">
-              <div class="section-title"><h3>Ask Walmart AI</h3></div>
+              <div class="section-title compact">
+                <h3>Ask Walmart AI</h3>
+              </div>
 
               <div class="quick-prompts">
                 <button data-prompt="Why is produce waste increasing in Texas?">Produce waste in Texas</button>
@@ -324,9 +414,7 @@
               </div>
 
               <div class="chat-box" id="chatBox">
-                <div class="message ai">
-                  <b>FreshFlow AI:</b> Ask me about waste, demand, inventory, suppliers or logistics risk.
-                </div>
+                <div class="message ai"><b>FreshFlow AI:</b> Ask me about waste, demand, inventory, suppliers or logistics risk.</div>
               </div>
 
               <div class="chat-input">
@@ -336,30 +424,30 @@
             </div>
 
             <div class="card simulator">
-              <div class="section-title"><h3>Scenario Simulator</h3><span class="badge blue">predictive</span></div>
+              <div class="section-title compact">
+                <h3>Scenario Simulator</h3>
+                <span class="badge blue">predictive</span>
+              </div>
+
               <p class="muted">Select a disruption and see the predicted impact.</p>
 
               <div class="scenario-grid">
                 <div class="scenario-list">
-                  <button class="scenario active" data-scenario="heat">🌡️ Heat wave in Texas</button>
-                  <button class="scenario" data-scenario="supplier">🚚 Supplier delay</button>
-                  <button class="scenario" data-scenario="holiday">🛒 Holiday demand spike</button>
-                  <button class="scenario" data-scenario="fuel">⛽ Fuel price +12%</button>
+                  <button class="scenario active" data-scenario="heat">Heat wave in Texas</button>
+                  <button class="scenario" data-scenario="supplier">Supplier delay</button>
+                  <button class="scenario" data-scenario="holiday">Holiday demand spike</button>
+                  <button class="scenario" data-scenario="fuel">Fuel price +12%</button>
                 </div>
 
                 <div class="scenario-output">
                   <div class="metric-card small"><span id="simMetric1">Waste risk</span><b id="simValue1">+22%</b><small>AI forecast</small></div>
                   <div class="metric-card small"><span id="simMetric2">Beverage demand</span><b id="simValue2">+31%</b><small>AI forecast</small></div>
                   <div class="metric-card small"><span id="simMetric3">Produce shelf life</span><b id="simValue3">-18%</b><small>AI forecast</small></div>
+
                   <p id="simText">AI recommends increasing beverage replenishment, reducing sensitive produce orders and applying markdowns today in 184 Texas stores. Estimated savings: $2.8M.</p>
 
                   <div class="decision-flow">
-                    <span>Detect</span>
-                    <span>Predict</span>
-                    <span>Simulate</span>
-                    <span>Recommend</span>
-                    <span>Approve</span>
-                    <span>Learn</span>
+                    <span>Detect</span><span>Predict</span><span>Simulate</span><span>Recommend</span><span>Approve</span><span>Learn</span>
                   </div>
 
                   <button class="btn primary" id="applyScenario">Apply AI mitigation plan</button>
@@ -369,14 +457,16 @@
           </div>
         </section>
 
-        <!-- LOSS -->
         <section class="page" id="page-loss">
+          <div class="breadcrumb">Grocery Loss Center / Waste prevention</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">Problem Focus</span>
               <h2>Grocery Loss Center</h2>
               <p>Detect products with the highest probability of waste and recommend the best economic action.</p>
             </div>
+
             <div class="filter-bar">
               <button class="filter active" data-filter="all">All</button>
               <button class="filter" data-filter="Produce">Produce</button>
@@ -385,18 +475,13 @@
             </div>
           </div>
 
-          <div class="table-wrap card">
+          <div class="mobile-loss-list" id="lossCards"></div>
+
+          <div class="table-wrap card desktop-table">
             <table>
               <thead>
                 <tr>
-                  <th>SKU</th>
-                  <th>Product</th>
-                  <th>Category</th>
-                  <th>Shelf life</th>
-                  <th>Waste risk</th>
-                  <th>AI recommendation</th>
-                  <th>Savings</th>
-                  <th></th>
+                  <th>SKU</th><th>Product</th><th>Category</th><th>Shelf life</th><th>Waste risk</th><th>AI recommendation</th><th>Savings</th><th></th>
                 </tr>
               </thead>
               <tbody id="lossTable"></tbody>
@@ -404,40 +489,55 @@
           </div>
         </section>
 
-        <!-- DIGITAL TWIN -->
         <section class="page" id="page-twin">
+          <div class="breadcrumb">Digital Twin / Network simulation</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">Network Simulation</span>
               <h2>Digital Twin</h2>
-              <p>Simulated supply chain view connecting suppliers, distribution centers, trucks and stores.</p>
+              <p>Simulated supply chain view connecting suppliers, distribution centers, trucks, stores and customer demand.</p>
             </div>
           </div>
 
           <div class="dashboard-grid two-one">
             <div class="card">
-              <div class="section-title"><h3>Grocery supply chain network</h3><span class="badge green">live model</span></div>
-              <div class="twin-map">
-                <button class="node supplier active" data-node="supplier">Supplier</button>
-                <button class="node dc" data-node="dc">Distribution Center</button>
-                <button class="node truck" data-node="truck">Truck Fleet</button>
-                <button class="node store" data-node="store">Store Network</button>
-                <button class="node customer" data-node="customer">Customer Demand</button>
+              <div class="section-title compact">
+                <h3>Grocery supply chain network</h3>
+                <span class="badge green">live model</span>
+              </div>
+
+              <div class="twin-flow">
+                <button class="twin-step active" data-node="supplier"><b>Supplier</b><span>Medium risk</span></button>
+                <i></i>
+                <button class="twin-step" data-node="dc"><b>Distribution Center</b><span>Capacity 86%</span></button>
+                <i></i>
+                <button class="twin-step" data-node="truck"><b>Truck Fleet</b><span>Cold alert</span></button>
+                <i></i>
+                <button class="twin-step" data-node="store"><b>Store Network</b><span>Overstock detected</span></button>
+                <i></i>
+                <button class="twin-step" data-node="customer"><b>Customer Demand</b><span>Heat wave spike</span></button>
               </div>
             </div>
 
             <div class="card">
-              <div class="section-title"><h3 id="nodeTitle">Supplier</h3><span class="badge blue" id="nodeStatus">monitored</span></div>
+              <div class="section-title compact">
+                <h3 id="nodeTitle">Supplier</h3>
+                <span class="badge blue" id="nodeStatus">monitored</span>
+              </div>
+
               <p class="muted" id="nodeText">FreshFlow AI tracks supplier delivery reliability, quality score, lead time and waste contribution.</p>
               <div class="status-row"><span>Risk score</span><b id="nodeRisk">Medium</b></div>
               <div class="status-row"><span>AI confidence</span><b id="nodeConfidence">91%</b></div>
+              <div class="status-row"><span>Economic impact</span><b id="nodeImpact">$1.2M</b></div>
               <div class="status-row"><span>Recommended action</span><b id="nodeAction">Monitor shipment</b></div>
             </div>
           </div>
         </section>
 
-        <!-- SUPPLIERS -->
         <section class="page" id="page-suppliers">
+          <div class="breadcrumb">Supplier Intelligence / Procurement risk</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">Procurement Intelligence</span>
@@ -450,13 +550,7 @@
             <table>
               <thead>
                 <tr>
-                  <th>Supplier</th>
-                  <th>Category</th>
-                  <th>OTIF</th>
-                  <th>Quality</th>
-                  <th>Delay risk</th>
-                  <th>Waste impact</th>
-                  <th>AI action</th>
+                  <th>Supplier</th><th>Category</th><th>OTIF</th><th>Quality</th><th>Delay risk</th><th>Waste impact</th><th>AI action</th>
                 </tr>
               </thead>
               <tbody id="supplierTable"></tbody>
@@ -464,8 +558,9 @@
           </div>
         </section>
 
-        <!-- REPORTS -->
         <section class="page" id="page-reports">
+          <div class="breadcrumb">Reports / Leadership outputs</div>
+
           <div class="page-head">
             <div>
               <span class="kicker">Executive Reporting</span>
@@ -476,13 +571,30 @@
 
           <div class="dashboard-grid three" id="reportsGrid"></div>
         </section>
-
       </div>
     </main>
   </div>
 
+  <section class="presentation-panel" id="presentationPanel" aria-label="Presentation mode">
+    <div class="presentation-card">
+      <button class="presentation-close" id="presentationClose">×</button>
+
+      <span class="kicker">Presentation Mode</span>
+      <h2>How FreshFlow AI helps Walmart reduce grocery losses</h2>
+
+      <div class="presentation-steps">
+        <article><b>1. Problem</b><p>Groceries have high spoilage risk, margin pressure and operational complexity.</p></article>
+        <article><b>2. Data</b><p>FreshFlow connects inventory, POS, suppliers, GPS, IoT temperature, weather and local demand.</p></article>
+        <article><b>3. AI Prediction</b><p>The model predicts waste risk, demand changes, supplier delay and cold chain interruptions.</p></article>
+        <article><b>4. Recommendation</b><p>AI recommends markdowns, transfers, supplier switches, order changes and route optimization.</p></article>
+        <article><b>5. Human Approval</b><p>Managers approve explainable recommendations with confidence and expected savings.</p></article>
+        <article><b>6. Business Impact</b><p>Waste decreases, margins improve, sustainability metrics improve and the AI learns from results.</p></article>
+      </div>
+    </div>
+  </section>
+
   <div class="toast" id="toast">Action approved</div>
 
-  <script src="assets/js/app.js"></script>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>
