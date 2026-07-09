@@ -3,22 +3,18 @@
   --w-blue-dark: #004f9e;
   --navy: #052b63;
   --spark: #ffc220;
-
   --bg: #f3f6fb;
   --surface: #ffffff;
   --surface-2: #eef3f9;
   --ink: #06172a;
   --muted: #637089;
   --line: #dbe4ef;
-
   --green: #0a9f47;
   --red: #d9292f;
   --orange: #f97316;
   --purple: #6d3df2;
-
   --shadow: 0 20px 50px rgba(15, 35, 75, 0.1);
   --radius: 18px;
-
   --side: 292px;
   --top: 76px;
 }
@@ -65,8 +61,6 @@ button {
   display: flex;
 }
 
-/* SIDEBAR */
-
 .sidebar {
   width: var(--side);
   background: linear-gradient(180deg, var(--w-blue-dark), #02234f);
@@ -88,7 +82,6 @@ button {
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Walmart Spark-inspired CSS mark */
 .brand-mark {
   width: 48px;
   height: 48px;
@@ -101,6 +94,7 @@ button {
 
 .brand-mark span {
   position: absolute;
+  display: block;
   left: 50%;
   top: 50%;
   width: 7px;
@@ -196,8 +190,6 @@ button {
   font-size: 12px;
   line-height: 1.45;
 }
-
-/* MAIN LAYOUT */
 
 .main {
   width: 100%;
@@ -326,8 +318,6 @@ button {
     transform: none;
   }
 }
-
-/* GENERAL COMPONENTS */
 
 .breadcrumb {
   color: var(--ink);
@@ -513,8 +503,6 @@ h4 {
   background: var(--orange);
 }
 
-/* NOTIFICATIONS */
-
 .notifications {
   position: fixed;
   right: 28px;
@@ -543,8 +531,6 @@ h4 {
   color: var(--muted);
   font-size: 13px;
 }
-
-/* OVERVIEW */
 
 .executive-snapshot {
   background: linear-gradient(135deg, var(--surface), rgba(0, 113, 206, 0.07));
@@ -703,8 +689,6 @@ h4 {
   margin: 10px 0;
 }
 
-/* GRIDS */
-
 .dashboard-grid {
   display: grid;
   gap: 20px;
@@ -771,8 +755,6 @@ h4 {
   font-size: 26px;
 }
 
-/* STORY + DATA */
-
 .story-flow {
   display: grid;
   grid-template-columns: repeat(6, minmax(135px, 1fr));
@@ -829,7 +811,73 @@ h4 {
   margin-top: 18px;
 }
 
-/* INSIGHT BANNERS */
+.case-study {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.case-study article {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.case-study b {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.case-study p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+  font-size: 13px;
+}
+
+.outcome-list {
+  display: grid;
+  gap: 10px;
+}
+
+.outcome-list div {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 14px;
+  padding: 13px;
+}
+
+.outcome-list b,
+.outcome-list span {
+  display: block;
+}
+
+.outcome-list span {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.before-after article {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.before-after ul {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.8;
+}
 
 .insight-banner {
   border-radius: 18px;
@@ -852,8 +900,6 @@ h4 {
   background: rgba(217, 41, 47, 0.09);
   border: 1px solid rgba(217, 41, 47, 0.18);
 }
-
-/* EXECUTIVE */
 
 .tabs,
 .filter-bar {
@@ -975,8 +1021,6 @@ h4 {
   margin-top: 6px;
   letter-spacing: -0.05em;
 }
-
-/* OPERATIONS */
 
 .alert-list {
   display: grid;
@@ -1163,8 +1207,6 @@ h4 {
   font-size: 13px;
 }
 
-/* AI COMMAND */
-
 .quick-prompts {
   display: flex;
   flex-wrap: wrap;
@@ -1290,8 +1332,6 @@ h4 {
   justify-self: start;
 }
 
-/* TABLES */
-
 .table-wrap {
   overflow-x: auto;
   max-width: 100%;
@@ -1299,7 +1339,7 @@ h4 {
 
 table {
   width: 100%;
-  min-width: 760px;
+  min-width: 980px;
   border-collapse: collapse;
 }
 
@@ -1321,8 +1361,6 @@ th {
 td {
   font-size: 14px;
 }
-
-/* GROCERY LOSS */
 
 .mobile-loss-list {
   display: none;
@@ -1365,8 +1403,6 @@ td {
   font-weight: 900;
 }
 
-/* DIGITAL TWIN */
-
 .twin-flow {
   display: grid;
   grid-template-columns: 1fr 34px 1fr 34px 1fr 34px 1fr 34px 1fr;
@@ -1393,6 +1429,8 @@ td {
   padding: 18px;
   box-shadow: var(--shadow);
   min-height: 110px;
+  text-align: left;
+  font-weight: 800;
 }
 
 .twin-step b {
@@ -1410,8 +1448,6 @@ td {
   border-color: var(--spark);
   outline: 3px solid rgba(255, 194, 32, 0.25);
 }
-
-/* PRESENTATION MODE */
 
 .presentation-panel {
   position: fixed;
@@ -1470,8 +1506,6 @@ td {
   line-height: 1.55;
 }
 
-/* TOAST */
-
 .toast {
   position: fixed;
   right: 24px;
@@ -1494,13 +1528,9 @@ td {
   opacity: 1;
 }
 
-/* MOBILE MENU */
-
 .backdrop {
   display: none;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 1180px) {
   :root {
@@ -1545,6 +1575,10 @@ td {
 
   .story-flow {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .case-study {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .kpi-grid,
@@ -1599,7 +1633,8 @@ td {
 
   .hero-layout,
   .dashboard-grid.three,
-  .decision-card-grid {
+  .decision-card-grid,
+  .before-after {
     grid-template-columns: 1fr;
   }
 
@@ -1621,6 +1656,10 @@ td {
     width: 100%;
   }
 
+  .hero-visual {
+    display: none;
+  }
+
   .kpi-grid,
   .kpi-grid.executive,
   .snapshot-metrics {
@@ -1634,7 +1673,8 @@ td {
     align-items: stretch;
   }
 
-  .story-flow {
+  .story-flow,
+  .case-study {
     grid-template-columns: 1fr;
   }
 
@@ -1670,10 +1710,6 @@ td {
 
   .presentation-steps {
     grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    display: none;
   }
 }
 
@@ -1720,7 +1756,7 @@ td {
   }
 
   .explain-row {
-    grid-template-columns: 96px 1fr 38px;
+    grid-template-columns: 96px minmax(0, 1fr) 38px;
   }
 
   .presentation-panel {
