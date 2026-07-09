@@ -1207,3 +1207,30 @@ td {
     width: min(86vw, 310px);
   }
 }
+
+/* =========================================================
+   WALMART FRESHFLOW AI — V12 UI FIX PATCH
+   Paste this at the END of assets/css/styles.css
+   ========================================================= */
+
+/* ---------- Brand Spark Logo ---------- */
+
+.brand-mark {
+  position: relative !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 16px !important;
+  background: var(--spark) !important;
+  overflow: hidden;
+}
+
+.brand-mark span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--w-blue-dark);
+ 
