@@ -1,3 +1,5 @@
+const FRESHFLOW_AGENT_ENDPOINT = "https://freshflow-ai-agent-backend.vercel.app/api/freshflow-agent";
+
 const state = {
   role: "Executive",
   savings: 12.4,
@@ -189,6 +191,21 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function getCurrentPageName() {
+  const activePage = document.querySelector(".page.active");
+  if (!activePage) return "ai";
+  return activePage.id.replace("page-", "");
 }
 
 function renderKpis(target, data) {
@@ -430,6 +447,175 @@ function renderReports() {
   });
 }
 
+function renderAgentResponse(data) {
+  const rootCauses = Array.isArray(data.rootCauses)
+    ? data.rootCauses.map(item => `<li>${escapeHtml(item)}</li>`).join("")
+    : "";
+
+  const nextSteps = Array.isArray(data.nextSteps)
+    ? data.nextSteps.map(item => `<li>${escapeHtml(item)}</li>`).join("")
+    : "";
+
+  return `
+    <div class="agent-response-card">
+      <div class="agent-response-head">
+        <div>
+          <b>FreshFlow AI Agent</b>
+          <span>${escapeHtml(data.intent || "general")}</span>
+        </div>
+        <span class="badge blue">${escapeHtml(data.confidence || "AI")}</span>
+      </div>
+
+      <p><b>Diagnosis:</b> ${escapeHtml(data.diagnosis)}</p>
+
+      <div class="agent-response-grid">
+        <article>
+          <span>Expected savings</span>
+          <b>${escapeHtml(data.expectedSavings || "N/A")}</b>
+        </article>
+
+        <article>
+          <span>Owner</span>
+          <b>${escapeHtml(data.owner || "Operations")}</b>
+        </article>
+
+        <article>
+          <span>Approval</span>
+          <b>${data.approvalRequired ? "Human required" : "Not required"}</b>
+        </article>
+      </div>
+
+      <div class="agent-response-section">
+        <b>Root causes</b>
+        <ul>${rootCauses}</ul>
+      </div>
+
+      <div class="agent-response-section">
+        <b>Recommended action</b>
+        <p>${escapeHtml(data.recommendedAction)}</p>
+      </div>
+
+      <div class="agent-response-section">
+        <b>Business impact</b>
+        <p>${escapeHtml(data.businessImpact)}</p>
+      </div>
+
+      <div class="agent-response-section">
+        <b>Next steps</b>
+        <ul>${nextSteps}</ul>
+      </div>
+
+      <div class="decision-actions">
+        <button class="btn primary agent-approve">Approve recommendation</button>
+        <button class="btn agent-send" data-target="${escapeHtml(data.dashboardTarget || "operations")}">Send to dashboard</button>
+        <button class="btn agent-report">Generate report</button>
+      </div>
+    </div>
+  `;
+}
+
+async function askAI(question) {
+  const chatBox = $("#chatBox");
+  if (!chatBox) return;
+
+  const q = question.trim();
+  if (!q) return;
+
+  chatBox.insertAdjacentHTML("beforeend", `<div class="message user">${escapeHtml(q)}</div>`);
+
+  const loadingId = `agent-loading-${Date.now()}`;
+
+  chatBox.insertAdjacentHTML(
+    "beforeend",
+    `<div class="message ai" id="${loadingId}">
+      <b>FreshFlow AI Agent:</b> Analyzing live supply chain context...
+    </div>`
+  );
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  try {
+    const response = await fetch(FRESHFLOW_AGENT_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: q,
+        role: state.role,
+        currentPage: getCurrentPageName()
+      })
+    });
+
+    const data = await response.json();
+    const loadingMessage = document.getElementById(loadingId);
+
+    if (!response.ok) {
+      if (loadingMessage) {
+        loadingMessage.innerHTML = `
+          <b>FreshFlow AI Agent:</b> I could not complete the request.
+          <br><br>
+          <b>Error:</b> ${escapeHtml(data.error || "Backend error")}
+        `;
+      }
+      return;
+    }
+
+    if (loadingMessage) {
+      loadingMessage.innerHTML = renderAgentResponse(data);
+    }
+
+    setTimeout(() => {
+      document.querySelectorAll(".agent-approve").forEach(button => {
+        button.onclick = () => {
+          button.disabled = true;
+          button.textContent = "Approved";
+
+          state.accepted += 1;
+          state.savings += 2.8;
+          state.adoption = Math.min(99, state.adoption + 1);
+
+          renderExecutiveKpis();
+          updateAdoption();
+          showToast("FreshFlow AI recommendation approved");
+
+          addActivity(
+            "AI recommendation approved",
+            data.recommendedAction || "Action sent to Operations"
+          );
+        };
+      });
+
+      document.querySelectorAll(".agent-send").forEach(button => {
+        button.onclick = () => {
+          const target = button.dataset.target || "operations";
+          showToast(`Sent to ${target} dashboard`);
+          changePage(target);
+        };
+      });
+
+      document.querySelectorAll(".agent-report").forEach(button => {
+        button.onclick = () => {
+          showToast("AI report generated for executive review");
+          changePage("reports");
+        };
+      });
+    }, 100);
+  } catch (error) {
+    const loadingMessage = document.getElementById(loadingId);
+
+    if (loadingMessage) {
+      loadingMessage.innerHTML = `
+        <b>FreshFlow AI Agent:</b> Connection error.
+        <br><br>
+        Check that the Vercel backend is deployed and the endpoint URL is correct.
+      `;
+    }
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
 function updateAdoption() {
   if ($("#adoptionScore")) $("#adoptionScore").textContent = `${state.adoption}%`;
   if ($("#adoptionBar")) $("#adoptionBar").style.width = `${state.adoption}%`;
@@ -453,39 +639,6 @@ function changePage(page) {
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function askAI(question) {
-  const chatBox = $("#chatBox");
-  if (!chatBox) return;
-
-  const q = question.trim();
-  if (!q) return;
-
-  chatBox.insertAdjacentHTML("beforeend", `<div class="message user">${q}</div>`);
-
-  let answer = `FreshFlow AI detected a high grocery loss risk caused by demand variance, shelf-life pressure and regional supply imbalance. Recommendation: apply targeted markdowns, transfer inventory to nearby high-demand stores and reduce tomorrow's replenishment order. Expected savings: $2.8M. Confidence: 96%.`;
-
-  const lower = q.toLowerCase();
-
-  if (lower.includes("supplier")) {
-    answer = `Supplier risk is concentrated in Green Valley Produce due to an 18-hour delay, lower OTIF performance and high waste impact. Recommendation: activate backup supplier for the next shipment cycle. Estimated savings: $1.4M. Confidence: 91%.`;
-  }
-
-  if (lower.includes("strawberr")) {
-    answer = `Strawberries have a 92% waste risk because shelf life is under 36 hours and demand is below forecast in Texas stores. Recommendation: apply a 15% markdown today and transfer excess inventory to 22 high-demand stores. Estimated savings: $4.9M. Confidence: 96%.`;
-  }
-
-  if (lower.includes("texas") || lower.includes("produce")) {
-    answer = `Produce waste in Texas increased because of a heat wave, lower weekday demand and earlier-than-expected deliveries. Recommendation: reduce sensitive produce orders, increase beverage replenishment and apply markdowns today in 184 stores. Estimated savings: $2.8M. Confidence: 96%.`;
-  }
-
-  setTimeout(() => {
-    chatBox.insertAdjacentHTML("beforeend", `<div class="message ai"><b>FreshFlow AI:</b> ${answer}</div>`);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 350);
-
-  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function setupScenario() {
