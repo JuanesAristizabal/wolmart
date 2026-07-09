@@ -71,29 +71,34 @@ const actions = [
 ];
 
 const lossItems = [
-  ["1029", "Strawberries", "Produce", "36h", "92%", "Apply 15% markdown", "$4,900"],
-  ["4102", "Milk", "Dairy", "2 days", "87%", "Transfer inventory", "$7,200"],
-  ["8821", "Bread", "Bakery", "18h", "81%", "Reduce tomorrow order", "$2,100"],
-  ["7330", "Avocados", "Produce", "3 days", "76%", "Bundle promotion", "$3,600"],
-  ["1190", "Yogurt", "Dairy", "4 days", "69%", "Shift to high-demand stores", "$2,900"],
-  ["5521", "Bananas", "Produce", "2 days", "73%", "Create local promotion", "$3,100"]
+  ["1029", "Strawberries", "Produce", "Texas Fresh Cluster", "36h", "92%", "Low", "Apply 15% markdown", "$4,900", "Pending"],
+  ["4102", "Milk", "Dairy", "Dallas Metro", "2 days", "87%", "Medium", "Transfer inventory", "$7,200", "Pending"],
+  ["8821", "Bread", "Bakery", "Phoenix Urban", "18h", "81%", "Low", "Reduce tomorrow order", "$2,100", "Pending"],
+  ["7330", "Avocados", "Produce", "Austin North", "3 days", "76%", "Medium", "Bundle promotion", "$3,600", "Pending"],
+  ["1190", "Yogurt", "Dairy", "Florida Central", "4 days", "69%", "High", "Shift to high-demand stores", "$2,900", "Pending"],
+  ["5521", "Bananas", "Produce", "Georgia South", "2 days", "73%", "Medium", "Create local promotion", "$3,100", "Pending"],
+  ["6602", "Spinach", "Produce", "Texas Fresh Cluster", "30h", "88%", "Low", "Markdown 12% today", "$2,700", "Pending"],
+  ["7710", "Chicken Breast", "Meat", "Florida Central", "2 days", "84%", "Medium", "Prioritize store transfer", "$5,400", "Pending"],
+  ["9150", "Salmon Fillets", "Seafood", "Northeast Urban", "24h", "91%", "Low", "Reduce price 10%", "$6,200", "Pending"],
+  ["2230", "Orange Juice", "Dairy", "Dallas Metro", "5 days", "65%", "High", "Hold replenishment", "$1,800", "Pending"]
 ];
 
 const suppliers = [
-  ["Fresh Farms Co.", "Produce", "91%", "94%", "Medium", "$1.2M", "Monitor closely"],
-  ["DairyBest", "Dairy", "97%", "96%", "Low", "$420K", "Keep primary"],
-  ["Green Valley", "Produce", "84%", "88%", "High", "$2.8M", "Activate backup supplier"],
-  ["Golden Wheat", "Bakery", "89%", "91%", "Medium", "$760K", "Renegotiate lead time"],
-  ["FrozenLine", "Frozen", "98%", "97%", "Low", "$210K", "Maintain"]
+  ["Fresh Farms Co.", "Produce", "91%", "94%", "2.4 days", "Medium", "$1.2M", "Weather disruption in Georgia", "Monitor closely"],
+  ["DairyBest", "Dairy", "97%", "96%", "1.8 days", "Low", "$420K", "Stable cold-chain compliance", "Keep primary"],
+  ["Green Valley", "Produce", "84%", "88%", "3.6 days", "High", "$2.8M", "Recurring OTIF deterioration over 3 weeks", "Activate backup supplier"],
+  ["Golden Wheat", "Bakery", "89%", "91%", "2.9 days", "Medium", "$760K", "Lead-time variance affecting bakery freshness", "Renegotiate lead time"],
+  ["FrozenLine", "Frozen", "98%", "97%", "2.1 days", "Low", "$210K", "Low disruption exposure", "Maintain"],
+  ["Blue Coast Seafood", "Seafood", "86%", "89%", "3.2 days", "High", "$1.9M", "Temperature compliance variance", "Request quality inspection"]
 ];
 
 const reports = [
-  ["Weekly Grocery Loss Report", "Generated for COO and regional operators. Includes loss trend, AI actions, savings and risk regions.", "Preview report"],
-  ["AI Savings Report", "Tracks accepted recommendations, realized savings and ROI contribution.", "Export CSV"],
-  ["Supplier Risk Report", "Ranks suppliers by OTIF, delay risk, quality and margin impact.", "Open dashboard"],
-  ["Sustainability Report", "Food rescued, CO₂ avoided, water saved and ESG contribution.", "Generate report"],
-  ["Executive ROI Summary", "C-level summary of investment payback and margin protection.", "Share deck"],
-  ["Operations Action Log", "Operational actions approved, executed and measured by store.", "View log"]
+  ["Weekly Grocery Loss Report", "COO / Regional Operations", "Includes waste trend, top SKUs at risk, approved actions and savings by region.", "Ready", "Today, 8:30 AM"],
+  ["AI Savings Report", "CFO / Strategy", "Tracks accepted recommendations, realized savings and ROI contribution.", "Ready", "Today, 8:45 AM"],
+  ["Supplier Risk Report", "Procurement / Supply Planning", "Ranks suppliers by OTIF, lead time risk, quality and margin impact.", "Ready", "Today, 9:00 AM"],
+  ["Sustainability Report", "ESG / Leadership", "Food rescued, CO₂ avoided, water saved and grocery waste prevented.", "Ready", "Today, 9:20 AM"],
+  ["Executive ROI Summary", "CEO / COO / CFO", "C-level summary of investment payback and margin protection.", "Draft", "Yesterday, 6:10 PM"],
+  ["Operations Action Log", "Store Ops / Logistics", "Operational actions approved, executed and measured by store.", "Live", "Updated 4 min ago"]
 ];
 
 const nodeData = {
@@ -104,7 +109,8 @@ const nodeData = {
     risk: "Medium",
     confidence: "91%",
     impact: "$1.2M",
-    action: "Monitor shipment"
+    action: "Monitor shipment",
+    owner: "Procurement"
   },
   dc: {
     title: "Distribution Center",
@@ -113,7 +119,8 @@ const nodeData = {
     risk: "Low",
     confidence: "94%",
     impact: "$680K",
-    action: "Prioritize produce dispatch"
+    action: "Prioritize produce dispatch",
+    owner: "DC Operations"
   },
   truck: {
     title: "Truck Fleet",
@@ -122,7 +129,8 @@ const nodeData = {
     risk: "High",
     confidence: "96%",
     impact: "$2.3M",
-    action: "Reroute Truck #284"
+    action: "Reroute Truck #284",
+    owner: "Logistics"
   },
   store: {
     title: "Store Network",
@@ -131,7 +139,8 @@ const nodeData = {
     risk: "Medium",
     confidence: "93%",
     impact: "$4.9M",
-    action: "Approve markdowns"
+    action: "Approve markdowns",
+    owner: "Store Operations"
   },
   customer: {
     title: "Customer Demand",
@@ -140,7 +149,8 @@ const nodeData = {
     risk: "Low",
     confidence: "97%",
     impact: "$3.1M",
-    action: "Increase beverage replenishment"
+    action: "Increase beverage replenishment",
+    owner: "Category Management"
   }
 };
 
@@ -326,9 +336,12 @@ function renderLossTable(filter = "all") {
         <td><b>${item[1]}</b></td>
         <td>${item[2]}</td>
         <td>${item[3]}</td>
-        <td><span class="badge ${parseInt(item[4]) > 85 ? "red" : "orange"}">${item[4]}</span></td>
-        <td>${item[5]}</td>
+        <td>${item[4]}</td>
+        <td><span class="badge ${parseInt(item[5]) > 85 ? "red" : "orange"}">${item[5]}</span></td>
         <td>${item[6]}</td>
+        <td>${item[7]}</td>
+        <td>${item[8]}</td>
+        <td><span class="badge blue">${item[9]}</span></td>
         <td><button class="btn primary loss-approve" data-name="${item[1]}">Approve</button></td>
       </tr>
     `).join("");
@@ -342,15 +355,17 @@ function renderLossTable(filter = "all") {
             <h4>${item[1]}</h4>
             <span class="muted">SKU ${item[0]} · ${item[2]}</span>
           </div>
-          <span class="badge ${parseInt(item[4]) > 85 ? "red" : "orange"}">${item[4]}</span>
+          <span class="badge ${parseInt(item[5]) > 85 ? "red" : "orange"}">${item[5]}</span>
         </header>
 
         <dl>
-          <div><dt>Shelf life</dt><dd>${item[3]}</dd></div>
-          <div><dt>Savings</dt><dd>${item[6]}</dd></div>
+          <div><dt>Store cluster</dt><dd>${item[3]}</dd></div>
+          <div><dt>Shelf life</dt><dd>${item[4]}</dd></div>
+          <div><dt>Sales velocity</dt><dd>${item[6]}</dd></div>
+          <div><dt>Savings</dt><dd>${item[8]}</dd></div>
         </dl>
 
-        <p class="muted">AI recommendation: <b>${item[5]}</b></p>
+        <p class="muted">AI recommendation: <b>${item[7]}</b></p>
         <button class="btn primary loss-approve" data-name="${item[1]}">Approve</button>
       </article>
     `).join("");
@@ -377,9 +392,11 @@ function renderSuppliers() {
       <td>${item[1]}</td>
       <td>${item[2]}</td>
       <td>${item[3]}</td>
-      <td><span class="badge ${item[4] === "High" ? "red" : item[4] === "Medium" ? "orange" : "green"}">${item[4]}</span></td>
-      <td>${item[5]}</td>
+      <td>${item[4]}</td>
+      <td><span class="badge ${item[5] === "High" ? "red" : item[5] === "Medium" ? "orange" : "green"}">${item[5]}</span></td>
       <td>${item[6]}</td>
+      <td>${item[7]}</td>
+      <td>${item[8]}</td>
     </tr>
   `).join("");
 }
@@ -392,19 +409,23 @@ function renderReports() {
     <div class="card">
       <div class="section-title compact">
         <h3>${item[0]}</h3>
-        <span class="badge blue">ready</span>
+        <span class="badge blue">${item[3]}</span>
       </div>
 
-      <p class="muted">${item[1]}</p>
+      <div class="status-row"><span>Audience</span><b>${item[1]}</b></div>
+      <div class="status-row"><span>Last generated</span><b>${item[4]}</b></div>
+
+      <p class="muted">${item[2]}</p>
 
       <div class="decision-actions">
-        <button class="btn primary report-btn">${item[2]}</button>
-        <button class="btn preview-btn">Send to leadership</button>
+        <button class="btn primary report-btn">Preview</button>
+        <button class="btn report-btn">Download PDF</button>
+        <button class="btn report-btn">Share</button>
       </div>
     </div>
   `).join("");
 
-  $$(".report-btn, .preview-btn").forEach(button => {
+  $$(".report-btn").forEach(button => {
     button.addEventListener("click", () => showToast("Report generated for review"));
   });
 }
@@ -521,6 +542,7 @@ function setupTwin() {
       $("#nodeConfidence").textContent = data.confidence;
       $("#nodeImpact").textContent = data.impact;
       $("#nodeAction").textContent = data.action;
+      $("#nodeOwner").textContent = data.owner;
     });
   });
 }
@@ -613,6 +635,18 @@ function setupUI() {
       $("#impactSavings").textContent = `$${(value * 0.623).toFixed(1)}M`;
     });
   }
+
+  $$(".strategic-approve").forEach(button => {
+    button.addEventListener("click", () => {
+      const value = Number(button.dataset.savings || 1);
+      state.savings += value;
+      state.accepted += 1;
+      button.disabled = true;
+      button.textContent = "Approved";
+      renderExecutiveKpis();
+      showToast(`Strategic recommendation approved. ${formatMoney(value)} projected impact.`);
+    });
+  });
 }
 
 function init() {
