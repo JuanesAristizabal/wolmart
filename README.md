@@ -15,6 +15,7 @@ The platform is designed to help Walmart reduce grocery losses, improve margins,
 - Digital Twin
 - Supplier Intelligence
 - Reports
+- Presentation Mode
 
 ## Core idea
 
@@ -22,14 +23,27 @@ FreshFlow AI connects data from:
 
 - POS sales
 - Store inventory
+- Expiration dates
 - Supplier performance
 - Distribution centers
 - Truck GPS
 - Cold chain temperature
 - Weather
 - Local demand signals
+- Traffic
+- Commodity prices
 
 The AI engine uses this data to predict waste risk, recommend operational actions and support human decision-making.
+
+## User profiles
+
+### C-Level / Executive View
+
+Designed for senior leadership to track financial impact, ROI, sustainability metrics and strategic risk.
+
+### Operations View
+
+Designed for store managers, logistics managers, distribution centers, procurement teams and category managers.
 
 ## Deployment
 
