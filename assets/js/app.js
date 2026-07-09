@@ -6,7 +6,8 @@ const state = {
   accepted: 324,
   adoption: 78,
   currentFilter: "all",
-  appliedScenario: false
+  appliedScenario: false,
+  logisticsAlertShown: false
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -60,6 +61,15 @@ const actions = [
     confidence: "91%",
     status: "Pending",
     why: [["Delay risk", 88], ["OTIF drop", 74], ["Waste impact", 86], ["DC capacity", 62]]
+  },
+  {
+    title: "Reroute Truck #284",
+    area: "Texas · Dairy cold chain",
+    priority: "High Priority",
+    savings: 1.1,
+    confidence: "95%",
+    status: "Pending",
+    why: [["Temperature", 95], ["ETA delay", 72], ["Dairy risk", 88], ["Route impact", 64]]
   },
   {
     title: "Reduce bakery order",
@@ -190,7 +200,7 @@ function formatMoney(value) {
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2200);
+  setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
 function escapeHtml(value) {
@@ -528,7 +538,7 @@ async function askAI(question) {
   chatBox.insertAdjacentHTML(
     "beforeend",
     `<div class="message ai" id="${loadingId}">
-      <b>FreshFlow AI Agent:</b> Analyzing live supply chain context...
+      <b>FreshFlow AI Agent:</b> Analyzing FreshFlow database and supply chain context...
     </div>`
   );
 
@@ -614,6 +624,45 @@ async function askAI(question) {
   }
 
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function triggerLogisticsRiskAlert() {
+  if (state.logisticsAlertShown) return;
+
+  state.logisticsAlertShown = true;
+
+  const notifications = $("#notifications");
+
+  if (notifications) {
+    notifications.insertAdjacentHTML(
+      "afterbegin",
+      `
+      <div class="mini-alert logistics-alert">
+        <b>🚚 Logistics risk detected</b>
+        <p>Truck #284 shows a cold-chain deviation and route delay. FreshFlow AI recommends rerouting and inspecting the shipment.</p>
+      </div>
+      `
+    );
+  }
+
+  const notificationButton = $("#notificationToggle");
+
+  if (notificationButton) {
+    notificationButton.classList.add("notification-pulse");
+  }
+
+  addActivity(
+    "Logistics risk detected",
+    "Truck #284 · Cold-chain deviation · Reroute recommended"
+  );
+
+  showToast("🚚 Logistics risk detected: Truck #284 needs action");
+
+  setTimeout(() => {
+    if (notificationButton) {
+      notificationButton.classList.remove("notification-pulse");
+    }
+  }, 9000);
 }
 
 function updateAdoption() {
@@ -817,6 +866,8 @@ function init() {
   setupUI();
   setupScenario();
   setupTwin();
+
+  setTimeout(triggerLogisticsRiskAlert, 20000);
 }
 
 document.addEventListener("DOMContentLoaded", init);
